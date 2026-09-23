@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/shopno_ai_logo.jpg" alt="Shopno AI Logo" width="220" style="border-radius: 24px; box-shadow: 0 0 40px rgba(0, 212, 170, 0.4);" />
   
-  # 🌌 SHOPNO AI v1.1.18 Desktop Edition
+  # 🌌 SHOPNO AI v2.0 Desktop Edition
   
   ### The Sovereign Autonomous AI & Multi-Agent Swarm Operating System
   **454+ Native Tools • 4,000+ Skills • 60,000+ Open VSX Extensions • 7 Billion Tokens Freedom • 1-Click MCP Suite**
