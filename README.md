@@ -8,9 +8,9 @@
 
   [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)]([https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link))
   [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://surveymentor.org)
-  [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://shopno.freedev.app/)
+  [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://surveymentor.org/)
   [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://surveymentor.org/)
-  [![Website](https://img.shields.io/badge/Official_Website-shopno.freedev.app-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
+  [![Website](https://img.shields.io/badge/Official_Website-surveymentor.org-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
   [![Architect](https://img.shields.io/badge/Architect-Cyber_Prince-purple?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch)
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE.md)
 
