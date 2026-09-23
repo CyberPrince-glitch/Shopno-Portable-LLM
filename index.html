@@ -1,0 +1,2806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="SNdTAASt51Q7goHqa8djZjWcde8kQtLT9swmrDUtaMQ" />
+<title>Shopno AI v1.1.18 — The Sovereign Autonomous AI & Multi-Agent Swarm OS</title>
+    <meta name="description" content="Shopno AI v1.1.18: Sovereign Autonomous AI OS with 410+ built-in tools, 60,000+ Open VSX extensions, 1-Click GitHub MCP, Swarm Studio, and Emergent Atmospheric Cloud HUD.">    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #030614;
+            --bg-deep: #030614;
+            --bg-surface: #070c26;
+            --surface: #0d1428;
+            --surface-light: #111a38;
+            --surface-lighter: #162040;
+            --surface-glass: rgba(13, 20, 52, 0.65);
+            --text-primary: #f3f4f6;
+            --text-secondary: #a1a1aa;
+            --text-muted: #6b7280;
+            --accent: #00d4aa;
+            --accent-soft: #5eead3;
+            --accent-glow: rgba(0, 212, 170, 0.25);
+            --accent-subtle: rgba(0, 212, 170, 0.08);
+            --glow-violet: #8b5cf6;
+            --glow-cyan: #06b6d4;
+            --glow-emerald: #10b981;
+            --glow-rose: #f43f5e;
+            --glow-orange: #f97316;
+            --violet: #8b5cf6;
+            --indigo: #6366f1;
+            --border: rgba(255,255,255,0.08);
+            --border-light: rgba(255,255,255,0.12);
+            --border-accent: rgba(0, 212, 170, 0.3);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --radius-lg: 24px;
+            --radius-full: 9999px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 60px rgba(0, 212, 170, 0.15);
+            /* Typography */
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.65;
+            overflow-x: hidden;
+            cursor: default;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ambient Space-Glow Mesh */
+        .ambient-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 60%);
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .orb-violet {
+            width: 600px;
+            height: 600px;
+            background: var(--glow-violet);
+            top: -200px;
+            right: 5%;
+            animation: float-violet 20s infinite alternate ease-in-out;
+        }
+
+        .orb-cyan {
+            width: 500px;
+            height: 500px;
+            background: var(--glow-cyan);
+            bottom: -150px;
+            left: 5%;
+            animation: float-cyan 25s infinite alternate ease-in-out;
+        }
+
+        .orb-emerald {
+            width: 400px;
+            height: 400px;
+            background: var(--glow-emerald);
+            top: 40%;
+            left: 40%;
+            animation: float-emerald 30s infinite alternate ease-in-out;
+        }
+
+        @keyframes float-violet {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-80px, 60px) scale(1.1); }
+        }
+        @keyframes float-cyan {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -80px) scale(1.15); }
+        }
+        @keyframes float-emerald {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 40px) scale(0.95); }
+        }
+
+        /* Premium heading styles */
+        h1, h2, h3, h4, .display {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, opacity 0.15s;
+            mix-blend-mode: difference;
+            box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent-glow);
+        }
+
+        .cursor.hover {
+            transform: scale(3);
+            opacity: 0.3;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out, opacity 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower.hover {
+            transform: scale(1.5);
+            border-color: var(--accent-soft);
+        }
+
+        /* 3D Canvas */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============ COMMAND PALETTE ============ */
+        .command-palette {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .command-palette:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .command-palette kbd {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 4px 8px;
+            background: var(--surface-light);
+            border-radius: 6px;
+            color: var(--text-secondary);
+        }
+
+        .command-palette span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Command Palette Modal */
+        .palette-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 15vh;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .palette-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .palette-content {
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transform: scale(0.95) translateY(-20px);
+            transition: transform 0.2s;
+        }
+
+        .palette-modal.active .palette-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .palette-input-wrap {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .palette-input-wrap svg {
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+
+        .palette-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        .palette-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .palette-results {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .palette-group {
+            margin-bottom: 12px;
+        }
+
+        .palette-group-title {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding: 8px 12px;
+        }
+
+        .palette-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .palette-item:hover, .palette-item.selected {
+            background: var(--surface-light);
+        }
+
+        .palette-item-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--surface-lighter);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .palette-item-text h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .palette-item-text p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .palette-shortcut {
+            margin-left: auto;
+            display: flex;
+            gap: 4px;
+        }
+
+        .palette-shortcut kbd {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            padding: 3px 6px;
+            background: var(--surface);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 14px 0;
+            background: var(--surface-glass);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--accent), #06b6d4);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--bg);
+            font-size: 16px;
+            transform: rotate(-5deg);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            background: var(--accent-subtle);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: transform 0.2s;
+        }
+
+        .nav-links a:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-links a.active {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow), 0 0 40px var(--accent-subtle);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-light);
+            background: var(--surface-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text-primary);
+            background: var(--surface);
+        }
+
+        /* ============ MOBILE NAV ============ */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 110;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links, .nav-cta {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--surface);
+                flex-direction: column;
+                justify-content: center;
+                gap: 24px;
+                transition: right 0.3s ease;
+                z-index: 105;
+            }
+
+            .nav-links.active, .nav-cta.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(2.2rem, 6vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 16px;
+                padding: 0 16px;
+            }
+
+            .terminal {
+                max-width: 95%;
+                margin: 0 auto;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 12px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+            }
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 140px 0 100px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        }
+
+        /* Floating geometric shapes */
+        .geo-shape {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .geo-1 {
+            width: 400px;
+            height: 400px;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            top: 10%;
+            left: -10%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .geo-2 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid var(--purple);
+            top: 60%;
+            right: -8%;
+            transform: rotate(45deg);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .geo-3 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent), transparent);
+            top: 30%;
+            right: 20%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .hero-badge span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            transform: translateY(30px);
+            opacity: 0;
+            font-family: var(--font-display);
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 50%, var(--indigo) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--indigo));
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        /* ============ LIVE TERMINAL DEMO ============ */
+        .terminal-demo {
+            margin-top: 60px;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        .terminal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            background: var(--surface-light);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #ff5f57; }
+        .terminal-dot.yellow { background: #febc2e; }
+        .terminal-dot.green { background: #28c840; }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            min-height: 200px;
+        }
+
+        .terminal-line {
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .terminal-line.visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.3s;
+        }
+
+        .terminal-prompt {
+            color: var(--green);
+        }
+
+        .terminal-cmd {
+            color: var(--text-primary);
+        }
+
+        .terminal-output {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--accent);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .terminal-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text-primary);
+            caret-color: var(--accent);
+        }
+
+        .terminal-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .terminal-hint.visible {
+            opacity: 1;
+        }
+
+        /* ============ STATS ============ */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* ============ COMPARISON SECTION ============ */
+        .comparison {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px 24px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--surface-light);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .shopno-col {
+            background: var(--accent-glow);
+        }
+
+        .check-icon {
+            color: var(--accent);
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .cross-icon {
+            color: var(--text-muted);
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+        }
+
+        .partial {
+            color: var(--orange);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Focus visible for accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .btn:focus-visible,
+        .tool-cat-btn:focus-visible,
+        .nav-links a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ============ FEATURES / TOOLS ============ */
+        .features {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .bento-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--purple));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .bento-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        .bento-card.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .bento-card.wide {
+            grid-column: span 2;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--surface-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .card-icon.purple { color: var(--purple); }
+        .card-icon.green { color: var(--green); }
+        .card-icon.pink { color: var(--pink); }
+        .card-icon.yellow { color: var(--yellow); }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 16px;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: var(--surface-light);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ============ CREATOR SECTION ============ */
+        .creator {
+            padding: 120px 0;
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .creator-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .creator-image {
+            position: relative;
+        }
+
+        .creator-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .creator-avatar::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--accent), var(--purple), var(--pink));
+            z-index: -1;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .creator-text h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .creator-text h2 span {
+            color: var(--accent);
+        }
+
+        .creator-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .creator-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .creator-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--surface-light);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .creator-link:hover {
+            background: var(--surface-lighter);
+            color: var(--text-primary);
+        }
+
+        /* ============ TOOL EXPLORER ============ */
+        .tool-explorer {
+            padding: 120px 0;
+        }
+
+        .tool-categories {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tool-cat-btn {
+            padding: 10px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tool-cat-btn:hover, .tool-cat-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .tool-card {
+            background: var(--surface-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tool-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+
+        .tool-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tool-card-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--surface-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .tool-card-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tool-card-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tool-card-preview {
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--surface-light);
+            border-radius: var(--radius-sm);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .tool-card:hover .tool-card-preview {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ PRICING ============ */
+        .pricing {
+            padding: 120px 0;
+            background: var(--surface);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 16px;
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-tier {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .pricing-price {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price span {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .pricing-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features svg {
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============ DOWNLOAD SECTION ============ */
+        .download-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .download-section .section-title {
+            margin-bottom: 16px;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .download-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--glow-violet), var(--glow-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .download-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .download-meta {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .download-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .download-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .download-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: #030614;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-soft);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .download-secondary {
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .download-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .social-row a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .social-row a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-top: 16px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .footer-social a:hover {
+            background: var(--surface-light);
+            color: var(--accent);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .creator-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 32px;
+            }
+            
+            .comparison-table {
+                font-size: 12px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-brand p {
+                max-width: 100%;
+            }
+        }
+
+        /* ============ ANIMATIONS ============ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-up.visible {
+            animation: fadeUp 0.8s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ambient Background Orbs -->
+    <div class="ambient-background">
+        <div class="ambient-orb orb-violet"></div>
+        <div class="ambient-orb orb-cyan"></div>
+        <div class="ambient-orb orb-emerald"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- 3D Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Command Palette Trigger -->
+    <div class="command-palette" id="cmdPaletteTrigger">
+        <kbd>⌘</kbd><kbd>K</kbd>
+        <span>Search...</span>
+    </div>
+
+    <!-- Command Palette Modal -->
+    <div class="palette-modal" id="paletteModal">
+        <div class="palette-content">
+            <div class="palette-input-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="palette-input" placeholder="Search commands, tools, pages..." id="paletteInput">
+                <kbd>ESC</kbd>
+            </div>
+            <div class="palette-results" id="paletteResults">
+                <div class="palette-group">
+                    <div class="palette-group-title">Navigation</div>
+                    <div class="palette-item" data-section="features">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4>Features</h4>
+                            <p>Explore all capabilities</p>
+                        </div>
+                        <div class="palette-shortcut"><kbd>F</kbd></div>
+                    </div>
+                    <div class="palette-item" data-section="tools">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4>Tools</h4>
+                            <p>Browse all 350+ tools</p>
+                        </div>
+                        <div class="palette-shortcut"><kbd>T</kbd></div>
+                    </div>
+                    <div class="palette-item" data-section="pricing">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4>Pricing</h4>
+                            <p>View plans and pricing</p>
+                        </div>
+                        <div class="palette-shortcut"><kbd>P</kbd></div>
+                    </div>
+                    <div class="palette-item" data-section="creator">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4>Creator</h4>
+                            <p>Meet the creator</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="palette-group">
+                    <div class="palette-group-title">Actions</div>
+                    <div class="palette-item" data-action="install">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4><a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe"> Install Shopno </a></h4>
+                            <p>Get started now</p>
+                        </div>
+                    </div>
+                    <div class="palette-item" data-action="docs">
+                        <div class="palette-item-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <div class="palette-item-text">
+                            <h4>Documentation</h4>
+                            <p>Read the docs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <img src="assets/shopno_ai_logo.jpg" alt="Shopno Logo" style="width: 32px; height: 32px; border-radius: 8px; margin-right: 10px; object-fit: cover; box-shadow: 0 0 15px rgba(0,212,170,0.4);" />Shopno AI
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#comparison">Compare</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#creator">Creator</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe" class="btn btn-secondary" target="_blank">GitHub</a>
+                <a href="https://shopno.freedev.app/" class="btn btn-primary" target="_blank">Website</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="geo-shape geo-1"></div>
+            <div class="geo-shape geo-2"></div>
+            <div class="geo-shape geo-3"></div>
+            
+            <div class="container hero-content">
+                <div class="hero-badge"><span>✦</span> v1.1.18 Stable Flagship Release Now Available</div>
+                
+                <h1>The Sovereign <span class="highlight">Autonomous AI</span> Operating System</h1>
+                
+                <p>Shopno v1.1.18 unifies 410+ native tools, 60,000+ VS Code extensions via Open VSX, 1-Click GitHub MCP integration, and autonomous multi-agent swarms under a living Atmospheric Cloud HUD. 100% sovereign & local-first.</p>
+                
+                <div class="hero-buttons">
+                    <a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Install Now
+                    </a>
+                    <a href="#features" class="btn btn-secondary">Explore Features</a>
+                </div>
+
+                
+                <!-- Live Desktop Software Preview -->
+                <div style="margin: 40px auto 20px; max-width: 1100px; position: relative; z-index: 10;">
+                    <div style="background: rgba(13, 20, 40, 0.75); border: 1px solid rgba(0, 212, 170, 0.3); border-radius: 16px; padding: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 212, 170, 0.15); backdrop-filter: blur(16px);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 14px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                            <div style="display: flex; gap: 6px;">
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
+                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
+                            </div>
+                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a1a1aa;">Shopno Desktop v1.1.18 — Quantara HUD (Atmospheric Cloud Interface)</span>
+                            <span style="font-size: 11px; padding: 2px 8px; background: rgba(0,212,170,0.15); color: #5eead3; border-radius: 100px; font-weight: 500;">LIVE ENGINE</span>
+                        </div>
+                        <img src="assets/shopno_desktop_hud.png" alt="Shopno Desktop v1.1.18 Live Screenshot" style="width: 100%; border-radius: 10px; display: block; margin-top: 8px;" />
+                    </div>
+                </div>
+
+                <!-- Live Terminal Demo -->
+                <div class="terminal-demo">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dot red"></div>
+                            <div class="terminal-dot yellow"></div>
+                            <div class="terminal-dot green"></div>
+                            <div class="terminal-title">shopno — interactive</div>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜</span> 
+                                <span class="terminal-cmd">shopno list tools --category browser</span>
+                            </div>
+                            <div class="terminal-output" id="terminalOutput">
+                                <div>🔍 Found 32 browser automation tools:</div>
+                                <div>• browser_open, browser_click, browser_type</div>
+                                <div>• browser_screenshot, browser_elements</div>
+                                <div>• browser_record_start, browser_record_stop</div>
+                                <div>• smart_browser, browser_auto_click...</div>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">➜</span> 
+                                <span class="terminal-cmd">shopno create landing --template hero</span>
+                                <span class="terminal-cursor"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="terminal-hint" id="terminalHint">
+                        Try typing in the terminal above →
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">410+</div>
+                <div class="stat-label">Native Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">60K+</div>
+                <div class="stat-label">Open VSX Extensions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1-Click</div>
+                <div class="stat-label">GitHub MCP Suite</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Local-First</div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="comparison" id="comparison">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Why Shopno?</div>
+                    <h2 class="section-title">Comparison</h2>
+                    <p class="section-desc">See how Shopno stacks up against other AI coding assistants</p>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="shopno-col">Shopno</th>
+                            <th>Claude Code</th>
+                            <th>Cursor</th>
+                            <th>v0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Local-First (Offline)</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>No API Required</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>Browser Automation</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="partial">Partial</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>Desktop Control</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>Automation Recipes</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>Media Pipeline</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="partial">UI only</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Evidence Notebook</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                        <tr>
+                            <td>Zero Dependencies</td>
+                            <td class="shopno-col"><span class="check">✓</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                            <td><span class="cross">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Capabilities</div>
+                    <h2 class="section-title">Everything You Need</h2>
+                    <p class="section-desc">33 capability domains. 350+ tools. One unified interface.</p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="bento-card large">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                        </div>
+                        <h3 class="card-title">File & Project Tools</h3>
+                        <p class="card-desc">Complete file operations: read, write, edit, glob, search, and manage your entire project from the terminal.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">read_file</span>
+                            <span class="card-tag">write_file</span>
+                            <span class="card-tag">glob_files</span>
+                            <span class="card-tag">search_files</span>
+                            <span class="card-tag">+41 more</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        </div>
+                        <h3 class="card-title">Browser Automation</h3>
+                        <p class="card-desc">Full browser control: open, click, type, screenshot, record workflows, and extract web content.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">browser_open</span>
+                            <span class="card-tag">smart_browser</span>
+                            <span class="card-tag">web_clone</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h3 class="card-title">Desktop Control</h3>
+                        <p class="card-desc">Mouse, keyboard, AI element detection, screenshots, and workflow recording.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">desktop_mouse</span>
+                            <span class="card-tag">ai_element</span>
+                            <span class="card-tag">workflow</span>
+                        </div>
+                    </div>
+                    <div class="bento-card wide">
+                        <div class="card-icon pink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <h3 class="card-title">Automation & Workflows</h3>
+                        <p class="card-desc">IFTTT/Zapier-style automation with recipes, triggers, webhooks, social posting, and approval outbox.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">automation_run</span>
+                            <span class="card-tag">automation_create_flow</span>
+                            <span class="card-tag">automation_webhook</span>
+                            <span class="card-tag">automation_oauth</span>
+                            <span class="card-tag">+31 more</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon yellow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        </div>
+                        <h3 class="card-title">Media Pipeline</h3>
+                        <p class="card-desc">Script-to-video, voiceover, music beds, image generation, clip editing, and rendering.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">media_pipeline</span>
+                            <span class="card-tag">media_voiceover</span>
+                            <span class="card-tag">media_render</span>
+                        </div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
+                        </div>
+                        <h3 class="card-title">AI & LLM Routing</h3>
+                        <p class="card-desc">Provider mesh, local Ollama, voice core, and model fallback routing.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">provider_mesh</span>
+                            <span class="card-tag">local_llm</span>
+                            <span class="card-tag">voice_speak</span>
+                        </div>
+                    </div>
+                    <div class="bento-card wide">
+                        <div class="card-icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3 class="card-title">Research & Evidence</h3>
+                        <p class="card-desc">Web fetch, search, research sessions, source cards, confidence scoring, and citation enforcement.</p>
+                        <div class="card-tags">
+                            <span class="card-tag">web_fetch</span>
+                            <span class="card-tag">web_search</span>
+                            <span class="card-tag">research_session</span>
+                            <span class="card-tag">research_report</span>
+                            <span class="card-tag">+21 more</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creator Section -->
+        <section class="creator" id="creator">
+            <div class="container">
+                <div class="creator-content">
+                    <div class="creator-image">
+                        <div class="creator-avatar">👨‍💻</div>
+                    </div>
+                    <div class="creator-text">
+                        <h2>Built by <span>Cyber Prince</span></h2>
+                        <p>Shopno was created because the founder got tired of bloated AI tools that require subscriptions, API keys, and internet connections just to edit a file.</p>
+                        <p>The vision is simple: a coding agent that runs locally, owns your data, and gives you 350+ tools without importing 350+ npm packages. Pure productivity, zero friction.</p>
+                        <p>Every feature in Shopno exists because it solves a real problem. No hype, no trends—just tools that work.</p>
+                        <div class="creator-links">
+                            <a href="https://github.com/CyberPrince-Alien" class="creator-link" target="_blank">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://github.com/CyberPrince-Alien/Protfolio" class="creator-link" target="_blank">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Explorer -->
+        <section class="tool-explorer" id="tools">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Explorer</div>
+                    <h2 class="section-title">Browse Tools</h2>
+                    <p class="section-desc">Click any tool to see what it does</p>
+                </div>
+
+                <div class="tool-categories">
+                    <button class="tool-cat-btn active" data-cat="all">All</button>
+                    <button class="tool-cat-btn" data-cat="browser">Browser</button>
+                    <button class="tool-cat-btn" data-cat="file">Files</button>
+                    <button class="tool-cat-btn" data-cat="automation">Automation</button>
+                    <button class="tool-cat-btn" data-cat="media">Media</button>
+                    <button class="tool-cat-btn" data-cat="ai">AI/LLM</button>
+                </div>
+
+                <div class="tools-grid" id="toolsGrid">
+                    <!-- Tools will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Pricing</div>
+                    <h2 class="section-title">Centralized License Plans</h2>
+                    <p class="section-desc">Simple plans. No hidden fees. Cancel anytime.</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card featured">
+                        <div class="pricing-tier">Pro Developer</div>
+                        <div class="pricing-price">$5<span>/month</span></div>
+                        <div class="pricing-desc">Perfect for active developers wanting standalone tools</div>
+                        <ul class="pricing-features">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full Interactive Python CLI Access</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Access to Rotating Groq/Google Models</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>System-Wide Control File Access</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Memory Manager & Kanban Board</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Manual bKash/Nagad/Crypto Checkout</li>
+                        </ul>
+                        <a href="https://github.com/CyberPrince-Alien/shopno" class="btn btn-primary">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-tier">Enterprise Ultra</div>
+                        <div class="pricing-price">$19<span>/month</span></div>
+                        <div class="pricing-desc">Absolute power with self-healing S.E.E. updates</div>
+                        <ul class="pricing-features">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro Developer Tier</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shopno Evolution Self-Healing Engine</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AudioMass Web Waveform Editor</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Central Admin Key Rotations</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Priority 24/7 Licensing Support</li>
+                        </ul>
+                        <a href="https://github.com/CyberPrince-Alien/shopno" class="btn btn-secondary">Upgrade to Ultra</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section" id="downloads">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Downloads</div>
+                    <h2 class="section-title">Download Shopno Software</h2>
+                    <p class="section-desc">Choose the current release for your operating system</p>
+                </div>
+
+                <div class="download-grid">
+                    <div class="download-card">
+                        <div class="download-icon">Win</div>
+                        <h3>Windows x64</h3>
+                        <div class="download-meta">Shopno Desktop v1.1.18 / Standalone NSIS</div>
+                        <p>Native 64-bit Windows installer with hardware acceleration & zero dependencies.</p>
+                        <div class="download-actions">
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
+                        </div>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">Mac</div>
+                        <h3>macOS</h3>
+                        <div class="download-meta">Shopno v1.0.8 / ~52 MB</div>
+                        <p>Universal binary for Intel and Apple Silicon Macs.</p>
+                        <div class="download-actions">
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
+                        </div>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="download-icon">Lin</div>
+                        <h3>Linux</h3>
+                        <div class="download-meta">Shopno v1.0.8 / ~48 MB</div>
+                        <p>AppImage and pip installation supported.</p>
+                        <div class="download-actions">
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
+                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-row">
+                    <a href="https://github.com/CyberPrince-Alien" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/CyberPrince-Alien/shopno/releases" target="_blank" rel="noopener">All Releases</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="assets/shopno_ai_logo.jpg" alt="Shopno Logo" style="width: 32px; height: 32px; border-radius: 8px; margin-right: 10px; object-fit: cover; box-shadow: 0 0 15px rgba(0,212,170,0.4);" />Shopno AI
+                    </a>
+                    <p>A pragmatic coding agent that runs locally. No subscriptions, no API keys, no dependencies.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#comparison">Compare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Examples</a></li>
+                        <li><a href="#">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/CyberPrince-Alien" target="_blank">GitHub</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="https://github.com/CyberPrince-Alien/Protfolio" target="_blank">Creator</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">© 2025-2026 Shopno AI. Architected by Cyber Prince (Sourov).</div>
+                <div class="footer-social">
+                    <a href="https://github.com/CyberPrince-Alien" target="_blank" aria-label="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Discord">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5487-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============ CUSTOM CURSOR ============
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.createElement('div');
+        cursorFollower.className = 'cursor-follower';
+        document.body.appendChild(cursorFollower);
+        
+        let cursorVisible = false;
+        let cursorEnlarged = false;
+        let followerVisible = false;
+
+        document.addEventListener('mousemove', (e) => {
+            if (!cursorVisible) {
+                cursor.style.opacity = '1';
+                cursorVisible = true;
+            }
+            if (!followerVisible) {
+                cursorFollower.style.opacity = '1';
+                followerVisible = true;
+            }
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Follower with delay
+            setTimeout(() => {
+                cursorFollower.style.left = (e.clientX - 20) + 'px';
+                cursorFollower.style.top = (e.clientY - 20) + 'px';
+            }, 80);
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('hover');
+            cursorEnlarged = true;
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('hover');
+            cursorEnlarged = false;
+        });
+
+        document.querySelectorAll('a, button, .bento-card, .tool-card, .pricing-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // ============ THREE.JS BACKGROUND ============
+        const canvas = document.getElementById('webgl-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create particles
+        const particleCount = 200;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        
+        const colorOptions = [
+            new THREE.Color(0x22d3ee),
+            new THREE.Color(0xa78bfa),
+            new THREE.Color(0x34d399),
+            new THREE.Color(0xf472b6)
+        ];
+
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+            
+            const color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+            colors[i * 3] = color.r;
+            colors[i * 3 + 1] = color.g;
+            colors[i * 3 + 2] = color.b;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.05,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.x += 0.0003;
+            particles.rotation.y += 0.0005;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ============ COMMAND PALETTE ============
+        const paletteTrigger = document.getElementById('cmdPaletteTrigger');
+        const paletteModal = document.getElementById('paletteModal');
+        const paletteInput = document.getElementById('paletteInput');
+        let paletteOpen = false;
+
+        function openPalette() {
+            paletteModal.classList.add('active');
+            paletteInput.focus();
+            paletteOpen = true;
+        }
+
+        function closePalette() {
+            paletteModal.classList.remove('active');
+            paletteInput.value = '';
+            paletteOpen = false;
+        }
+
+        paletteTrigger.addEventListener('click', openPalette);
+        
+        document.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                if (paletteOpen) closePalette();
+                else openPalette();
+            }
+            if (e.key === 'Escape' && paletteOpen) {
+                closePalette();
+            }
+        });
+
+        paletteModal.addEventListener('click', (e) => {
+            if (e.target === paletteModal) closePalette();
+        });
+
+        // Palette navigation
+        document.querySelectorAll('.palette-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.dataset.section;
+                if (section) {
+                    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+                }
+                closePalette();
+            });
+        });
+
+        // ============ ENHANCED GSAP ANIMATIONS ============
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations with staggered reveal and eased transitions
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        
+        heroTl
+            .to('.hero-badge', { y: 0, opacity: 1, duration: 0.6, delay: 0.2 })
+            .to('.hero h1', { y: 0, opacity: 1, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
+            .to('.hero p', { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
+            .to('.hero-buttons', { y: 0, opacity: 1, duration: 0.6 }, '-=0.3')
+            .to('.terminal-demo', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2')
+            .to('#cmdPaletteTrigger', { y: 0, opacity: 1, duration: 0.5 }, '-=0.5');
+
+        // Floating geometric shapes with continuous parallax
+        gsap.to('.geo-1', {
+            y: -50,
+            rotation: 10,
+            duration: 8,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        gsap.to('.geo-2', {
+            y: 40,
+            rotation: -5,
+            duration: 10,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        gsap.to('.geo-3', {
+            y: -30,
+            duration: 6,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        // Parallax effect on hero background
+        gsap.to('.hero::before', {
+            y: 100,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        // Stats bar with staggered number animation
+        gsap.to('.stats-bar', { 
+            y: 0, 
+            opacity: 1, 
+            duration: 0.6, 
+            delay: 1.2,
+            scrollTrigger: {
+                trigger: '.stats-bar',
+                start: 'top 80%'
+            }
+        });
+
+        // Terminal typing effect with cursor blink
+        const terminalLines = document.querySelectorAll('.terminal-line');
+        terminalLines.forEach((line, i) => {
+            setTimeout(() => {
+                line.classList.add('visible');
+            }, 1500 + i * 800);
+        });
+
+        setTimeout(() => {
+            document.getElementById('terminalHint').classList.add('visible');
+        }, 3500);
+
+        // Cursor blink effect
+        gsap.to('.cursor', {
+            scale: 1.2,
+            duration: 0.5,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        // Section animations with staggered reveals
+        const sections = gsap.utils.toArray('.section-header, .bento-card, .pricing-card, .creator-content, .comparison-table');
+        
+        sections.forEach((el, i) => {
+            gsap.from(el, {
+                y: 60,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Bento cards staggered entrance
+        gsap.from('.bento-card', {
+            y: 40,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.bento-grid',
+                start: 'top 75%'
+            }
+        });
+
+        // Tool cards staggered reveal
+        gsap.from('.tool-card', {
+            y: 30,
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.5,
+            stagger: 0.08,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+                trigger: '.tools-grid',
+                start: 'top 80%'
+            }
+        });
+
+        // Pricing cards with scale and fade
+        gsap.from('.pricing-card', {
+            y: 50,
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.7,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.pricing-grid',
+                start: 'top 75%'
+            }
+        });
+
+        // Comparison table row reveal
+        gsap.from('.comparison-table tbody tr', {
+            x: -30,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.comparison-table',
+                start: 'top 70%'
+            }
+        });
+
+        // Smooth scroll for nav links with easing
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: { y: target, offsetY: 80 },
+                        ease: 'power3.inOut'
+                    });
+                }
+            });
+        });
+
+        // ============ MOBILE MENU TOGGLE ============
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navCta = document.querySelector('.nav-cta');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                navCta.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    navCta.classList.remove('active');
+                });
+            });
+        }
+
+        // ============ ACCESSIBILITY ENHANCEMENTS ============
+        // Keyboard navigation for tool filter buttons
+        document.querySelectorAll('.tool-cat-btn').forEach(btn => {
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+
+        // Focus visible states
+        document.querySelectorAll('.tool-cat-btn, .nav-links a, .btn').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.classList.add('focused');
+            });
+            el.addEventListener('blur', () => {
+                el.classList.remove('focused');
+            });
+        });
+
+        // ============ TOOL EXPLORER ============
+        const toolsData = [
+            { name: 'browser_open', category: 'browser', desc: 'Open URLs in controlled browser', preview: 'browser_open("https://github.com")' },
+            { name: 'browser_click', category: 'browser', desc: 'Click elements by selector or text', preview: 'browser_click(".btn-primary")' },
+            { name: 'browser_type', category: 'browser', desc: 'Type text into input fields', preview: 'browser_type("#search", "Shopno")' },
+            { name: 'smart_browser', category: 'browser', desc: 'AI-powered browser automation', preview: 'smart_browser("go to Google, search AI")' },
+            { name: 'read_file', category: 'file', desc: 'Read file contents', preview: 'read_file("package.json")' },
+            { name: 'write_file', category: 'file', desc: 'Write content to files', preview: 'write_file("new.js", "console.log()")' },
+            { name: 'glob_files', category: 'file', desc: 'Find files by glob pattern', preview: 'glob_files("**/*.tsx")' },
+            { name: 'search_files', category: 'file', desc: 'Search text in files', preview: 'search_files("TODO", "src/")' },
+            { name: 'automation_run', category: 'automation', desc: 'Run automation recipes', preview: 'automation_run(recipe_id=1)' },
+            { name: 'automation_create_flow', category: 'automation', desc: 'Create new automation flows', preview: 'automation_create_flow("new recipe")' },
+            { name: 'media_pipeline_create', category: 'media', desc: 'Create video pipeline', preview: 'media_pipeline_create(script)' },
+            { name: 'media_voiceover', category: 'media', desc: 'Generate voiceover audio', preview: 'media_voiceover(job_id, text)' },
+            { name: 'provider_mesh', category: 'ai', desc: 'Route to best LLM provider', preview: 'provider_mesh()' },
+            { name: 'local_llm_status', category: 'ai', desc: 'Check local Ollama status', preview: 'local_llm_status()' },
+            { name: 'voice_speak', category: 'ai', desc: 'Text-to-speech output', preview: 'voice_speak("Hello!")' }
+        ];
+
+        const toolsGrid = document.getElementById('toolsGrid');
+
+        function renderTools(filter = 'all') {
+            toolsGrid.innerHTML = '';
+            const filtered = filter === 'all' ? toolsData : toolsData.filter(t => t.category === filter);
+            
+            filtered.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'tool-card';
+                card.innerHTML = `
+                    <div class="tool-card-header">
+                        <div class="tool-card-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                        </div>
+                        <div class="tool-card-name">${tool.name}</div>
+                    </div>
+                    <div class="tool-card-desc">${tool.desc}</div>
+                    <div class="tool-card-preview">${tool.preview}</div>
+                `;
+                toolsGrid.appendChild(card);
+            });
+        }
+
+        renderTools();
+
+        document.querySelectorAll('.tool-cat-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tool-cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderTools(btn.dataset.cat);
+            });
+        });
+
+        // ============ SMOOTH SCROLL FOR NAV LINKS ============
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============ MOBILE MENU (hidden for now - simple version) ============
+        // Could add hamburger menu for mobile
+    </script>
+</body>
+</html>
