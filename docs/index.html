@@ -126,6 +126,8 @@
   .btn-secondary:hover { border-color: rgba(34,211,238,.4); background: rgba(34,211,238,.06); }
   .btn svg { width: 18px; height: 18px; }
   .btn small { font-weight: 500; opacity: .75; font-size: 12px; }
+  .ext-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
+  .ext-note { text-align: center; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
   .dl-meta { margin-top: 16px; font-size: 12.5px; color: var(--muted); }
   .dl-meta a { color: var(--cyan); text-decoration: none; }
   .dl-meta a:hover { text-decoration: underline; }
@@ -245,6 +247,7 @@
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
+      <a href="#extension">Extension</a>
       <a href="#api">API</a>
       <a href="#platforms">Platforms</a>
       <a class="nav-cta" href="#download">Download</a>
@@ -274,6 +277,10 @@
         <a class="btn btn-secondary os-win" id="btn-msi" href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64_en-US.msi">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
           Windows Installer <small>.msi</small>
+        </a>
+        <a class="btn btn-secondary" id="btn-chrome" href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M2.5 9h19"/><circle cx="12" cy="14.5" r="2.6"/></svg>
+          Chrome Extension <small>Web Store</small>
         </a>
       </div>
       <div class="os-note" id="os-note"></div>
@@ -332,6 +339,41 @@
         <p>Prefer managed models? Log in and get cloud models alongside your local ones — favorite them, switch freely, keep your history intact.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= BROWSER EXTENSION ================= -->
+<section id="extension">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Browser extension</div>
+      <h2 class="sec-title">Shopno Browser Agent for Chrome</h2>
+      <p class="sec-sub">An autonomous AI agent living in Chrome's side panel — browsing, forms and research handled for you.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 12l4 4 4-4"/><path d="M12 8v8"/></svg></div>
+        <h3>Autonomous Browser Actions</h3>
+        <p>Describe the task in plain language — the agent navigates, clicks buttons, fills out forms and finishes multi-step workflows for you.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M15 3v18"/><path d="M6 8h6M6 12h6M6 16h4"/></svg></div>
+        <h3>Side Panel Interface</h3>
+        <p>Runs in Chrome's side panel next to your page, so your workspace stays clean while you watch every step and can pause anytime.</p>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><path d="M12 3c2.5 3 2.5 15 0 18M12 3C9.5 6 9.5 18 12 21"/></svg></div>
+        <h3>Cloud &amp; Local AI</h3>
+        <p>Powered by Shopno AI with optional local AI support for privacy and offline testing. Multi-tab research and data entry included.</p>
+      </div>
+    </div>
+    <div class="ext-cta reveal">
+      <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M2.5 9h19"/><circle cx="12" cy="14.5" r="2.6"/></svg>
+        Install from Chrome Web Store
+      </a>
+    </div>
+    <p class="ext-note">Free — works with your Shopno AI account · <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">Shopno Browser Agent</a></p>
   </div>
 </section>
 
@@ -416,6 +458,7 @@
     <p class="made">Developed with <span class="heart">♥</span> by <strong>Cyber Prince</strong></p>
     <div class="foot-links">
       <a href="https://surveymentor.org" target="_blank" rel="noopener">surveymentor.org</a> ·
+      <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">Chrome Extension</a> ·
       <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">Releases</a> ·
       <a href="#features">Features</a> ·
       <a href="#download">Download</a>
