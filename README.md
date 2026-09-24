@@ -6,7 +6,7 @@
   ### The Sovereign Autonomous AI & Multi-Agent Swarm Operating System
   **454+ Native Tools • 4,000+ Skills • 60,000+ Open VSX Extensions • 7 Billion Tokens Freedom • 1-Click MCP Suite**
 
-  [![Release](https://img.shields.io/badge/Release-v1.1.18_Stable_Fix-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)]([https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link))
+  [![Release](https://img.shields.io/badge/Release-v2.0.0_Stable-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest)
   [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://surveymentor.org)
   [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://surveymentor.org/)
   [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://surveymentor.org/)
@@ -16,7 +16,7 @@
 
   <br><br>
 
-  <a href="https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link">
+  <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64-setup.exe">
     <img src="https://img.shields.io/badge/DOWNLOAD_SHOPNO_DESKTOP_(WINDOWS_x64)-00d4aa?style=for-the-badge&logo=windows&logoColor=black" height="42" />
   </a>
   <a href="https://surveymentor.org/">
@@ -28,7 +28,7 @@
 ---
 
 <div align="center">
-  <img src="assets/shopno_desktop_hud.png" alt="Shopno Desktop v1.1.18 - Quantara HUD & Atmospheric Cloud Interface" width="100%" style="border-radius: 14px; border: 1px solid rgba(0,212,170,0.3); box-shadow: 0 12px 50px rgba(0,0,0,0.85);" />
+  <img src="assets/shopno_desktop_hud.png" alt="Shopno Desktop v2.0.0 - Quantara HUD & Atmospheric Cloud Interface" width="100%" style="border-radius: 14px; border: 1px solid rgba(0,212,170,0.3); box-shadow: 0 12px 50px rgba(0,0,0,0.85);" />
   <p><i>Live Desktop Preview: Quantara Cyberpunk HUD with Emergent Atmospheric Cloud Engine, Multi-Model Routing & Tool Calling</i></p>
 </div>
 
@@ -235,9 +235,11 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 
 | প্ল্যাটফর্ম | বিবরণ ও লিংক |
 |---|---|
-| **Windows 64-bit Installer** | [**Download Shopno Desktop v1.1.18 (.exe)**](https://drive.google.com/file/d/15BrCcw5WmidIVBxj2KcALHxzl6IcPLk3/view?usp=drive_link) |
+| **Windows 64-bit Installer** | [**Download Shopno Desktop v2.0.0 (.exe)**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64-setup.exe)
+| **Windows MSI Installer (.msi)** | [**Download Shopno Desktop v2.0.0 (.msi)**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64_en-US.msi) |
 | **১০০% ডিসকাউন্ট প্রোমো কোড** | `SHOPNO` *(সম্পূর্ণ ফ্রিতে লাইসেন্স অ্যাক্টিভ করার জন্য)* |
 | **অফিসিয়াল ওয়েবসাইট** | [**Surveymentor.org**](https://surveymentor.org/) |
+| **Official Landing Page (Web)** | [**cyberprince-glitch.github.io/Shopno-Portable-LLM**](https://cyberprince-glitch.github.io/Shopno-Portable-LLM/)
 | **গিটহাব রিলিজ পাতা** | [**All Releases**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases) |
 
 ---
@@ -289,8 +291,8 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 *Visionary AI Architect, Full-Stack Engineer & Cyber-Security Researcher*
 
 [![Facebook](https://img.shields.io/badge/Facebook-Cyber_Prince-blue?style=for-the-badge&logo=facebook)](https://www.facebook.com/ImDarkMagician/)
-[![GitHub](https://img.shields.io/badge/GitHub-CyberPrince--Alien-black?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch/)
-[![Website](https://img.shields.io/badge/Website-shopno.freedev.app-00d4aa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-CyberPrince--glitch-black?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch/)
+[![Website](https://img.shields.io/badge/Website-surveymentor.org-00d4aa?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
 [![Portfolio](https://img.shields.io/badge/Portfolio-Visit-purple?style=for-the-badge&logo=safari&logoColor=white)](https://github.com/CyberPrince-glitch/)
 
 > *"Shopno AI was built to bring your digital dreams into reality. 454+ tools. 4,000+ skills. 7 billion tokens of freedom. One sovereign desktop operating system. Build without limits."*  
@@ -308,5 +310,5 @@ See [LICENSE.md](LICENSE.md) for full terms.
 
 <p align="center">
   <b>⭐ If Shopno AI elevates your productivity, star this repository on GitHub! ⭐</b><br>
-  <sub>Built with ❤️, precision Rust engineering, and relentless passion by <a href="https://github.com/CyberPrince-Alien">Cyber Prince</a>.</sub>
+  <sub>Built with ❤️, precision Rust engineering, and relentless passion by <a href="https://github.com/CyberPrince-glitch">Cyber Prince</a>.</sub>
 </p>
