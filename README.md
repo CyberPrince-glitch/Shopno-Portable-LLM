@@ -11,6 +11,7 @@
   [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://surveymentor.org/)
   [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://surveymentor.org/)
   [![Website](https://img.shields.io/badge/Official_Website-surveymentor.org-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://surveymentor.org/)
+  [![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-Shopno_Browser_Agent-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid)
   [![Architect](https://img.shields.io/badge/Architect-Cyber_Prince-purple?style=for-the-badge&logo=github)](https://github.com/CyberPrince-glitch)
   [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE.md)
 
@@ -21,6 +22,9 @@
   </a>
   <a href="https://surveymentor.org/">
     <img src="https://img.shields.io/badge/VISIT_OFFICIAL_WEBSITE-0d1428?style=for-the-badge&logo=safari&logoColor=white" height="42" />
+  </a>
+  <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid">
+    <img src="https://img.shields.io/badge/SHOPNO_BROWSER_AGENT-Chrome_Web_Store-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" height="42" />
   </a>
 
 </div>
@@ -239,7 +243,8 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 | **Windows MSI Installer (.msi)** | [**Download Shopno Desktop v2.0.0 (.msi)**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64_en-US.msi) |
 | **১০০% ডিসকাউন্ট প্রোমো কোড** | `SHOPNO` *(সম্পূর্ণ ফ্রিতে লাইসেন্স অ্যাক্টিভ করার জন্য)* |
 | **অফিসিয়াল ওয়েবসাইট** | [**Surveymentor.org**](https://surveymentor.org/) |
-| **Official Landing Page (Web)** | [**cyberprince-glitch.github.io/Shopno-Portable-LLM**](https://cyberprince-glitch.github.io/Shopno-Portable-LLM/)
+| **Official Landing Page (Web)** | [**cyberprince-glitch.github.io/Shopno-Portable-LLM**](https://cyberprince-glitch.github.io/Shopno-Portable-LLM/) |
+| **Shopno Browser Agent (Chrome Extension)** | [**Install from Chrome Web Store**](https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid) |
 | **গিটহাব রিলিজ পাতা** | [**All Releases**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases) |
 
 ---
