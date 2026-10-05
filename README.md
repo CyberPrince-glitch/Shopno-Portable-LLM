@@ -241,7 +241,7 @@ Replace N8N, Zapier, and IFTTT. Automate social media marketing, build complete 
 |---|---|
 | **Windows 64-bit Installer** | [**Download Shopno Desktop v2.0.0 (.exe)**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64-setup.exe)
 | **Windows MSI Installer (.msi)** | [**Download Shopno Desktop v2.0.0 (.msi)**](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64_en-US.msi) |
-| **১০০% ডিসকাউন্ট প্রোমো কোড** | `SHOPNO` *(সম্পূর্ণ ফ্রিতে লাইসেন্স অ্যাক্টিভ করার জন্য)* |
+| **30% ডিসকাউন্ট প্রোমো কোড** | `SHOPNO` *(লাইসেন্স অ্যাক্টিভ করার জন্য)* |
 | **অফিসিয়াল ওয়েবসাইট** | [**Surveymentor.org**](https://surveymentor.org/) |
 | **Official Landing Page (Web)** | [**cyberprince-glitch.github.io/Shopno-Portable-LLM**](https://cyberprince-glitch.github.io/Shopno-Portable-LLM/) |
 | **Shopno Browser Agent (Chrome Extension)** | [**Install from Chrome Web Store**](https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid) |
