@@ -6,7 +6,7 @@
   ### The Sovereign Autonomous AI & Multi-Agent Swarm Operating System
   **600+ Native Tools • 4,000+ Skills • 60,000+ Open VSX Extensions • 7 Billion Tokens Freedom • 1-Click MCP Suite**
 
-  [![Release](https://img.shields.io/badge/Release-v2.0.0_Stable-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest)
+  [![Release](https://img.shields.io/badge/Release-v2.0.9_Stable-00d4aa?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest)
   [![Tools](https://img.shields.io/badge/Native_Tools-454+-8b5cf6?style=for-the-badge&logo=terminal&logoColor=white)](https://surveymentor.org)
   [![Skills](https://img.shields.io/badge/Built--in_Skills-4%2C000+-06b6d4?style=for-the-badge&logo=codewars&logoColor=white)](https://surveymentor.org/)
   [![Promo](https://img.shields.io/badge/100%25_FREE_PROMO-SHOPNO-10b981?style=for-the-badge&logo=ticket&logoColor=white)](https://surveymentor.org/)
