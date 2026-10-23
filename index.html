@@ -1,2807 +1,1886 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="v4XeoNKtV7Adhzle8RKybi5jxQz20KYR2yY4-G-97dQ" />
-<title>Shopno AI v2.0.0 — Future AGI Development </title>
-    <meta name="google-site-verification" content="v4XeoNKtV7Adhzle8RKybi5jxQz20KYR2yY4-G-97dQ" />
-    <meta name="description" content="Shopno AI v1.1.18: Sovereign Autonomous AI OS with 410+ built-in tools, 60,000+ Open VSX extensions, 1-Click GitHub MCP, Swarm Studio, and Emergent Atmospheric Cloud HUD.">    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #030614;
-            --bg-deep: #030614;
-            --bg-surface: #070c26;
-            --surface: #0d1428;
-            --surface-light: #111a38;
-            --surface-lighter: #162040;
-            --surface-glass: rgba(13, 20, 52, 0.65);
-            --text-primary: #f3f4f6;
-            --text-secondary: #a1a1aa;
-            --text-muted: #6b7280;
-            --accent: #00d4aa;
-            --accent-soft: #5eead3;
-            --accent-glow: rgba(0, 212, 170, 0.25);
-            --accent-subtle: rgba(0, 212, 170, 0.08);
-            --glow-violet: #8b5cf6;
-            --glow-cyan: #06b6d4;
-            --glow-emerald: #10b981;
-            --glow-rose: #f43f5e;
-            --glow-orange: #f97316;
-            --violet: #8b5cf6;
-            --indigo: #6366f1;
-            --border: rgba(255,255,255,0.08);
-            --border-light: rgba(255,255,255,0.12);
-            --border-accent: rgba(0, 212, 170, 0.3);
-            --radius: 16px;
-            --radius-sm: 8px;
-            --radius-lg: 24px;
-            --radius-full: 9999px;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
-            --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
-            --shadow-glow: 0 0 60px rgba(0, 212, 170, 0.15);
-            /* Typography */
-            --font-display: 'Clash Display', sans-serif;
-            --font-body: 'Satoshi', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg);
-            color: var(--text-primary);
-            line-height: 1.65;
-            overflow-x: hidden;
-            cursor: default;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Ambient Space-Glow Mesh */
-        .ambient-background {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(circle at 15% 25%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 60%);
-        }
-
-        .ambient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: -1;
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .orb-violet {
-            width: 600px;
-            height: 600px;
-            background: var(--glow-violet);
-            top: -200px;
-            right: 5%;
-            animation: float-violet 20s infinite alternate ease-in-out;
-        }
-
-        .orb-cyan {
-            width: 500px;
-            height: 500px;
-            background: var(--glow-cyan);
-            bottom: -150px;
-            left: 5%;
-            animation: float-cyan 25s infinite alternate ease-in-out;
-        }
-
-        .orb-emerald {
-            width: 400px;
-            height: 400px;
-            background: var(--glow-emerald);
-            top: 40%;
-            left: 40%;
-            animation: float-emerald 30s infinite alternate ease-in-out;
-        }
-
-        @keyframes float-violet {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(-80px, 60px) scale(1.1); }
-        }
-        @keyframes float-cyan {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(60px, -80px) scale(1.15); }
-        }
-        @keyframes float-emerald {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 40px) scale(0.95); }
-        }
-
-        /* Premium heading styles */
-        h1, h2, h3, h4, .display {
-            font-family: var(--font-display);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-        }
-
-        /* Custom Cursor */
-        .cursor {
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease-out, opacity 0.15s;
-            mix-blend-mode: difference;
-            box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent-glow);
-        }
-
-        .cursor.hover {
-            transform: scale(3);
-            opacity: 0.3;
-        }
-
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.3s ease-out, opacity 0.3s;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-follower.hover {
-            transform: scale(1.5);
-            border-color: var(--accent-soft);
-        }
-
-        /* 3D Canvas */
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: var(--bg);
-            padding: 12px 24px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            z-index: 1000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 20px;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ============ COMMAND PALETTE ============ */
-        .command-palette {
-            position: fixed;
-            top: 20px;
-            right: 24px;
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            cursor: pointer;
-            transition: all 0.3s;
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        .command-palette:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .command-palette kbd {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            padding: 4px 8px;
-            background: var(--surface-light);
-            border-radius: 6px;
-            color: var(--text-secondary);
-        }
-
-        .command-palette span {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* Command Palette Modal */
-        .palette-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 15vh;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-        }
-
-        .palette-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .palette-content {
-            width: 100%;
-            max-width: 600px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transform: scale(0.95) translateY(-20px);
-            transition: transform 0.2s;
-        }
-
-        .palette-modal.active .palette-content {
-            transform: scale(1) translateY(0);
-        }
-
-        .palette-input-wrap {
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .palette-input-wrap svg {
-            color: var(--text-secondary);
-            flex-shrink: 0;
-        }
-
-        .palette-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-family: 'Outfit', sans-serif;
-            font-size: 18px;
-            color: var(--text-primary);
-        }
-
-        .palette-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .palette-results {
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 12px;
-        }
-
-        .palette-group {
-            margin-bottom: 12px;
-        }
-
-        .palette-group-title {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            padding: 8px 12px;
-        }
-
-        .palette-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-
-        .palette-item:hover, .palette-item.selected {
-            background: var(--surface-light);
-        }
-
-        .palette-item-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--surface-lighter);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-        }
-
-        .palette-item-text h4 {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .palette-item-text p {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .palette-shortcut {
-            margin-left: auto;
-            display: flex;
-            gap: 4px;
-        }
-
-        .palette-shortcut kbd {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            padding: 3px 6px;
-            background: var(--surface);
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
-
-        /* ============ NAVIGATION ============ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 14px 0;
-            background: var(--surface-glass);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-icon {
-            width: 34px;
-            height: 34px;
-            background: linear-gradient(135deg, var(--accent), #06b6d4);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--bg);
-            font-size: 16px;
-            transform: rotate(-5deg);
-            transition: transform 0.3s;
-        }
-
-        .logo:hover .logo-icon {
-            transform: rotate(0deg) scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 100px;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-            background: var(--accent-subtle);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 20px;
-            height: 2px;
-            background: var(--accent);
-            border-radius: 2px;
-            transition: transform 0.2s;
-        }
-
-        .nav-links a:hover::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .nav-links a.active {
-            color: var(--accent);
-            background: var(--accent-glow);
-        }
-
-        .nav-cta {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        /* ============ BUTTONS ============ */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg);
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow), 0 0 40px var(--accent-subtle);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: var(--surface);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--border-light);
-            background: var(--surface-light);
-            transform: translateY(-2px);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-secondary);
-            padding: 8px 12px;
-        }
-
-        .btn-ghost:hover {
-            color: var(--text-primary);
-            background: var(--surface);
-        }
-
-        /* ============ MOBILE NAV ============ */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 110;
-        }
-
-        .mobile-menu-btn span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: flex;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  
+  <!-- ================= PRIMARY SEO META TAGS ================= -->
+  <title>Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার | Free Download Windows &amp; Android</title>
+  <meta name="title" content="Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার | Free Download Windows & Android" />
+  <meta name="description" content="বাংলায় বলে দিলেই Shopno AI তৈরি করে দেয় সম্পূর্ণ সফটওয়্যার, ওয়েবসাইট ও মোবাইল অ্যাপ। 454+ বিল্ট-ইন টুলস, 100% লোকাল প্রাইভেসি, OpenAI-কম্প্যাটিবল API (localhost:1337)। উইন্ডোজ ও অ্যান্ড্রয়েডের জন্য এখনই ফ্রি ডাউনলোড করুন।" />
+  <meta name="keywords" content="Shopno AI, Shopno Desktop, Shopno Chat, বাংলায় AI কোডিং, Bangla AI, AI software builder, autonomous coding agent, local LLM windows, Cyber Prince, CyberDM, GLM 5.3, Kimi k3, Gemini 3.8, DeepSeek R1, surveymentor, offline AI model, local AI runner" />
+  <meta name="author" content="Cyber Prince" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/" />
+  
+  <!-- ================= GOOGLE SEARCH CONSOLE VERIFICATION ================= -->
+  <meta name="google-site-verification" content="google5a1fb94ae3e1e3cd" />
+  <meta name="google-site-verification" content="v4XeoNKtV7Adhzle8RKybi5jxQz20KYR2yY4-G-97dQ" />
+  
+  <!-- ================= OPEN GRAPH / FACEBOOK / WHATSAPP / LINKEDIN ================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/" />
+  <meta property="og:site_name" content="Shopno AI Official" />
+  <meta property="og:title" content="Shopno AI — বাংলায় AI কোডিং ও ফুল-স্ট্যাক সফটওয়্যার বিল্ডার" />
+  <meta property="og:description" content="বাংলায় ভয়েস বা টেক্সটে বললেই তৈরি হবে সম্পূর্ণ সফটওয়্যার। 454+ টুলস, 100% লোকাল প্রাইভেসি, OpenAI-কম্প্যাটিবল API। ফ্রি ডাউনলোড করুন।" />
+  <meta property="og:image" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
+  <meta property="og:image:secure_url" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Shopno AI - Sovereign Autonomous AI Coding OS" />
+  <meta property="og:locale" content="bn_BD" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- ================= TWITTER CARDS ================= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@CyberPrince" />
+  <meta name="twitter:creator" content="@CyberPrince" />
+  <meta name="twitter:title" content="Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার" />
+  <meta name="twitter:description" content="বাংলায় বলুন, সফটওয়্যার তৈরি হবে চোখের পলকে। উইন্ডোজ ও অ্যান্ড্রয়েডের জন্য সম্পূর্ণ ফ্রি ও লোকাল।" />
+  <meta name="twitter:image" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
+
+  <!-- ================= THEME & ICONS ================= -->
+  <meta name="theme-color" content="#060813" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='50%' stop-color='%234facfe'/><stop offset='100%' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='%23060813'/><path d='M50 16 L80 32 L80 68 L50 84 L20 68 L20 32 Z' fill='none' stroke='url(%23g)' stroke-width='6'/><circle cx='50' cy='50' r='14' fill='url(%23g)'/><path d='M35 50 L65 50 M50 35 L50 65' stroke='%23060813' stroke-width='4' stroke-linecap='round'/></svg>" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+
+  <!-- ================= GOOGLE RICH SNIPPETS (STRUCTURED DATA JSON-LD) ================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#software",
+        "name": "Shopno AI",
+        "alternateName": ["Shopno Desktop", "Shopno Chat", "Shopno Portable LLM"],
+        "description": "Sovereign Autonomous AI & Multi-Agent Swarm Operating System with 454+ native tools, local LLM runner, OpenAI-compatible localhost:1337 API, and native Bengali coding intelligence.",
+        "operatingSystem": "Windows 10, Windows 11 (64-bit), Android 9.0+, Linux, macOS",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "AI Software Builder & Local LLM Runner",
+        "downloadUrl": "https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest",
+        "softwareVersion": "2.0.9",
+        "releaseDate": "2026-10-12",
+        "fileSize": "791.80MB",
+        "softwareRequirements": "64-bit CPU, 8GB RAM minimum (16GB recommended)",
+        "inLanguage": ["bn", "en"],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Shopno AI by Cyber Prince"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1420",
+          "reviewCount": "380",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "screenshot": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg",
+        "featureList": [
+          "বাংলায় সম্পূর্ণ সফটওয়্যার ও ওয়েবসাইট তৈরি",
+          "100% লোকাল অফলাইন LLM ইনফারেন্স (No Cloud Bills)",
+          "454+ বিল্ট-ইন টুলস ও এজেন্ট স্কিলস",
+          "OpenAI-কম্প্যাটিবল API (localhost:1337/v1)",
+          "CyberDM আল্ট্রা-স্পিড ডাউনলোড ম্যানেজার ইন্টিগ্রেশন",
+          "অ্যান্ড্রয়েড নেটিভ APK এবং উইন্ডোজ ইন্সটলার",
+          "GLM 5.3, Kimi k3, Gemini 3.8, DeepSeek R1 সাপোর্ট"
+        ],
+        "author": {
+          "@type": "Person",
+          "name": "Cyber Prince",
+          "url": "https://github.com/CyberPrince-glitch"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#organization",
+        "name": "Shopno AI",
+        "url": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/",
+        "logo": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/logo.png",
+        "sameAs": [
+          "https://github.com/CyberPrince-glitch/Shopno-Portable-LLM",
+          "https://github.com/CyberPrince-glitch",
+          "https://www.youtube.com/@CyberPrinceTrick",
+          "https://www.linkedin.com/in/cyber-prince-a77b571a4/",
+          "https://surveymentor.org"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#website",
+        "url": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/",
+        "name": "Shopno AI Official Portal",
+        "publisher": { "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Shopno AI কীভাবে ফ্রিতে ডাউনলোড করব?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shopno AI সম্পূর্ণ ফ্রি! আপনি এই পেজের ডাউনলোড সেকশন বা GitHub রিলিজ পেজ থেকে উইন্ডোজের জন্য Shopno.Desktop_x64-setup.exe এবং মোবাইলের জন্য app-arm64-release.apk সরাসরি ১-ক্লিকে ডাউনলোড করতে পারবেন।"
             }
-
-            .nav-links, .nav-cta {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100vh;
-                background: var(--surface);
-                flex-direction: column;
-                justify-content: center;
-                gap: 24px;
-                transition: right 0.3s ease;
-                z-index: 105;
+          },
+          {
+            "@type": "Question",
+            "name": "Shopno AI কি কোডিং না জেনেও ব্যবহার করা যায়?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "হ্যাঁ, একেবারেই! আপনি বাংলায় সাধারণ ভাষায় বলে দিলে বা লিখে দিলেই Shopno AI স্বয়ংক্রিয়ভাবে ফাইল তৈরি করে, কোড লেখে, এরর ফিক্স করে এবং সম্পূর্ণ কার্যক্ষম ওয়েবসাইট বা সফটওয়্যার বিল্ড করে দেয়।"
             }
-
-            .nav-links.active, .nav-cta.active {
-                right: 0;
+          },
+          {
+            "@type": "Question",
+            "name": "OpenAI-কম্প্যাটিবল API (localhost:1337) কীভাবে কাজ করে?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shopno AI আপনার পিসিতে একটি লোকাল ব্যাকএন্ড সার্ভার চালু করে যা http://localhost:1337/v1 ঠিকানায় ড্রপ-ইন OpenAI API প্রদান করে। এটি Claude Code, Cursor, Aider, VS Code বা যেকোনো টুলে বিনামূল্যে ব্যবহার করা যায়।"
             }
-
-            .nav-links a {
-                font-size: 24px;
+          },
+          {
+            "@type": "Question",
+            "name": "আমার প্রজেক্টের কোড কি নিরাপদ থাকবে?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "১০০% নিরাপদ। Shopno AI সম্পূর্ণ অফলাইন এবং এয়ার-গ্যাপড আর্কিটেকচারে কাজ করতে সক্ষম। আপনার কোনো ডেটা, ফাইল বা প্রম্পট কোনো ক্লাউড সার্ভারে পাঠানো হয় না।"
             }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: clamp(2.2rem, 6vw, 3.5rem);
-            }
-
-            .hero p {
-                font-size: 16px;
-                padding: 0 16px;
-            }
-
-            .terminal {
-                max-width: 95%;
-                margin: 0 auto;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .pricing-card.featured {
-                transform: none;
-            }
-
-            .bento-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-table {
-                font-size: 12px;
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: 12px 8px;
-            }
-        }
-
-        /* ============ HERO ============ */
-        .hero {
-            min-height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 140px 0 100px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-        }
-
-        /* Floating geometric shapes */
-        .geo-shape {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        .geo-1 {
-            width: 400px;
-            height: 400px;
-            border: 1px solid var(--accent);
-            border-radius: 50%;
-            top: 10%;
-            left: -10%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .geo-2 {
-            width: 300px;
-            height: 300px;
-            border: 1px solid var(--purple);
-            top: 60%;
-            right: -8%;
-            transform: rotate(45deg);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .geo-3 {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, var(--accent), transparent);
-            top: 30%;
-            right: 20%;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 900px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 28px;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        .hero-badge span {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            margin-bottom: 24px;
-            letter-spacing: -0.03em;
-            transform: translateY(30px);
-            opacity: 0;
-            font-family: var(--font-display);
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 50%, var(--indigo) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .hero h1 .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--indigo));
-            border-radius: 2px;
-            opacity: 0.6;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 36px;
-            line-height: 1.7;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        /* ============ LIVE TERMINAL DEMO ============ */
-        .terminal-demo {
-            margin-top: 60px;
-            transform: translateY(30px);
-            opacity: 0;
-        }
-
-        .terminal {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            max-width: 700px;
-            margin: 0 auto;
-            overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-        }
-
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 20px;
-            background: var(--surface-light);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.red { background: #ff5f57; }
-        .terminal-dot.yellow { background: #febc2e; }
-        .terminal-dot.green { background: #28c840; }
-
-        .terminal-title {
-            flex: 1;
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .terminal-body {
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            min-height: 200px;
-        }
-
-        .terminal-line {
-            margin-bottom: 8px;
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-
-        .terminal-line.visible {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.3s;
-        }
-
-        .terminal-prompt {
-            color: var(--green);
-        }
-
-        .terminal-cmd {
-            color: var(--text-primary);
-        }
-
-        .terminal-output {
-            color: var(--text-secondary);
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .terminal-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background: var(--accent);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .terminal-input-line {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .terminal-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            color: var(--text-primary);
-            caret-color: var(--accent);
-        }
-
-        .terminal-hint {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 16px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .terminal-hint.visible {
-            opacity: 1;
-        }
-
-        /* ============ STATS ============ */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: var(--surface);
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        /* ============ COMPARISON SECTION ============ */
-        .comparison {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 44px);
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-
-        .section-desc {
-            font-size: 16px;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--surface);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 20px 24px;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-table th {
-            background: var(--surface-light);
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .comparison-table th:first-child {
-            text-align: left;
-        }
-
-        .comparison-table td:first-child {
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .comparison-table .shopno-col {
-            background: var(--accent-glow);
-        }
-
-        .check-icon {
-            color: var(--accent);
-            width: 18px;
-            height: 18px;
-            display: inline-block;
-        }
-
-        .cross-icon {
-            color: var(--text-muted);
-            width: 18px;
-            height: 18px;
-            display: inline-block;
-        }
-
-        .partial {
-            color: var(--orange);
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        /* Focus visible for accessibility */
-        *:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        .btn:focus-visible,
-        .tool-cat-btn:focus-visible,
-        .nav-links a:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        /* ============ FEATURES / TOOLS ============ */
-        .features {
-            padding: 120px 0;
-            position: relative;
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        .bento-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bento-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--purple));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .bento-card:hover {
-            border-color: var(--border-light);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .bento-card:hover::before {
-            opacity: 1;
-        }
-
-        .bento-card.large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .bento-card.wide {
-            grid-column: span 2;
-        }
-
-        .card-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--surface-light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-
-        .card-icon.purple { color: var(--purple); }
-        .card-icon.green { color: var(--green); }
-        .card-icon.pink { color: var(--pink); }
-        .card-icon.yellow { color: var(--yellow); }
-
-        .card-title {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card-desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 16px;
-        }
-
-        .card-tag {
-            font-size: 11px;
-            padding: 4px 10px;
-            background: var(--surface-light);
-            border-radius: 100px;
-            color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ============ CREATOR SECTION ============ */
-        .creator {
-            padding: 120px 0;
-            background: var(--surface);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .creator-content {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .creator-image {
-            position: relative;
-        }
-
-        .creator-avatar {
-            width: 280px;
-            height: 280px;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg, var(--accent), var(--purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 100px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .creator-avatar::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg, var(--accent), var(--purple), var(--pink));
-            z-index: -1;
-            animation: rotate 8s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .creator-text h2 {
-            font-size: clamp(28px, 4vw, 36px);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .creator-text h2 span {
-            color: var(--accent);
-        }
-
-        .creator-text p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 24px;
-        }
-
-        .creator-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .creator-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
-            background: var(--surface-light);
-            border-radius: 100px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .creator-link:hover {
-            background: var(--surface-lighter);
-            color: var(--text-primary);
-        }
-
-        /* ============ TOOL EXPLORER ============ */
-        .tool-explorer {
-            padding: 120px 0;
-        }
-
-        .tool-categories {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 48px;
-            flex-wrap: wrap;
-        }
-
-        .tool-cat-btn {
-            padding: 10px 20px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .tool-cat-btn:hover, .tool-cat-btn.active {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
-        }
-
-        .tool-card {
-            background: var(--surface-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .tool-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-2px);
-        }
-
-        .tool-card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .tool-card-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--surface-light);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-        }
-
-        .tool-card-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .tool-card-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .tool-card-preview {
-            margin-top: 16px;
-            padding: 12px;
-            background: var(--surface-light);
-            border-radius: var(--radius-sm);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            display: none;
-        }
-
-        .tool-card:hover .tool-card-preview {
-            display: block;
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============ PRICING ============ */
-        .pricing {
-            padding: 120px 0;
-            background: var(--surface);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--surface-light);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 40px 32px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 6px 16px;
-            background: var(--accent);
-            color: var(--bg);
-            font-size: 11px;
-            font-weight: 600;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-8px);
-        }
-
-        .pricing-tier {
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .pricing-price {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .pricing-price span {
-            font-size: 16px;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .pricing-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 32px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            text-align: left;
-            margin-bottom: 32px;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 0;
-            font-size: 14px;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-features svg {
-            color: var(--green);
-            flex-shrink: 0;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            justify-content: center;
-        }
-
-        /* ============ DOWNLOAD SECTION ============ */
-        .download-section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .download-section .section-title {
-            margin-bottom: 16px;
-        }
-
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .download-card {
-            background: var(--surface-glass);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-        }
-
-        .download-card:hover {
-            border-color: var(--border-accent);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-4px);
-        }
-
-        .download-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--glow-violet), var(--glow-cyan));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: 14px;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .download-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .download-meta {
-            font-family: var(--font-mono);
-            font-size: 13px;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .download-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .download-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .download-btn {
-            flex: 1;
-            padding: 10px 16px;
-            background: var(--accent);
-            color: #030614;
-            border-radius: var(--radius-sm);
-            text-align: center;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .download-btn:hover {
-            background: var(--accent-soft);
-            box-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        .download-secondary {
-            padding: 10px 16px;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .download-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .social-row {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
-        }
-
-        .social-row a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .social-row a:hover {
-            color: var(--accent);
-        }
-
-        @media (max-width: 768px) {
-            .download-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ============ FOOTER ============ */
-        footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 48px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-top: 16px;
-            max-width: 280px;
-        }
-
-        .footer-col h4 {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .footer-col a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-copy {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--surface);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: all 0.2s;
-        }
-
-        .footer-social a:hover {
-            background: var(--surface-light);
-            color: var(--accent);
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 1024px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .creator-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-            
-            .pricing-card.featured {
-                transform: none;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .stats-bar {
-                flex-wrap: wrap;
-                gap: 32px;
-            }
-            
-            .comparison-table {
-                font-size: 12px;
-            }
-            
-            .comparison-table th,
-            .comparison-table td {
-                padding: 12px 8px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-brand p {
-                max-width: 100%;
-            }
-        }
-
-        /* ============ ANIMATIONS ============ */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .fade-up.visible {
-            animation: fadeUp 0.8s forwards;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ================= TYPOGRAPHY & PERFORMANCE STYLES ================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #050814;
+      --bg-card: rgba(13, 20, 42, 0.72);
+      --bg-card-hover: rgba(22, 33, 68, 0.85);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(0, 242, 254, 0.35);
+      --cyan: #00f2fe;
+      --cyan-bright: #38bdf8;
+      --purple: #8b5cf6;
+      --violet: #a855f7;
+      --emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --grad-cyan-purple: linear-gradient(135deg, #00f2fe 0%, #4facfe 40%, #8b5cf6 100%);
+      --grad-emerald-cyan: linear-gradient(135deg, #10b981 0%, #00f2fe 100%);
+      --grad-glow: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.18), transparent 70%);
+      --radius-xl: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Ambient Atmosphere */
+    .ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(800px 500px at 15% 10%, rgba(0, 242, 254, 0.12), transparent 70%),
+        radial-gradient(900px 600px at 85% 20%, rgba(139, 92, 246, 0.13), transparent 75%),
+        radial-gradient(1000px 700px at 50% 85%, rgba(16, 185, 129, 0.08), transparent 80%);
+    }
+
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.25;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 85%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Typography Utilities */
+    .gradient-text {
+      background: var(--grad-cyan-purple);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .gradient-emerald {
+      background: var(--grad-emerald-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(0, 242, 254, 0.08), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 28px 64px rgba(0, 242, 254, 0.12), 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    /* ================= HEADER & NAV ================= */
+    header.site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 8, 20, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.25s ease;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(139, 92, 246, 0.25));
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .brand-version-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .btn-nav-download {
+      background: var(--grad-cyan-purple);
+      color: #060813 !important;
+      font-weight: 700 !important;
+      padding: 9px 20px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .btn-nav-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.55);
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero-section {
+      padding: 85px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 28px;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5.2vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-bottom: 24px;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto 38px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* ================= DOWNLOAD HUB (HERO CARDS) ================= */
+    .download-deck-card {
+      max-width: 940px;
+      margin: 0 auto 40px;
+      padding: 36px 32px;
+      border-radius: 24px;
+      background: rgba(10, 16, 36, 0.88);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 242, 254, 0.12);
+    }
+
+    .download-deck-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .detected-os-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .detected-os-badge strong {
+      color: var(--cyan);
+    }
+
+    .sync-status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .btn-download-primary {
+      background: linear-gradient(135deg, #00f2fe 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.35);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download-primary:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(0, 242, 254, 0.55);
+    }
+
+    .btn-download-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      padding: 16px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-download-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-icon-wrapper {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-icon-wrapper svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .btn-text-block {
+      text-align: left;
+      line-height: 1.25;
+    }
+
+    .btn-main-title {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .btn-sub-label {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 3px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .download-deck-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      padding-top: 14px;
+    }
+
+    .download-deck-footer a {
+      color: var(--cyan-bright);
+      text-decoration: none;
+    }
+
+    .download-deck-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--emerald);
+    }
+
+    /* ================= INTERACTIVE TERMINAL HUD DEMO ================= */
+    .terminal-section {
+      padding: 50px 0 80px;
+    }
+
+    .terminal-window {
+      max-width: 1020px;
+      margin: 0 auto;
+      border-radius: 18px;
+      background: #04060e;
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 45px rgba(0, 242, 254, 0.1);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 48px;
+      background: #090e1f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .win-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .win-red { background: #ef4444; }
+    .win-yellow { background: #f59e0b; }
+    .win-green { background: #10b981; }
+
+    .terminal-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-tag {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .terminal-tabs {
+      display: flex;
+      background: #060a17;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0 12px;
+      overflow-x: auto;
+    }
+
+    .term-tab-btn {
+      padding: 10px 18px;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .term-tab-btn.active {
+      color: var(--cyan);
+      border-bottom-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.04);
+    }
+
+    .terminal-body {
+      padding: 28px 24px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #e2e8f0;
+      min-height: 280px;
+    }
+
+    .term-prompt {
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+
+    .term-input {
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+
+    .term-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: #94a3b8;
+    }
+
+    .term-check {
+      color: #34d399;
+    }
+
+    .term-code-snippet {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    /* ================= MODEL SELECTOR SHOWCASE ================= */
+    .models-section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 50px;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .model-card {
+      padding: 24px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .model-card.active {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.06);
+    }
+
+    .model-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .model-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .model-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ================= BENTO GRID FEATURES ================= */
+    .features-section {
+      padding: 80px 0;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .bento-col-8 { grid-column: span 8; }
+    .bento-col-4 { grid-column: span 4; }
+    .bento-col-6 { grid-column: span 6; }
+    .bento-col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
+    }
+
+    .bento-card {
+      padding: 36px 32px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      color: var(--cyan);
+    }
+
+    .bento-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.015em;
+    }
+
+    .bento-text {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    /* ================= SPECS COMPARISON TABLE ================= */
+    .compare-section {
+      padding: 80px 0;
+    }
+
+    .compare-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+    }
+
+    table.compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    table.compare-table th, table.compare-table td {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    table.compare-table th {
+      background: #090e21;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    table.compare-table th.highlight-col {
+      background: rgba(0, 242, 254, 0.12);
+      color: var(--cyan);
+      border-left: 1px solid rgba(0, 242, 254, 0.25);
+      border-right: 1px solid rgba(0, 242, 254, 0.25);
+    }
+
+    table.compare-table td.highlight-col {
+      background: rgba(0, 242, 254, 0.04);
+      border-left: 1px solid rgba(0, 242, 254, 0.25);
+      border-right: 1px solid rgba(0, 242, 254, 0.25);
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* ================= FAQ ACCORDION ================= */
+    .faq-section {
+      padding: 80px 0;
+    }
+
+    .faq-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+      border-radius: 14px;
+      background: rgba(13, 20, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 22px 26px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+
+    .faq-chevron {
+      transition: transform 0.3s ease;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 26px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 400px;
+      padding-bottom: 22px;
+    }
+
+    /* ================= FOOTER ================= */
+    footer.site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: #03050c;
+      padding: 60px 0 35px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 45px;
+    }
+
+    .footer-brand {
+      max-width: 380px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 14px;
+    }
+
+    .footer-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.3rem; }
+      .buttons-grid { grid-template-columns: 1fr; }
+      .download-deck-card { padding: 24px 18px; }
+      .footer-content { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Ambient Background Orbs -->
-    <div class="ambient-background">
-        <div class="ambient-orb orb-violet"></div>
-        <div class="ambient-orb orb-cyan"></div>
-        <div class="ambient-orb orb-emerald"></div>
-    </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
+  <!-- Ambient Glow Background -->
+  <div class="ambient-glow"></div>
+  <div class="ambient-grid"></div>
 
-    <!-- 3D Background -->
-    <canvas id="webgl-canvas"></canvas>
-
-    <!-- Skip Link -->
-    <a href="#main" class="skip-link">Skip to main content</a>
-
-    <!-- Command Palette Trigger -->
-    <div class="command-palette" id="cmdPaletteTrigger">
-        <kbd>⌘</kbd><kbd>K</kbd>
-        <span>Search...</span>
-    </div>
-
-    <!-- Command Palette Modal -->
-    <div class="palette-modal" id="paletteModal">
-        <div class="palette-content">
-            <div class="palette-input-wrap">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <input type="text" class="palette-input" placeholder="Search commands, tools, pages..." id="paletteInput">
-                <kbd>ESC</kbd>
-            </div>
-            <div class="palette-results" id="paletteResults">
-                <div class="palette-group">
-                    <div class="palette-group-title">Navigation</div>
-                    <div class="palette-item" data-section="features">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4>Features</h4>
-                            <p>Explore all capabilities</p>
-                        </div>
-                        <div class="palette-shortcut"><kbd>F</kbd></div>
-                    </div>
-                    <div class="palette-item" data-section="tools">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4>Tools</h4>
-                            <p>Browse all 350+ tools</p>
-                        </div>
-                        <div class="palette-shortcut"><kbd>T</kbd></div>
-                    </div>
-                    <div class="palette-item" data-section="pricing">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4>Pricing</h4>
-                            <p>View plans and pricing</p>
-                        </div>
-                        <div class="palette-shortcut"><kbd>P</kbd></div>
-                    </div>
-                    <div class="palette-item" data-section="creator">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4>Creator</h4>
-                            <p>Meet the creator</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="palette-group">
-                    <div class="palette-group-title">Actions</div>
-                    <div class="palette-item" data-action="install">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4><a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe"> Install Shopno </a></h4>
-                            <p>Get started now</p>
-                        </div>
-                    </div>
-                    <div class="palette-item" data-action="docs">
-                        <div class="palette-item-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <div class="palette-item-text">
-                            <h4>Documentation</h4>
-                            <p>Read the docs</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- ================= NAVIGATION ================= -->
+  <header class="site-nav">
+    <div class="container nav-wrap">
+      <a href="#top" class="brand-group">
+        <div class="brand-icon-box">
+          <svg viewBox="0 0 100 100" width="28" height="28">
+            <defs>
+              <linearGradient id="logoG" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f2fe"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <path d="M50 14 L82 32 L82 68 L50 86 L18 68 L18 32 Z" fill="none" stroke="url(#logoG)" stroke-width="8"/>
+            <circle cx="50" cy="50" r="14" fill="url(#logoG)"/>
+          </svg>
         </div>
-    </div>
+        <div>
+          <span class="brand-title">Shopno AI</span>
+          <span class="brand-version-badge" id="nav-version-badge">
+            <span class="live-dot"></span> <span id="nav-tag-text">v2.0.9 Stable</span>
+          </span>
+        </div>
+      </a>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-inner">
-            <a href="#" class="logo">
-                <img src="assets/shopno_ai_logo.jpg" alt="Shopno Logo" style="width: 32px; height: 32px; border-radius: 8px; margin-right: 10px; object-fit: cover; box-shadow: 0 0 15px rgba(0,212,170,0.4);" />Shopno AI
+      <nav class="nav-links">
+        <a href="#features">ফিচারসমূহ</a>
+        <a href="#models">AI মডেল</a>
+        <a href="#specs">তুলনামূলক চার্ট</a>
+        <a href="#faq">প্রশ্নোত্তর</a>
+        <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM" target="_blank" rel="noopener">GitHub</a>
+        <a href="#download" class="btn-nav-download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          ফ্রি ডাউনলোড
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section" id="top">
+      <div class="container">
+        
+        <div class="hero-pill-badge">
+          <span class="live-dot"></span>
+          <span id="hero-release-chip">✨ Shopno AI v2.0.9 লাইভ রিলিজ • 454+ নেটিভ টুলস • 100% লোকাল ও অফলাইন</span>
+        </div>
+
+        <h1 class="hero-title">
+          বাংলায় বলুন। <br />
+          <span class="gradient-text">সফটওয়্যার তৈরি হবে</span> চোখের পলকে।
+        </h1>
+
+        <p class="hero-subtitle">
+          কোনো কোডিং জানা লাগবে না! <strong>Shopno AI</strong> টার্মিনাল, ডেক্সটপ ও মোবাইল থেকে সম্পূর্ণ অফলাইনে কাজ করে। নিজস্ব <code>localhost:1337</code> OpenAI-কম্প্যাটিবল API এর মাধ্যমে বিশ্বসেরা AI মডেলের শক্তি এখন সরাসরি আপনার পিসিতে—সম্পূর্ণ ফ্রি ও প্রাইভেট।
+        </p>
+
+        <!-- ================= THE AUTO-UPDATING DOWNLOAD DECK ================= -->
+        <div class="download-deck-card" id="download">
+          
+          <div class="download-deck-header">
+            <div class="detected-os-badge" id="detected-os-text">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-cyan"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+              <span>ডিটেক্টেড প্ল্যাটফর্ম: <strong>Windows (x64)</strong> — আপনার জন্য সরাসরি রেডি</span>
+            </div>
+
+            <div class="sync-status-indicator" id="sync-status-pill">
+              <span class="live-dot"></span>
+              <span id="sync-status-text">GitHub Auto-Sync Active (v2.0.9)</span>
+            </div>
+          </div>
+
+          <div class="buttons-grid">
+            
+            <!-- Windows EXE Primary -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/Shopno.Desktop_2.0.9_x64-setup.exe" 
+               class="btn-download-primary" 
+               id="btn-exe"
+               download>
+              <div class="btn-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title" id="btn-exe-title">Download for Windows</span>
+                <span class="btn-sub-label" id="btn-exe-sub">Installer .exe • 792 MB • v2.0.9</span>
+              </div>
             </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#comparison">Compare</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#creator">Creator</a></li>
+
+            <!-- Android APK -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/app-arm64-release.apk" 
+               class="btn-download-secondary" 
+               id="btn-apk"
+               download>
+              <div class="btn-icon-wrapper" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">
+                <svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.125 12 8.125s-3.5902.2866-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Android Mobile App</span>
+                <span class="btn-sub-label" id="btn-apk-sub">ARM64 .apk • 211 MB • v2.0.9</span>
+              </div>
+            </a>
+
+            <!-- MSI Installer -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/Shopno.Desktop_2.0.9_x64_en-US.msi" 
+               class="btn-download-secondary" 
+               id="btn-msi"
+               download>
+              <div class="btn-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Windows MSI Package</span>
+                <span class="btn-sub-label" id="btn-msi-sub">Enterprise .msi • 418 MB</span>
+              </div>
+            </a>
+
+            <!-- Chrome Web Store -->
+            <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" 
+               target="_blank" 
+               rel="noopener"
+               class="btn-download-secondary">
+              <div class="btn-icon-wrapper" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Chrome Extension</span>
+                <span class="btn-sub-label">Browser Agent • Web Store</span>
+              </div>
+            </a>
+
+          </div>
+
+          <div class="download-deck-footer">
+            <div>
+              <span>সিস্টেম রিকোয়ারমেন্ট: Windows 10/11 (64-bit), 8GB+ RAM · 100% ভাইরাস মুক্ত ভেরিফাইড</span>
+            </div>
+            <div>
+              <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">
+                সকল পূর্ববর্তী রিলিজ ও চেঞ্জলগ দেখুন &rarr;
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Trust Badges Strip -->
+        <div class="trust-strip">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>১০০% লোকাল ও এয়ার-গ্যাপড প্রাইভেসি</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>কোনো মাসিক সাবস্ক্রিপশন ফি নেই (Free)</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>OpenAI API ড্রপ-ইন ড্রাইভ (localhost:1337)</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>অটো-আপডেটিং গিটহাব সিঙ্ক রিলিজ</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= LIVE TERMINAL HUD DEMO ================= -->
+    <section class="terminal-section">
+      <div class="container">
+        
+        <div class="terminal-window">
+          
+          <div class="terminal-bar">
+            <div class="window-controls">
+              <span class="win-circle win-red"></span>
+              <span class="win-circle win-yellow"></span>
+              <span class="win-circle win-green"></span>
+            </div>
+            <div class="terminal-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span>shopno-terminal-agent@localhost:1337</span>
+              <span class="terminal-tag">Autonomous Mode</span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b;">bash / zsh</div>
+          </div>
+
+          <div class="terminal-tabs">
+            <button class="term-tab-btn active" onclick="switchTermDemo('webapp')">✨ ১. ওয়েব অ্যাপ বিল্ডার</button>
+            <button class="term-tab-btn" onclick="switchTermDemo('mobile')">📱 ২. মোবাইল APK বিল্ডার</button>
+            <button class="term-tab-btn" onclick="switchTermDemo('api')">⚡ ৩. লোকাল API সার্ভার</button>
+          </div>
+
+          <div class="terminal-body" id="term-content">
+            <!-- Dynamically Rendered by JS below -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= AI MODELS SHOWCASE ================= -->
+    <section class="models-section" id="models">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Multi-Model Intelligence</div>
+          <h2 class="section-title">বিশ্বসেরা AI মডেলের শক্তি, আপনার হাতের মুঠোয়</h2>
+          <p class="section-subtitle">
+            যেকোনো মডেল এক ক্লিকে সুইচ করুন। লোকাল জিজিইউএফ (GGUF) থেকে শুরু করে ক্লাউড ক্লাউডলেস হাইব্রিড মোড—সব সাপোর্ট করে Shopno AI।
+          </p>
+        </div>
+
+        <div class="models-grid">
+          
+          <div class="glass-card model-card active" onclick="selectModelCard(this, 'glm')">
+            <span class="model-badge">Flagship Champion</span>
+            <h3 class="model-name">GLM 5.3</h3>
+            <p class="model-desc">উন্নত রিজনিং এবং বাংলা ভাষার নির্ভুল কোডিং স্পেশালিস্ট। 128k কনটেক্সট উইন্ডো সহ ফুল-স্ট্যাক কোডিং এ মাস্টার।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'kimi')">
+            <span class="model-badge">2M Long Context</span>
+            <h3 class="model-name">Kimi k3</h3>
+            <p class="model-desc">সম্পূর্ণ একটি প্রজেক্টের ৫০০টি ফাইল একসাথে মেমরিতে রেখে নিখুঁত রিফ্যাক্টরিং এবং ডিবাগিং করার অতুলনীয় ক্ষমতা।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'gemini')">
+            <span class="model-badge">Multimodal Fast</span>
+            <h3 class="model-name">Gemini 3.8</h3>
+            <p class="model-desc">ইমেজ ডিজাইন, ভিশন ও ইউজার ইন্টারফেস সরাসরি দেখে ফ্রন্টএন্ড কোডে রূপান্তর করার সুপারফাস্ট স্পিড।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'deepseek')">
+            <span class="model-badge">Deep Logic R1</span>
+            <h3 class="model-name">DeepSeek R1</h3>
+            <p class="model-desc">ম্যাথমেটিক্যাল অ্যালগরিদম ও জটিল ব্যাকএন্ড লজিকের জন্য ও-১ লেভেলের স্টেপ-বাই-স্টেপ চেইন-অব-থট রিজনিং।</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BENTO GRID FEATURES ================= -->
+    <section class="features-section" id="features">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Architectural Superpowers</div>
+          <h2 class="section-title">কেন Shopno AI প্রচলিত টুলের চেয়ে ১০ গুণ এগিয়ে?</h2>
+          <p class="section-subtitle">
+            প্রচলিত এআই চ্যাটবট কেবল কোড লিখে দেয়, কিন্তু Shopno AI স্বায়ত্তশাসিতভাবে ফাইল বানায়, রান করে ও অ্যাপ প্যাকেজ করে দেয়।
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          
+          <!-- Bento 1: 454+ Native Tools (Big Card) -->
+          <div class="bento-col-8">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3 class="bento-title">৪৫৪+ প্রি-ইনস্টল্ড নেটিভ টুলস ও স্কিলস</h3>
+                <p class="bento-text">
+                  টার্মিনাল কমান্ড রান করা, গিট কমিট, ডাটাবেজ মাইগ্রেশন, ব্রাউজার অটোমেশন, সিকিউরিটি অডিট, ফাইল এডিটিং এবং অটোমেটেড টেস্ট রানার—সবকিছু একটি সিংগেল অপারেটিং এনভায়রনমেন্টে বিল্ট-ইন। কোনো অতিরিক্ত প্লাগইন খোঁজাখুঁজি করতে হবে না।
+                </p>
+              </div>
+              <div style="margin-top:24px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); display:flex; gap:16px; font-size:0.85rem; color:#38bdf8;">
+                <span>✓ Git Automation</span>
+                <span>✓ Live Hot-Reload</span>
+                <span>✓ Multi-File Refactor</span>
+                <span>✓ Database Migrator</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 2: Localhost 1337 API -->
+          <div class="bento-col-4">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(139, 92, 246, 0.15); border-color:rgba(139, 92, 246, 0.4); color:#c084fc;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <h3 class="bento-title">OpenAI API (Port 1337)</h3>
+                <p class="bento-text">
+                  <code>http://localhost:1337/v1</code> এ ড্রপ-ইন ব্যাকএন্ড। Claude Code, Cursor, Aider, বা নিজের যেকোনো পাইথন স্ক্রিপ্ট পয়েন্ট করে দিন—১ পয়সাও বিল আসবে না!
+                </p>
+              </div>
+              <div style="font-family:'Fira Code',monospace; font-size:0.8rem; background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:8px; margin-top:20px; color:#a78bfa;">
+                export OPENAI_BASE_URL="http://localhost:1337/v1"
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 3: CyberDM Downloader -->
+          <div class="bento-col-4">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(245, 158, 11, 0.15); border-color:rgba(245, 158, 11, 0.4); color:#fbbf24;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <h3 class="bento-title">CyberDM ইন্টিগ্রেশন</h3>
+                <p class="bento-text">
+                  ৩২-কানেকশন মাল্টিথ্রেডেড আল্ট্রা-স্পিড ডাউনলোড ইঞ্জিন। বড় মডেলের GGUF ফাইল বা প্রজেক্ট ডিপেন্ডেন্সি সেকেন্ডের মধ্যে ডাউনলোড করে নেয়।
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 4: Bengali Speech & Coding (Col 8) -->
+          <div class="bento-col-8">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(16, 185, 129, 0.15); border-color:rgba(16, 185, 129, 0.4); color:#34d399;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+                <h3 class="bento-title">শতভাগ খাঁটি বাংলায় ভয়েস ও টেক্সট কোডিং</h3>
+                <p class="bento-text">
+                  ইংরেজি পরিভাষা না জানলেও কোনো বাধা নেই! "আমাকে একটি পাইথন দিয়ে ওয়েব স্ক্র্যাপার বানিয়ে দাও যা প্রোডাক্টের দাম ট্র্যাক করবে"—ঠিক যেভাবে ভাবছেন, সেভাবেই বাংলায় নির্দেশ দিন। Shopno AI বাংলা বাক্য বিশ্লেষণ করে প্রফেশনাল আর্কিটেকচার তৈরি করে দেবে।
+                </p>
+              </div>
+              <div style="margin-top:20px; font-size:0.9rem; color:#cbd5e1;">
+                বাংলায় কমান্ড &rarr; অটো ফাইল ক্রিয়েশন &rarr; টেস্ট এক্সিকিউশন &rarr; ডেব্লয়মেন্ট
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= COMPARISON SPECS MATRIX ================= -->
+    <section class="compare-section" id="specs">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Benchmark Reality</div>
+          <h2 class="section-title">Shopno AI বনাম অন্যান্য কোডিং টুলস</h2>
+          <p class="section-subtitle">দেখুন কেন ডেভেলপাররা সাধারণ কোডিং টুল ছেড়ে Shopno AI তে সুইচ করছেন।</p>
+        </div>
+
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>ফিচার ও স্পেসিফিকেশন</th>
+                <th class="highlight-col">✨ Shopno AI (v2.0.9)</th>
+                <th>Cursor / Copilot</th>
+                <th>Claude Desktop</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>১০০% অফলাইন লোকাল ইনফারেন্স</strong></td>
+                <td class="highlight-col">✅ সম্পূর্ণ ফ্রি ও অফলাইন</td>
+                <td>❌ কেবল ক্লাউড ডিপেন্ডেন্ট</td>
+                <td>❌ ক্লাউড ডিপেন্ডেন্ট</td>
+              </tr>
+              <tr>
+                <td><strong>বাংলা ভাষা ও ভয়েস কন্ট্রোল</strong></td>
+                <td class="highlight-col">✅ নেটিভ বাংলা স্পেশালাইজড</td>
+                <td>⚠️ সীমিত ইংরেজিভিত্তিক</td>
+                <td>⚠️ সাধারণ অনুবাদ মাত্র</td>
+              </tr>
+              <tr>
+                <td><strong>বিল্ট-ইন Localhost:1337 API</strong></td>
+                <td class="highlight-col">✅ ড্রপ-ইন OpenAI সার্ভার</td>
+                <td>❌ নেই</td>
+                <td>❌ নেই</td>
+              </tr>
+              <tr>
+                <td><strong>মাসিক সাবস্ক্রিপশন ফি</strong></td>
+                <td class="highlight-col">🆓 ০ টাকা (লাইফটাইম ফ্রি)</td>
+                <td>💲 $২০/মাস ($২৪০/বছর)</td>
+                <td>💲 $২০/মাস ($২৪০/বছর)</td>
+              </tr>
+              <tr>
+                <td><strong>বিল্ট-ইন ডাউনলোড ম্যানেজার</strong></td>
+                <td class="highlight-col">✅ CyberDM ইন্টিগ্রেটেড</td>
+                <td>❌ নেই</td>
+                <td>❌ নেই</td>
+              </tr>
+              <tr>
+                <td><strong>মোবাইল অ্যান্ড্রয়েড APK সাপোর্ট</strong></td>
+                <td class="highlight-col">✅ অফিশিয়াল ARM64 APK</td>
+                <td>❌ কোনো মোবাইল অ্যাপ নেই</td>
+                <td>⚠️ শুধু ব্রাউজার প্রিভিউ</td>
+              </tr>
+              <tr>
+                <td><strong>টার্মিনাল ৪৫৪+ টুলস ও স্কিলস</strong></td>
+                <td class="highlight-col">✅ প্রি-ইনস্টল্ড ও অটোমেটেড</td>
+                <td>❌ ম্যানুয়াল কনফিগারেশন</td>
+                <td>❌ লিমিটেড MCP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FAQ ACCORDION ================= -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Got Questions?</div>
+          <h2 class="section-title">সাধারণ কিছু জিজ্ঞাসা ও উত্তর</h2>
+          <p class="section-subtitle">আপনার প্রয়োজনীয় প্রশ্নের সমাধান নিচে দেওয়া হলো।</p>
+        </div>
+
+        <div class="faq-wrap">
+          
+          <div class="faq-item active">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>১. Shopno AI কি সম্পূর্ণ বিনামূল্যে ব্যবহার করা যাবে?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              হ্যাঁ, Shopno AI একটি ওপেন-সোর্স এবং সম্পূর্ণ বিনামূল্যে ব্যবহারের উপযোগী সার্বভৌম এআই প্ল্যাটফর্ম। আপনি কোনো প্রকার ক্রেডিট কার্ড বা মাসিক সাবস্ক্রিপশন ফি ছাড়াই উইন্ডোজ এবং অ্যান্ড্রয়েডের জন্য ডাউনলোড করে আজীবন ব্যবহার করতে পারবেন।
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>২. নতুন রিলিজ পাবলিশ হলে ডাউনলোড লিঙ্ক কীভাবে আপডেট হয়?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              এই ল্যান্ডিং পেজে একটি লাইভ GitHub Releases API অটো-সিঙ্ক ইঞ্জিন রয়েছে। যখনই ডেভেলপার GitHub এ নতুন কোনো রিলিজ (.exe, .apk, .msi) ট্যাগ সহ পাবলিশ করেন, ব্রাউজার স্বয়ংক্রিয়ভাবে লেটেস্ট ভার্সন, ফাইলের সাইজ এবং ডিরেক্ট ডাউনলোড লিঙ্ক আপডেট করে দেয়। আপনাকে ম্যানুয়ালি লিংক বদলাতে হয় না!
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>৩. আমার পিসিতে কি GPU / গ্রাফিক্স কার্ড থাকা বাধ্যতামূলক?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              না, কোনো ডেডিকেটেড জিপিইউ থাকা বাধ্যতামূলক নয়! Shopno AI এর অপটিমাইজড কোয়ান্টাইজড ইঞ্জিন (CPU TurboQuant) সাধারণ ইন্টেল বা এএমডি প্রসেসরেও অতি দ্রুত চলে। আর ক্লাউড মোডে চালালে আপনার সাধারণ ল্যাপটপেই সুপারকম্পিউটারের স্পিড পাবেন।
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>৪. লোকালহোস্ট API (port 1337) অন্য সফটওয়্যারে কীভাবে ব্যবহার করব?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Shopno AI চালু করার সাথে সাথে ব্যাকগ্রাউন্ডে একটি লাইটওয়েট সার্ভার চালু হয় যা হুবহু OpenAI API স্ট্যান্ডার্ড মেনে চলে। আপনি Claude Code, Cursor, Aider কিংবা আপনার নিজস্ব পাইথন/জাভাস্ক্রিপ্ট কোডে Base URL হিসেবে <code>http://localhost:1337/v1</code> এবং যেকোনো ডামি API Key দিলেই কাজ করবে!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA STRIP ================= -->
+    <section style="padding: 60px 0 80px; text-align: center;">
+      <div class="container">
+        <div class="glass-card" style="padding: 50px 30px; border-color: rgba(0, 242, 254, 0.4); background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1), transparent 70%), var(--bg-card);">
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px;">
+            আজই শুরু করুন <span class="gradient-text">আপনার ভবিষ্যৎ কোডিং যাত্রা</span>
+          </h2>
+          <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 32px; font-size: 1.1rem;">
+            কোডিং শেখার দীর্ঘ পথ আর নয়। আপনার বুদ্ধি আর Shopno AI এর শক্তি মিলে গড়ে তুলুন আগামী দিনের ডিজিটাল সৃষ্টি।
+          </p>
+          <a href="#download" class="btn-download-primary" style="display: inline-flex; width: auto; padding: 18px 36px; font-size: 1.15rem; margin: 0 auto;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+            এখনই ফ্রি ডাউনলোড করুন (v2.0.9)
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-content">
+        
+        <div class="footer-brand">
+          <div class="brand-group" style="margin-bottom: 12px;">
+            <div class="brand-icon-box" style="width:36px; height:36px;">
+              <svg viewBox="0 0 100 100" width="22" height="22">
+                <circle cx="50" cy="50" r="30" fill="url(#logoG)"/>
+              </svg>
+            </div>
+            <span class="brand-title" style="font-size: 1.25rem;">Shopno AI</span>
+          </div>
+          <p>
+            সার্বভৌম এআই কোডিং ও মাল্টি-এজেন্ট সোয়ার্ম অপারেটিং সিস্টেম। কোডিং সবার জন্য উন্মুক্ত ও বাধাহীন করাই আমাদের মূল লক্ষ্য।
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          
+          <div class="footer-col">
+            <h4>প্রোডাক্ট &amp; ডাউনলোড</h4>
+            <ul>
+              <li><a href="#download">উইন্ডোজ ইন্সটলার (.exe)</a></li>
+              <li><a href="#download">অ্যান্ড্রয়েড অ্যাপ (.apk)</a></li>
+              <li><a href="#download">এন্টারপ্রাইজ প্যাকেজ (.msi)</a></li>
+              <li><a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">ক্রোম এক্সটেনশন</a></li>
             </ul>
-            <div class="nav-cta">
-                <a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe" class="btn btn-secondary" target="_blank">GitHub</a>
-                <a href="https://shopno.freedev.app/" class="btn btn-primary" target="_blank">Website</a>
-            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4>ইকোসিস্টেম</h4>
+            <ul>
+              <li><a href="https://github.com/CyberPrince-glitch/CyberDM" target="_blank" rel="noopener">CyberDM ডাউনলোডার</a></li>
+              <li><a href="https://surveymentor.org" target="_blank" rel="noopener">surveymentor.org</a></li>
+              <li><a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">সকল রিলিজ নোটস</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>ডেভেলপার কমিউনিটি</h4>
+            <ul>
+              <li><a href="https://github.com/CyberPrince-glitch" target="_blank" rel="noopener">GitHub Profile</a></li>
+              <li><a href="https://www.youtube.com/@CyberPrinceTrick" target="_blank" rel="noopener">YouTube @CyberPrinceTrick</a></li>
+              <li><a href="https://www.linkedin.com/in/cyber-prince-a77b571a4/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+
         </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main id="main">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="geo-shape geo-1"></div>
-            <div class="geo-shape geo-2"></div>
-            <div class="geo-shape geo-3"></div>
-            
-            <div class="container hero-content">
-                <div class="hero-badge"><span>✦</span> v1.1.18 Stable Flagship Release Now Available</div>
-                
-                <h1>The Sovereign <span class="highlight">Autonomous AI</span> Operating System</h1>
-                
-                <p>Shopno v1.1.18 unifies 410+ native tools, 60,000+ VS Code extensions via Open VSX, 1-Click GitHub MCP integration, and autonomous multi-agent swarms under a living Atmospheric Cloud HUD. 100% sovereign & local-first.</p>
-                
-                <div class="hero-buttons">
-                    <a href="https://github.com/CyberPrince-Alien/Shopno-AI/releases/download/Version1.1.1_Final/Shopno.Desktop_1.1.18_x64-setup.exe" class="btn btn-primary">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Install Now
-                    </a>
-                    <a href="#features" class="btn btn-secondary">Explore Features</a>
-                </div>
+      </div>
 
-                
-                <!-- Live Desktop Software Preview -->
-                <div style="margin: 40px auto 20px; max-width: 1100px; position: relative; z-index: 10;">
-                    <div style="background: rgba(13, 20, 40, 0.75); border: 1px solid rgba(0, 212, 170, 0.3); border-radius: 16px; padding: 8px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 212, 170, 0.15); backdrop-filter: blur(16px);">
-                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 14px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-                            <div style="display: flex; gap: 6px;">
-                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; display: inline-block;"></span>
-                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; display: inline-block;"></span>
-                                <span style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f; display: inline-block;"></span>
-                            </div>
-                            <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #a1a1aa;">Shopno Desktop v1.1.18 — Quantara HUD (Atmospheric Cloud Interface)</span>
-                            <span style="font-size: 11px; padding: 2px 8px; background: rgba(0,212,170,0.15); color: #5eead3; border-radius: 100px; font-weight: 500;">LIVE ENGINE</span>
-                        </div>
-                        <img src="assets/shopno_desktop_hud.png" alt="Shopno Desktop v1.1.18 Live Screenshot" style="width: 100%; border-radius: 10px; display: block; margin-top: 8px;" />
-                    </div>
-                </div>
-
-                <!-- Live Terminal Demo -->
-                <div class="terminal-demo">
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dot red"></div>
-                            <div class="terminal-dot yellow"></div>
-                            <div class="terminal-dot green"></div>
-                            <div class="terminal-title">shopno — interactive</div>
-                        </div>
-                        <div class="terminal-body" id="terminalBody">
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">➜</span> 
-                                <span class="terminal-cmd">shopno list tools --category browser</span>
-                            </div>
-                            <div class="terminal-output" id="terminalOutput">
-                                <div>🔍 Found 32 browser automation tools:</div>
-                                <div>• browser_open, browser_click, browser_type</div>
-                                <div>• browser_screenshot, browser_elements</div>
-                                <div>• browser_record_start, browser_record_stop</div>
-                                <div>• smart_browser, browser_auto_click...</div>
-                            </div>
-                            <div class="terminal-line">
-                                <span class="terminal-prompt">➜</span> 
-                                <span class="terminal-cmd">shopno create landing --template hero</span>
-                                <span class="terminal-cursor"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="terminal-hint" id="terminalHint">
-                        Try typing in the terminal above →
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Bar -->
-        <section class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-number">410+</div>
-                <div class="stat-label">Native Tools</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">60K+</div>
-                <div class="stat-label">Open VSX Extensions</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1-Click</div>
-                <div class="stat-label">GitHub MCP Suite</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Local-First</div>
-            </div>
-        </section>
-
-        <!-- Comparison Section -->
-        <section class="comparison" id="comparison">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Why Shopno?</div>
-                    <h2 class="section-title">Comparison</h2>
-                    <p class="section-desc">See how Shopno stacks up against other AI coding assistants</p>
-                </div>
-
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th class="shopno-col">Shopno</th>
-                            <th>Claude Code</th>
-                            <th>Cursor</th>
-                            <th>v0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Local-First (Offline)</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>No API Required</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>Browser Automation</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="partial">Partial</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>Desktop Control</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>Automation Recipes</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>Media Pipeline</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="partial">UI only</span></td>
-                            <td><span class="check">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td>Evidence Notebook</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                        <tr>
-                            <td>Zero Dependencies</td>
-                            <td class="shopno-col"><span class="check">✓</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                            <td><span class="cross">—</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features" id="features">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Capabilities</div>
-                    <h2 class="section-title">Everything You Need</h2>
-                    <p class="section-desc">33 capability domains. 350+ tools. One unified interface.</p>
-                </div>
-
-                <div class="bento-grid">
-                    <div class="bento-card large">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                        </div>
-                        <h3 class="card-title">File & Project Tools</h3>
-                        <p class="card-desc">Complete file operations: read, write, edit, glob, search, and manage your entire project from the terminal.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">read_file</span>
-                            <span class="card-tag">write_file</span>
-                            <span class="card-tag">glob_files</span>
-                            <span class="card-tag">search_files</span>
-                            <span class="card-tag">+41 more</span>
-                        </div>
-                    </div>
-                    <div class="bento-card">
-                        <div class="card-icon purple">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                        </div>
-                        <h3 class="card-title">Browser Automation</h3>
-                        <p class="card-desc">Full browser control: open, click, type, screenshot, record workflows, and extract web content.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">browser_open</span>
-                            <span class="card-tag">smart_browser</span>
-                            <span class="card-tag">web_clone</span>
-                        </div>
-                    </div>
-                    <div class="bento-card">
-                        <div class="card-icon green">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        </div>
-                        <h3 class="card-title">Desktop Control</h3>
-                        <p class="card-desc">Mouse, keyboard, AI element detection, screenshots, and workflow recording.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">desktop_mouse</span>
-                            <span class="card-tag">ai_element</span>
-                            <span class="card-tag">workflow</span>
-                        </div>
-                    </div>
-                    <div class="bento-card wide">
-                        <div class="card-icon pink">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        </div>
-                        <h3 class="card-title">Automation & Workflows</h3>
-                        <p class="card-desc">IFTTT/Zapier-style automation with recipes, triggers, webhooks, social posting, and approval outbox.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">automation_run</span>
-                            <span class="card-tag">automation_create_flow</span>
-                            <span class="card-tag">automation_webhook</span>
-                            <span class="card-tag">automation_oauth</span>
-                            <span class="card-tag">+31 more</span>
-                        </div>
-                    </div>
-                    <div class="bento-card">
-                        <div class="card-icon yellow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                        </div>
-                        <h3 class="card-title">Media Pipeline</h3>
-                        <p class="card-desc">Script-to-video, voiceover, music beds, image generation, clip editing, and rendering.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">media_pipeline</span>
-                            <span class="card-tag">media_voiceover</span>
-                            <span class="card-tag">media_render</span>
-                        </div>
-                    </div>
-                    <div class="bento-card">
-                        <div class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
-                        </div>
-                        <h3 class="card-title">AI & LLM Routing</h3>
-                        <p class="card-desc">Provider mesh, local Ollama, voice core, and model fallback routing.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">provider_mesh</span>
-                            <span class="card-tag">local_llm</span>
-                            <span class="card-tag">voice_speak</span>
-                        </div>
-                    </div>
-                    <div class="bento-card wide">
-                        <div class="card-icon purple">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                        </div>
-                        <h3 class="card-title">Research & Evidence</h3>
-                        <p class="card-desc">Web fetch, search, research sessions, source cards, confidence scoring, and citation enforcement.</p>
-                        <div class="card-tags">
-                            <span class="card-tag">web_fetch</span>
-                            <span class="card-tag">web_search</span>
-                            <span class="card-tag">research_session</span>
-                            <span class="card-tag">research_report</span>
-                            <span class="card-tag">+21 more</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Creator Section -->
-        <section class="creator" id="creator">
-            <div class="container">
-                <div class="creator-content">
-                    <div class="creator-image">
-                        <div class="creator-avatar">👨‍💻</div>
-                    </div>
-                    <div class="creator-text">
-                        <h2>Built by <span>Cyber Prince</span></h2>
-                        <p>Shopno was created because the founder got tired of bloated AI tools that require subscriptions, API keys, and internet connections just to edit a file.</p>
-                        <p>The vision is simple: a coding agent that runs locally, owns your data, and gives you 350+ tools without importing 350+ npm packages. Pure productivity, zero friction.</p>
-                        <p>Every feature in Shopno exists because it solves a real problem. No hype, no trends—just tools that work.</p>
-                        <div class="creator-links">
-                            <a href="https://github.com/CyberPrince-Alien" class="creator-link" target="_blank">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                GitHub
-                            </a>
-                            <a href="https://github.com/CyberPrince-Alien/Protfolio" class="creator-link" target="_blank">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                                Portfolio
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tool Explorer -->
-        <section class="tool-explorer" id="tools">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Explorer</div>
-                    <h2 class="section-title">Browse Tools</h2>
-                    <p class="section-desc">Click any tool to see what it does</p>
-                </div>
-
-                <div class="tool-categories">
-                    <button class="tool-cat-btn active" data-cat="all">All</button>
-                    <button class="tool-cat-btn" data-cat="browser">Browser</button>
-                    <button class="tool-cat-btn" data-cat="file">Files</button>
-                    <button class="tool-cat-btn" data-cat="automation">Automation</button>
-                    <button class="tool-cat-btn" data-cat="media">Media</button>
-                    <button class="tool-cat-btn" data-cat="ai">AI/LLM</button>
-                </div>
-
-                <div class="tools-grid" id="toolsGrid">
-                    <!-- Tools will be populated by JS -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Section -->
-        <section class="pricing" id="pricing">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Pricing</div>
-                    <h2 class="section-title">Centralized License Plans</h2>
-                    <p class="section-desc">Simple plans. No hidden fees. Cancel anytime.</p>
-                </div>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card featured">
-                        <div class="pricing-tier">Pro Developer</div>
-                        <div class="pricing-price">$5<span>/month</span></div>
-                        <div class="pricing-desc">Perfect for active developers wanting standalone tools</div>
-                        <ul class="pricing-features">
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Full Interactive Python CLI Access</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Access to Rotating Groq/Google Models</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>System-Wide Control File Access</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Memory Manager & Kanban Board</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Manual bKash/Nagad/Crypto Checkout</li>
-                        </ul>
-                        <a href="https://github.com/CyberPrince-Alien/shopno" class="btn btn-primary">Get Started</a>
-                    </div>
-
-                    <div class="pricing-card">
-                        <div class="pricing-tier">Enterprise Ultra</div>
-                        <div class="pricing-price">$19<span>/month</span></div>
-                        <div class="pricing-desc">Absolute power with self-healing S.E.E. updates</div>
-                        <ul class="pricing-features">
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro Developer Tier</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Shopno Evolution Self-Healing Engine</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>AudioMass Web Waveform Editor</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Central Admin Key Rotations</li>
-                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Priority 24/7 Licensing Support</li>
-                        </ul>
-                        <a href="https://github.com/CyberPrince-Alien/shopno" class="btn btn-secondary">Upgrade to Ultra</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Download Section -->
-        <section class="download-section" id="downloads">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-label">Downloads</div>
-                    <h2 class="section-title">Download Shopno Software</h2>
-                    <p class="section-desc">Choose the current release for your operating system</p>
-                </div>
-
-                <div class="download-grid">
-                    <div class="download-card">
-                        <div class="download-icon">Win</div>
-                        <h3>Windows x64</h3>
-                        <div class="download-meta">Shopno Desktop v1.1.18 / Standalone NSIS</div>
-                        <p>Native 64-bit Windows installer with hardware acceleration & zero dependencies.</p>
-                        <div class="download-actions">
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
-                        </div>
-                    </div>
-
-                    <div class="download-card">
-                        <div class="download-icon">Mac</div>
-                        <h3>macOS</h3>
-                        <div class="download-meta">Shopno v1.0.8 / ~52 MB</div>
-                        <p>Universal binary for Intel and Apple Silicon Macs.</p>
-                        <div class="download-actions">
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
-                        </div>
-                    </div>
-
-                    <div class="download-card">
-                        <div class="download-icon">Lin</div>
-                        <h3>Linux</h3>
-                        <div class="download-meta">Shopno v1.0.8 / ~48 MB</div>
-                        <p>AppImage and pip installation supported.</p>
-                        <div class="download-actions">
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-btn" target="_blank">Download</a>
-                            <a href="https://github.com/CyberPrince-Alien/shopno/releases" class="download-secondary" target="_blank">Release Notes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="social-row">
-                    <a href="https://github.com/CyberPrince-Alien" target="_blank" rel="noopener">GitHub</a>
-                    <a href="https://github.com/CyberPrince-Alien/shopno/releases" target="_blank" rel="noopener">All Releases</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <img src="assets/shopno_ai_logo.jpg" alt="Shopno Logo" style="width: 32px; height: 32px; border-radius: 8px; margin-right: 10px; object-fit: cover; box-shadow: 0 0 15px rgba(0,212,170,0.4);" />Shopno AI
-                    </a>
-                    <p>A pragmatic coding agent that runs locally. No subscriptions, no API keys, no dependencies.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#tools">Tools</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#comparison">Compare</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Examples</a></li>
-                        <li><a href="#">Changelog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://github.com/CyberPrince-Alien" target="_blank">GitHub</a></li>
-                        <li><a href="#">Discord</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="https://github.com/CyberPrince-Alien/Protfolio" target="_blank">Creator</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copy">© 2025-2026 Shopno AI. Architected by Cyber Prince (Sourov).</div>
-                <div class="footer-social">
-                    <a href="https://github.com/CyberPrince-Alien" target="_blank" aria-label="GitHub">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="#" aria-label="Twitter">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <a href="#" aria-label="Discord">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5487-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
-                    </a>
-                </div>
-            </div>
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>Shopno AI</strong>. Developed with ❤️ by <strong>Cyber Prince</strong>. All rights reserved.
         </div>
-    </footer>
 
-    <script>
-        // ============ CUSTOM CURSOR ============
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.createElement('div');
-        cursorFollower.className = 'cursor-follower';
-        document.body.appendChild(cursorFollower);
-        
-        let cursorVisible = false;
-        let cursorEnlarged = false;
-        let followerVisible = false;
+        <div class="social-row">
+          <a href="https://github.com/CyberPrince-glitch" target="_blank" rel="noopener" class="social-btn" title="GitHub" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@CyberPrinceTrick" target="_blank" rel="noopener" class="social-btn" title="YouTube" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/cyber-prince-a77b571a4/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.62a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z"/></svg>
+          </a>
+        </div>
+      </div>
 
-        document.addEventListener('mousemove', (e) => {
-            if (!cursorVisible) {
-                cursor.style.opacity = '1';
-                cursorVisible = true;
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT: DYNAMIC GITHUB RELEASES AUTO-SYNC ENGINE ================= -->
+  <script>
+    // Configuration
+    const REPO_OWNER = 'CyberPrince-glitch';
+    const REPO_NAME = 'Shopno-Portable-LLM';
+    const CACHE_KEY = 'shopno_gh_release_v2';
+    const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
+
+    // 1. Terminal Demo Dictionaries
+    const termDemos = {
+      webapp: `
+<div class="term-prompt">user@shopno:~$ shopno build "বাংলায় একটি রেস্টুরেন্ট ডেলিভারি ড্যাশবোর্ড বানাও"</div>
+<div class="term-step"><span class="term-check">✔</span> [GLM 5.3 Reasoning] রিকোয়েস্ট বিশ্লেষণ সম্পন্ন (Next.js + Tailwind + SQLite)</div>
+<div class="term-step"><span class="term-check">✔</span> স্ক্যাফোল্ডিং প্রজেক্ট ডিরেক্টরি ও আর্কিটেকচার সেটআপ...</div>
+<div class="term-step"><span class="term-check">✔</span> ক্রিয়েটিং কম্পোনেন্টস: OrderList.tsx, LiveTracker.tsx, CartModal.tsx</div>
+<div class="term-code-snippet">
+// app/api/orders/route.ts
+export async function POST(req: Request) {
+  const { customer, items, total } = await req.json();
+  const order = await db.order.create({ data: { customer, items, total, status: 'PREPARING' } });
+  return NextResponse.json({ success: true, orderId: order.id });
+}
+</div>
+<div class="term-step"><span class="term-check">✔</span> কম্পাইলিং বিল্ড আর্টফ্যাক্টস... Done in 3.4s</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">🚀 লাইভ প্রিভিউ রেডি: <a href="http://localhost:3000" style="color:#00f2fe; text-decoration:underline;">http://localhost:3000</a></div>
+`,
+      mobile: `
+<div class="term-prompt">user@shopno:~$ shopno mobile package --platform android --arch arm64</div>
+<div class="term-step"><span class="term-check">✔</span> চেকিং অ্যান্ড্রয়েড SDK এবং NDK এনভায়রনমেন্ট... OK</div>
+<div class="term-step"><span class="term-check">✔</span> বান্ডলিং অফলাইন লোকাল এলএলএম রানটাইম (TurboQuant Engine)...</div>
+<div class="term-step"><span class="term-check">✔</span> সাইনিং APK উইথ রিলিজ কি-স্টোর...</div>
+<div class="term-code-snippet">
+BUILD SUCCESSFUL in 18s
+APK Output: dist/app-arm64-release.apk (211.3 MB)
+Ready for Google Play Store or Direct Sideloading.
+</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">📱 APK জেনারেট সম্পন্ন! কিউআর কোড বা ইউএসবি দিয়ে মোবাইলে ইন্সটল করুন।</div>
+`,
+      api: `
+<div class="term-prompt">user@shopno:~$ shopno serve --port 1337 --openai-compat</div>
+<div class="term-step"><span class="term-check">✔</span> ইনিশিয়ালাইজিং লোকাল মডেল ওয়েটস: GGUF 8-bit quantized</div>
+<div class="term-step"><span class="term-check">✔</span> বাইন্ডিং HTTP লিসেনার on 127.0.0.1:1337</div>
+<div class="term-step"><span class="term-check">✔</span> মাউন্টিং OpenAI এন্ডিং রাউট: /v1/chat/completions, /v1/models</div>
+<div class="term-code-snippet">
+curl http://localhost:1337/v1/chat/completions \\
+  -H "Content-Type: application/json" \\
+  -d '{"model": "shopno-v2", "messages": [{"role": "user", "content": "Hello!"}]}'
+</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">⚡ পোর্ট 1337 এ সার্ভার রেডি! Claude Code বা Cursor এ সংযুক্ত করুন।</div>
+`
+    };
+
+    function switchTermDemo(key) {
+      document.querySelectorAll('.term-tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('term-content').innerHTML = termDemos[key];
+    }
+
+    // Default terminal tab
+    document.getElementById('term-content').innerHTML = termDemos.webapp;
+
+    // 2. Model Cards Interactive Toggle
+    function selectModelCard(el, modelKey) {
+      document.querySelectorAll('.model-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // 3. FAQ Accordion Toggle
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // 4. OS Detection
+    function detectUserOS() {
+      const ua = navigator.userAgent || '';
+      let os = 'Windows (x64)';
+      let isWin = false;
+      let isAndroid = false;
+
+      if (/Android/i.test(ua)) {
+        os = 'Android Mobile';
+        isAndroid = true;
+      } else if (/Win/i.test(ua)) {
+        os = 'Windows (64-bit)';
+        isWin = true;
+      } else if (/Mac/i.test(ua)) {
+        os = 'macOS';
+      } else if (/Linux/i.test(ua)) {
+        os = 'Linux (x86_64)';
+      }
+
+      const osTextEl = document.getElementById('detected-os-text');
+      if (osTextEl) {
+        osTextEl.innerHTML = `
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#00f2fe"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+          <span>ডিটেক্টেড প্ল্যাটফর্ম: <strong>${os}</strong> — আপনার ডিভাইসের উপযোগী</span>
+        `;
+      }
+
+      // Highlight preferred button
+      if (isAndroid) {
+        const apkBtn = document.getElementById('btn-apk');
+        if (apkBtn) {
+          apkBtn.classList.remove('btn-download-secondary');
+          apkBtn.classList.add('btn-download-primary');
+        }
+      }
+    }
+
+    // 5. THE GITHUB RELEASES AUTO-SYNC CORE ENGINE
+    async function autoSyncGitHubReleases() {
+      try {
+        let releaseData = null;
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.timestamp < CACHE_DURATION) {
+              releaseData = parsed.data;
             }
-            if (!followerVisible) {
-                cursorFollower.style.opacity = '1';
-                followerVisible = true;
-            }
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Follower with delay
-            setTimeout(() => {
-                cursorFollower.style.left = (e.clientX - 20) + 'px';
-                cursorFollower.style.top = (e.clientY - 20) + 'px';
-            }, 80);
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('hover');
-            cursorEnlarged = true;
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('hover');
-            cursorEnlarged = false;
-        });
-
-        document.querySelectorAll('a, button, .bento-card, .tool-card, .pricing-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-            });
-        });
-
-        // ============ THREE.JS BACKGROUND ============
-        const canvas = document.getElementById('webgl-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Create particles
-        const particleCount = 200;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-        
-        const colorOptions = [
-            new THREE.Color(0x22d3ee),
-            new THREE.Color(0xa78bfa),
-            new THREE.Color(0x34d399),
-            new THREE.Color(0xf472b6)
-        ];
-
-        for (let i = 0; i < particleCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-            
-            const color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-            colors[i * 3] = color.r;
-            colors[i * 3 + 1] = color.g;
-            colors[i * 3 + 2] = color.b;
+          } catch (e) {
+            console.warn('Cache parse error:', e);
+          }
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        const material = new THREE.PointsMaterial({
-            size: 0.05,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.6
-        });
-
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-
-        camera.position.z = 5;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            particles.rotation.x += 0.0003;
-            particles.rotation.y += 0.0005;
-            renderer.render(scene, camera);
+        if (!releaseData) {
+          const resp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`, {
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+          });
+          if (resp.ok) {
+            releaseData = await resp.json();
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+              timestamp: Date.now(),
+              data: releaseData
+            }));
+          }
         }
 
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // ============ COMMAND PALETTE ============
-        const paletteTrigger = document.getElementById('cmdPaletteTrigger');
-        const paletteModal = document.getElementById('paletteModal');
-        const paletteInput = document.getElementById('paletteInput');
-        let paletteOpen = false;
-
-        function openPalette() {
-            paletteModal.classList.add('active');
-            paletteInput.focus();
-            paletteOpen = true;
+        if (releaseData && releaseData.tag_name) {
+          applyReleaseData(releaseData);
         }
+      } catch (err) {
+        console.warn('GitHub Releases API Offline / Rate-limited. Fallback active.', err);
+      }
+    }
 
-        function closePalette() {
-            paletteModal.classList.remove('active');
-            paletteInput.value = '';
-            paletteOpen = false;
-        }
+    function applyReleaseData(rel) {
+      const tag = rel.tag_name.replace(/^v/i, '');
+      const tagNameWithV = 'v' + tag;
 
-        paletteTrigger.addEventListener('click', openPalette);
-        
-        document.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                if (paletteOpen) closePalette();
-                else openPalette();
-            }
-            if (e.key === 'Escape' && paletteOpen) {
-                closePalette();
-            }
-        });
+      // Update Nav & Badges
+      const navTag = document.getElementById('nav-tag-text');
+      if (navTag) navTag.textContent = `${tagNameWithV} Stable`;
 
-        paletteModal.addEventListener('click', (e) => {
-            if (e.target === paletteModal) closePalette();
-        });
+      const heroChip = document.getElementById('hero-release-chip');
+      if (heroChip) {
+        heroChip.textContent = `✨ Shopno AI ${tagNameWithV} লাইভ রিলিজ • 454+ নেটিভ টুলস • 100% লোকাল ও অফলাইন`;
+      }
 
-        // Palette navigation
-        document.querySelectorAll('.palette-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const section = item.dataset.section;
-                if (section) {
-                    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
-                }
-                closePalette();
-            });
-        });
+      const syncText = document.getElementById('sync-status-text');
+      if (syncText) {
+        syncText.textContent = `GitHub Auto-Sync Active (${tagNameWithV})`;
+      }
 
-        // ============ ENHANCED GSAP ANIMATIONS ============
-        // Register ScrollTrigger
-        gsap.registerPlugin(ScrollTrigger);
+      // Parse assets
+      const assets = rel.assets || [];
+      let exeAsset = null;
+      let msiAsset = null;
+      let apkAsset = null;
 
-        // Hero animations with staggered reveal and eased transitions
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        
-        heroTl
-            .to('.hero-badge', { y: 0, opacity: 1, duration: 0.6, delay: 0.2 })
-            .to('.hero h1', { y: 0, opacity: 1, duration: 0.8, ease: 'back.out(1.2)' }, '-=0.3')
-            .to('.hero p', { y: 0, opacity: 1, duration: 0.6 }, '-=0.4')
-            .to('.hero-buttons', { y: 0, opacity: 1, duration: 0.6 }, '-=0.3')
-            .to('.terminal-demo', { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2')
-            .to('#cmdPaletteTrigger', { y: 0, opacity: 1, duration: 0.5 }, '-=0.5');
+      for (const a of assets) {
+        const name = (a.name || '').toLowerCase();
+        if (name.endsWith('.exe')) exeAsset = a;
+        else if (name.endsWith('.msi')) msiAsset = a;
+        else if (name.endsWith('.apk')) apkAsset = a;
+      }
 
-        // Floating geometric shapes with continuous parallax
-        gsap.to('.geo-1', {
-            y: -50,
-            rotation: 10,
-            duration: 8,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        gsap.to('.geo-2', {
-            y: 40,
-            rotation: -5,
-            duration: 10,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        gsap.to('.geo-3', {
-            y: -30,
-            duration: 6,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
+      // Format size helper
+      const formatMB = (bytes) => (bytes / (1024 * 1024)).toFixed(0) + ' MB';
 
-        // Parallax effect on hero background
-        gsap.to('.hero::before', {
-            y: 100,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1
-            }
-        });
+      // 1. Windows EXE
+      if (exeAsset) {
+        const btnExe = document.getElementById('btn-exe');
+        const subExe = document.getElementById('btn-exe-sub');
+        if (btnExe) btnExe.href = exeAsset.browser_download_url;
+        if (subExe) subExe.textContent = `Installer .exe • ${formatMB(exeAsset.size)} • ${tagNameWithV}`;
+      }
 
-        // Stats bar with staggered number animation
-        gsap.to('.stats-bar', { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.6, 
-            delay: 1.2,
-            scrollTrigger: {
-                trigger: '.stats-bar',
-                start: 'top 80%'
-            }
-        });
+      // 2. Windows MSI
+      if (msiAsset) {
+        const btnMsi = document.getElementById('btn-msi');
+        const subMsi = document.getElementById('btn-msi-sub');
+        if (btnMsi) btnMsi.href = msiAsset.browser_download_url;
+        if (subMsi) subMsi.textContent = `Enterprise .msi • ${formatMB(msiAsset.size)}`;
+      }
 
-        // Terminal typing effect with cursor blink
-        const terminalLines = document.querySelectorAll('.terminal-line');
-        terminalLines.forEach((line, i) => {
-            setTimeout(() => {
-                line.classList.add('visible');
-            }, 1500 + i * 800);
-        });
+      // 3. Android APK
+      if (apkAsset) {
+        const btnApk = document.getElementById('btn-apk');
+        const subApk = document.getElementById('btn-apk-sub');
+        if (btnApk) btnApk.href = apkAsset.browser_download_url;
+        if (subApk) subApk.textContent = `ARM64 .apk • ${formatMB(apkAsset.size)} • ${tagNameWithV}`;
+      }
+    }
 
-        setTimeout(() => {
-            document.getElementById('terminalHint').classList.add('visible');
-        }, 3500);
+    // 6. Interactive Card Mouse Glow Effect
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.glass-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
 
-        // Cursor blink effect
-        gsap.to('.cursor', {
-            scale: 1.2,
-            duration: 0.5,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      detectUserOS();
+      autoSyncGitHubReleases();
+    });
+  </script>
 
-        // Section animations with staggered reveals
-        const sections = gsap.utils.toArray('.section-header, .bento-card, .pricing-card, .creator-content, .comparison-table');
-        
-        sections.forEach((el, i) => {
-            gsap.from(el, {
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-        });
-
-        // Bento cards staggered entrance
-        gsap.from('.bento-card', {
-            y: 40,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.bento-grid',
-                start: 'top 75%'
-            }
-        });
-
-        // Tool cards staggered reveal
-        gsap.from('.tool-card', {
-            y: 30,
-            opacity: 0,
-            scale: 0.95,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: 'back.out(1.5)',
-            scrollTrigger: {
-                trigger: '.tools-grid',
-                start: 'top 80%'
-            }
-        });
-
-        // Pricing cards with scale and fade
-        gsap.from('.pricing-card', {
-            y: 50,
-            opacity: 0,
-            scale: 0.9,
-            duration: 0.7,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.pricing-grid',
-                start: 'top 75%'
-            }
-        });
-
-        // Comparison table row reveal
-        gsap.from('.comparison-table tbody tr', {
-            x: -30,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.comparison-table',
-                start: 'top 70%'
-            }
-        });
-
-        // Smooth scroll for nav links with easing
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    gsap.to(window, {
-                        duration: 1,
-                        scrollTo: { y: target, offsetY: 80 },
-                        ease: 'power3.inOut'
-                    });
-                }
-            });
-        });
-
-        // ============ MOBILE MENU TOGGLE ============
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const navCta = document.querySelector('.nav-cta');
-
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenuBtn.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                navCta.classList.toggle('active');
-            });
-
-            // Close menu when clicking a link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenuBtn.classList.remove('active');
-                    navLinks.classList.remove('active');
-                    navCta.classList.remove('active');
-                });
-            });
-        }
-
-        // ============ ACCESSIBILITY ENHANCEMENTS ============
-        // Keyboard navigation for tool filter buttons
-        document.querySelectorAll('.tool-cat-btn').forEach(btn => {
-            btn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    btn.click();
-                }
-            });
-        });
-
-        // Focus visible states
-        document.querySelectorAll('.tool-cat-btn, .nav-links a, .btn').forEach(el => {
-            el.addEventListener('focus', () => {
-                el.classList.add('focused');
-            });
-            el.addEventListener('blur', () => {
-                el.classList.remove('focused');
-            });
-        });
-
-        // ============ TOOL EXPLORER ============
-        const toolsData = [
-            { name: 'browser_open', category: 'browser', desc: 'Open URLs in controlled browser', preview: 'browser_open("https://github.com")' },
-            { name: 'browser_click', category: 'browser', desc: 'Click elements by selector or text', preview: 'browser_click(".btn-primary")' },
-            { name: 'browser_type', category: 'browser', desc: 'Type text into input fields', preview: 'browser_type("#search", "Shopno")' },
-            { name: 'smart_browser', category: 'browser', desc: 'AI-powered browser automation', preview: 'smart_browser("go to Google, search AI")' },
-            { name: 'read_file', category: 'file', desc: 'Read file contents', preview: 'read_file("package.json")' },
-            { name: 'write_file', category: 'file', desc: 'Write content to files', preview: 'write_file("new.js", "console.log()")' },
-            { name: 'glob_files', category: 'file', desc: 'Find files by glob pattern', preview: 'glob_files("**/*.tsx")' },
-            { name: 'search_files', category: 'file', desc: 'Search text in files', preview: 'search_files("TODO", "src/")' },
-            { name: 'automation_run', category: 'automation', desc: 'Run automation recipes', preview: 'automation_run(recipe_id=1)' },
-            { name: 'automation_create_flow', category: 'automation', desc: 'Create new automation flows', preview: 'automation_create_flow("new recipe")' },
-            { name: 'media_pipeline_create', category: 'media', desc: 'Create video pipeline', preview: 'media_pipeline_create(script)' },
-            { name: 'media_voiceover', category: 'media', desc: 'Generate voiceover audio', preview: 'media_voiceover(job_id, text)' },
-            { name: 'provider_mesh', category: 'ai', desc: 'Route to best LLM provider', preview: 'provider_mesh()' },
-            { name: 'local_llm_status', category: 'ai', desc: 'Check local Ollama status', preview: 'local_llm_status()' },
-            { name: 'voice_speak', category: 'ai', desc: 'Text-to-speech output', preview: 'voice_speak("Hello!")' }
-        ];
-
-        const toolsGrid = document.getElementById('toolsGrid');
-
-        function renderTools(filter = 'all') {
-            toolsGrid.innerHTML = '';
-            const filtered = filter === 'all' ? toolsData : toolsData.filter(t => t.category === filter);
-            
-            filtered.forEach(tool => {
-                const card = document.createElement('div');
-                card.className = 'tool-card';
-                card.innerHTML = `
-                    <div class="tool-card-header">
-                        <div class="tool-card-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-                        </div>
-                        <div class="tool-card-name">${tool.name}</div>
-                    </div>
-                    <div class="tool-card-desc">${tool.desc}</div>
-                    <div class="tool-card-preview">${tool.preview}</div>
-                `;
-                toolsGrid.appendChild(card);
-            });
-        }
-
-        renderTools();
-
-        document.querySelectorAll('.tool-cat-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tool-cat-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderTools(btn.dataset.cat);
-            });
-        });
-
-        // ============ SMOOTH SCROLL FOR NAV LINKS ============
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // ============ MOBILE MENU (hidden for now - simple version) ============
-        // Could add hamburger menu for mobile
-    </script>
 </body>
 </html>

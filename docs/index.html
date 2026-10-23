@@ -1,517 +1,1886 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Shopno Chat — Run Powerful AI Locally</title>
-<meta name="description" content="Shopno Chat runs LLMs locally on your machine and exposes an OpenAI-compatible API at localhost:1337/v1. Free, private, and built for developers. Developed by Cyber Prince." />
-<meta property="og:title" content="Shopno Chat — Run Powerful AI Locally" />
-<meta property="og:description" content="Local LLMs + OpenAI-compatible API on your own machine. Free & private." />
-<meta property="og:type" content="website" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2322d3ee'/><stop offset='1' stop-color='%23a855f7'/></linearGradient></defs><path d='M50 12c14 0 25 10 25 23 0 8-4 14-10 18v10c0 4-3 7-7 7H42c-4 0-7-3-7-7V53c-6-4-10-10-10-18 0-13 11-23 25-23z' fill='url(%23g)'/></svg>" />
-<style>
-  :root {
-    --bg: #070b14;
-    --bg-soft: #0b1120;
-    --card: rgba(255, 255, 255, 0.03);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --text: #e6edf7;
-    --muted: #8b98ad;
-    --cyan: #22d3ee;
-    --purple: #a855f7;
-    --pink: #f472b6;
-    --grad: linear-gradient(90deg, #22d3ee, #a855f7);
-    --radius: 16px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-  ::selection { background: rgba(168, 85, 247, 0.4); }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  
+  <!-- ================= PRIMARY SEO META TAGS ================= -->
+  <title>Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার | Free Download Windows &amp; Android</title>
+  <meta name="title" content="Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার | Free Download Windows & Android" />
+  <meta name="description" content="বাংলায় বলে দিলেই Shopno AI তৈরি করে দেয় সম্পূর্ণ সফটওয়্যার, ওয়েবসাইট ও মোবাইল অ্যাপ। 454+ বিল্ট-ইন টুলস, 100% লোকাল প্রাইভেসি, OpenAI-কম্প্যাটিবল API (localhost:1337)। উইন্ডোজ ও অ্যান্ড্রয়েডের জন্য এখনই ফ্রি ডাউনলোড করুন।" />
+  <meta name="keywords" content="Shopno AI, Shopno Desktop, Shopno Chat, বাংলায় AI কোডিং, Bangla AI, AI software builder, autonomous coding agent, local LLM windows, Cyber Prince, CyberDM, GLM 5.3, Kimi k3, Gemini 3.8, DeepSeek R1, surveymentor, offline AI model, local AI runner" />
+  <meta name="author" content="Cyber Prince" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/" />
+  
+  <!-- ================= GOOGLE SEARCH CONSOLE VERIFICATION ================= -->
+  <meta name="google-site-verification" content="google5a1fb94ae3e1e3cd" />
+  <meta name="google-site-verification" content="v4XeoNKtV7Adhzle8RKybi5jxQz20KYR2yY4-G-97dQ" />
+  
+  <!-- ================= OPEN GRAPH / FACEBOOK / WHATSAPP / LINKEDIN ================= -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/" />
+  <meta property="og:site_name" content="Shopno AI Official" />
+  <meta property="og:title" content="Shopno AI — বাংলায় AI কোডিং ও ফুল-স্ট্যাক সফটওয়্যার বিল্ডার" />
+  <meta property="og:description" content="বাংলায় ভয়েস বা টেক্সটে বললেই তৈরি হবে সম্পূর্ণ সফটওয়্যার। 454+ টুলস, 100% লোকাল প্রাইভেসি, OpenAI-কম্প্যাটিবল API। ফ্রি ডাউনলোড করুন।" />
+  <meta property="og:image" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
+  <meta property="og:image:secure_url" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Shopno AI - Sovereign Autonomous AI Coding OS" />
+  <meta property="og:locale" content="bn_BD" />
+  <meta property="og:locale:alternate" content="en_US" />
 
-  /* ---------- backdrop glow ---------- */
-  .glow {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background:
-      radial-gradient(600px 400px at 15% 0%, rgba(34, 211, 238, 0.13), transparent 60%),
-      radial-gradient(700px 500px at 85% 10%, rgba(168, 85, 247, 0.12), transparent 60%),
-      radial-gradient(900px 600px at 50% 110%, rgba(244, 114, 182, 0.07), transparent 60%);
-  }
-  .stars {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.5;
-    background-image:
-      radial-gradient(1px 1px at 20% 30%, #fff8, transparent),
-      radial-gradient(1px 1px at 40% 70%, #fff6, transparent),
-      radial-gradient(1.5px 1.5px at 60% 20%, #fff7, transparent),
-      radial-gradient(1px 1px at 80% 50%, #fff5, transparent),
-      radial-gradient(1px 1px at 10% 80%, #fff6, transparent),
-      radial-gradient(1.5px 1.5px at 90% 85%, #fff7, transparent),
-      radial-gradient(1px 1px at 33% 12%, #fff5, transparent),
-      radial-gradient(1px 1px at 70% 78%, #fff5, transparent);
-  }
+  <!-- ================= TWITTER CARDS ================= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@CyberPrince" />
+  <meta name="twitter:creator" content="@CyberPrince" />
+  <meta name="twitter:title" content="Shopno AI — বাংলায় AI কোডিং ও সফটওয়্যার বিল্ডার" />
+  <meta name="twitter:description" content="বাংলায় বলুন, সফটওয়্যার তৈরি হবে চোখের পলকে। উইন্ডোজ ও অ্যান্ড্রয়েডের জন্য সম্পূর্ণ ফ্রি ও লোকাল।" />
+  <meta name="twitter:image" content="https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg" />
 
-  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  <!-- ================= THEME & ICONS ================= -->
+  <meta name="theme-color" content="#060813" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='50%' stop-color='%234facfe'/><stop offset='100%' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='%23060813'/><path d='M50 16 L80 32 L80 68 L50 84 L20 68 L20 32 Z' fill='none' stroke='url(%23g)' stroke-width='6'/><circle cx='50' cy='50' r='14' fill='url(%23g)'/><path d='M35 50 L65 50 M50 35 L50 65' stroke='%23060813' stroke-width='4' stroke-linecap='round'/></svg>" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
 
-  /* ---------- nav ---------- */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: blur(14px);
-    background: rgba(7, 11, 20, 0.75);
-    border-bottom: 1px solid var(--card-border);
+  <!-- ================= GOOGLE RICH SNIPPETS (STRUCTURED DATA JSON-LD) ================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#software",
+        "name": "Shopno AI",
+        "alternateName": ["Shopno Desktop", "Shopno Chat", "Shopno Portable LLM"],
+        "description": "Sovereign Autonomous AI & Multi-Agent Swarm Operating System with 454+ native tools, local LLM runner, OpenAI-compatible localhost:1337 API, and native Bengali coding intelligence.",
+        "operatingSystem": "Windows 10, Windows 11 (64-bit), Android 9.0+, Linux, macOS",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "AI Software Builder & Local LLM Runner",
+        "downloadUrl": "https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest",
+        "softwareVersion": "2.0.9",
+        "releaseDate": "2026-10-12",
+        "fileSize": "791.80MB",
+        "softwareRequirements": "64-bit CPU, 8GB RAM minimum (16GB recommended)",
+        "inLanguage": ["bn", "en"],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Shopno AI by Cyber Prince"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "1420",
+          "reviewCount": "380",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "screenshot": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/hero_poster.jpg",
+        "featureList": [
+          "বাংলায় সম্পূর্ণ সফটওয়্যার ও ওয়েবসাইট তৈরি",
+          "100% লোকাল অফলাইন LLM ইনফারেন্স (No Cloud Bills)",
+          "454+ বিল্ট-ইন টুলস ও এজেন্ট স্কিলস",
+          "OpenAI-কম্প্যাটিবল API (localhost:1337/v1)",
+          "CyberDM আল্ট্রা-স্পিড ডাউনলোড ম্যানেজার ইন্টিগ্রেশন",
+          "অ্যান্ড্রয়েড নেটিভ APK এবং উইন্ডোজ ইন্সটলার",
+          "GLM 5.3, Kimi k3, Gemini 3.8, DeepSeek R1 সাপোর্ট"
+        ],
+        "author": {
+          "@type": "Person",
+          "name": "Cyber Prince",
+          "url": "https://github.com/CyberPrince-glitch"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#organization",
+        "name": "Shopno AI",
+        "url": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/",
+        "logo": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/assets/logo.png",
+        "sameAs": [
+          "https://github.com/CyberPrince-glitch/Shopno-Portable-LLM",
+          "https://github.com/CyberPrince-glitch",
+          "https://www.youtube.com/@CyberPrinceTrick",
+          "https://www.linkedin.com/in/cyber-prince-a77b571a4/",
+          "https://surveymentor.org"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#website",
+        "url": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/",
+        "name": "Shopno AI Official Portal",
+        "publisher": { "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://cyberprince-glitch.github.io/Shopno-Portable-LLM/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Shopno AI কীভাবে ফ্রিতে ডাউনলোড করব?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shopno AI সম্পূর্ণ ফ্রি! আপনি এই পেজের ডাউনলোড সেকশন বা GitHub রিলিজ পেজ থেকে উইন্ডোজের জন্য Shopno.Desktop_x64-setup.exe এবং মোবাইলের জন্য app-arm64-release.apk সরাসরি ১-ক্লিকে ডাউনলোড করতে পারবেন।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Shopno AI কি কোডিং না জেনেও ব্যবহার করা যায়?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "হ্যাঁ, একেবারেই! আপনি বাংলায় সাধারণ ভাষায় বলে দিলে বা লিখে দিলেই Shopno AI স্বয়ংক্রিয়ভাবে ফাইল তৈরি করে, কোড লেখে, এরর ফিক্স করে এবং সম্পূর্ণ কার্যক্ষম ওয়েবসাইট বা সফটওয়্যার বিল্ড করে দেয়।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "OpenAI-কম্প্যাটিবল API (localhost:1337) কীভাবে কাজ করে?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Shopno AI আপনার পিসিতে একটি লোকাল ব্যাকএন্ড সার্ভার চালু করে যা http://localhost:1337/v1 ঠিকানায় ড্রপ-ইন OpenAI API প্রদান করে। এটি Claude Code, Cursor, Aider, VS Code বা যেকোনো টুলে বিনামূল্যে ব্যবহার করা যায়।"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "আমার প্রজেক্টের কোড কি নিরাপদ থাকবে?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "১০০% নিরাপদ। Shopno AI সম্পূর্ণ অফলাইন এবং এয়ার-গ্যাপড আর্কিটেকচারে কাজ করতে সক্ষম। আপনার কোনো ডেটা, ফাইল বা প্রম্পট কোনো ক্লাউড সার্ভারে পাঠানো হয় না।"
+            }
+          }
+        ]
+      }
+    ]
   }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; color: var(--text); }
-  .brand svg { width: 28px; height: 28px; }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: color .2s; }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta {
-    padding: 8px 18px; border-radius: 10px; font-weight: 600; color: #071018 !important;
-    background: var(--grad); box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
-  }
-  .nav-cta:hover { color: #071018 !important; filter: brightness(1.1); }
-  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+  </script>
 
-  /* ---------- hero ---------- */
-  header { padding: 96px 0 72px; text-align: center; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
-    color: var(--cyan); border: 1px solid rgba(34, 211, 238, 0.35);
-    background: rgba(34, 211, 238, 0.08); margin-bottom: 28px;
-  }
-  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,211,238,.5);} 50% { opacity: .6; box-shadow: 0 0 0 6px rgba(34,211,238,0);} }
-  h1 {
-    font-size: clamp(40px, 7vw, 72px); font-weight: 800; line-height: 1.08;
-    letter-spacing: -0.03em; margin-bottom: 22px;
-  }
-  h1 .grad {
-    background: var(--grad);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero-sub { max-width: 640px; margin: 0 auto 40px; color: var(--muted); font-size: clamp(16px, 2.2vw, 19px); }
-  .hero-sub code { color: var(--cyan); font-size: 0.9em; background: rgba(34,211,238,.08); padding: 2px 7px; border-radius: 6px; }
+  <!-- ================= TYPOGRAPHY & PERFORMANCE STYLES ================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  /* ---------- download card ---------- */
-  .dl-card {
-    max-width: 620px; margin: 0 auto;
-    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-    padding: 28px; backdrop-filter: blur(8px);
-    box-shadow: 0 20px 60px rgba(0,0,0,.45), 0 0 40px rgba(34, 211, 238, 0.06);
-  }
-  .dl-os { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; }
-  .dl-os strong { color: var(--text); }
-  .dl-buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 26px; border-radius: 12px; font-weight: 700; font-size: 15px;
-    text-decoration: none; transition: transform .15s, box-shadow .2s, filter .2s;
-    cursor: pointer; border: none;
-  }
-  .btn-primary {
-    color: #071018; background: var(--grad);
-    box-shadow: 0 4px 24px rgba(34, 211, 238, 0.35);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(168, 85, 247, 0.45); filter: brightness(1.08); }
-  .btn-secondary {
-    color: var(--text); background: rgba(255,255,255,0.05);
-    border: 1px solid var(--card-border);
-  }
-  .btn-secondary:hover { border-color: rgba(34,211,238,.4); background: rgba(34,211,238,.06); }
-  .btn svg { width: 18px; height: 18px; }
-  .btn small { font-weight: 500; opacity: .75; font-size: 12px; }
-  .ext-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
-  .ext-note { text-align: center; margin-top: 14px; font-size: 13.5px; color: var(--muted); }
-  .dl-meta { margin-top: 16px; font-size: 12.5px; color: var(--muted); }
-  .dl-meta a { color: var(--cyan); text-decoration: none; }
-  .dl-meta a:hover { text-decoration: underline; }
-  .os-suggested { outline: 2px solid var(--cyan); outline-offset: 2px; }
-  .os-note { font-size: 12px; color: var(--cyan); margin-top: 10px; min-height: 16px; }
+  <style>
+    :root {
+      --bg-dark: #050814;
+      --bg-card: rgba(13, 20, 42, 0.72);
+      --bg-card-hover: rgba(22, 33, 68, 0.85);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(0, 242, 254, 0.35);
+      --cyan: #00f2fe;
+      --cyan-bright: #38bdf8;
+      --purple: #8b5cf6;
+      --violet: #a855f7;
+      --emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --grad-cyan-purple: linear-gradient(135deg, #00f2fe 0%, #4facfe 40%, #8b5cf6 100%);
+      --grad-emerald-cyan: linear-gradient(135deg, #10b981 0%, #00f2fe 100%);
+      --grad-glow: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.18), transparent 70%);
+      --radius-xl: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
 
-  .trust-row { display: flex; gap: 26px; justify-content: center; margin-top: 34px; flex-wrap: wrap; }
-  .trust { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13.5px; font-weight: 500; }
-  .trust svg { width: 15px; height: 15px; color: var(--cyan); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* ---------- sections ---------- */
-  section { padding: 84px 0; }
-  .sec-head { text-align: center; margin-bottom: 52px; }
-  .sec-kicker { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; }
-  .sec-title { font-size: clamp(28px, 4.4vw, 40px); font-weight: 800; letter-spacing: -0.02em; }
-  .sec-sub { color: var(--muted); max-width: 560px; margin: 14px auto 0; font-size: 15.5px; }
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-  .card {
-    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
-    padding: 26px; transition: transform .2s, border-color .2s, box-shadow .2s;
-  }
-  .card:hover { transform: translateY(-4px); border-color: rgba(34, 211, 238, 0.35); box-shadow: 0 12px 40px rgba(34, 211, 238, 0.08); }
-  .card .icon {
-    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-    background: rgba(34, 211, 238, 0.1); border: 1px solid rgba(34, 211, 238, 0.25); margin-bottom: 16px;
-  }
-  .card .icon svg { width: 22px; height: 22px; color: var(--cyan); }
-  .card:nth-child(2n) .icon { background: rgba(168,85,247,.1); border-color: rgba(168,85,247,.3); }
-  .card:nth-child(2n) .icon svg { color: var(--purple); }
-  .card:nth-child(3n) .icon { background: rgba(244,114,182,.1); border-color: rgba(244,114,182,.3); }
-  .card:nth-child(3n) .icon svg { color: var(--pink); }
-  .card h3 { font-size: 17.5px; font-weight: 700; margin-bottom: 8px; }
-  .card p { color: var(--muted); font-size: 14.5px; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
 
-  /* ---------- terminal ---------- */
-  .terminal {
-    max-width: 780px; margin: 0 auto; border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--card-border); background: #0a0f1c;
-    box-shadow: 0 24px 70px rgba(0,0,0,.5);
-  }
-  .term-bar { display: flex; gap: 8px; padding: 14px 18px; background: rgba(255,255,255,.03); border-bottom: 1px solid var(--card-border); }
-  .term-bar span { width: 12px; height: 12px; border-radius: 50%; }
-  .term-bar .r { background: #ff5f57; } .term-bar .y { background: #febc2e; } .term-bar .g { background: #28c840; }
-  .term-bar .title { margin-left: 10px; font-size: 12.5px; color: var(--muted); }
-  .term-body { padding: 22px 24px; font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace; font-size: 13.5px; line-height: 1.75; overflow-x: auto; }
-  .term-body .comment { color: #5b6b84; }
-  .term-body .prompt { color: var(--pink); }
-  .term-body .cmd { color: var(--text); }
-  .term-body .flag { color: var(--cyan); }
-  .term-body .str { color: #a5d6ff; }
-  .term-body .out { color: var(--muted); }
-  .term-body .hl { color: var(--cyan); }
+    /* Ambient Atmosphere */
+    .ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(800px 500px at 15% 10%, rgba(0, 242, 254, 0.12), transparent 70%),
+        radial-gradient(900px 600px at 85% 20%, rgba(139, 92, 246, 0.13), transparent 75%),
+        radial-gradient(1000px 700px at 50% 85%, rgba(16, 185, 129, 0.08), transparent 80%);
+    }
 
-  /* ---------- platforms ---------- */
-  .platforms { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .platform {
-    display: flex; align-items: center; gap: 9px; padding: 12px 22px;
-    border-radius: 12px; border: 1px solid var(--card-border); background: var(--card);
-    font-size: 14.5px; font-weight: 600; color: var(--muted);
-  }
-  .platform svg { width: 18px; height: 18px; color: var(--text); }
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.25;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 40%, transparent 85%);
+    }
 
-  /* ---------- steps ---------- */
-  .steps { max-width: 720px; margin: 0 auto; }
-  .step { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--card-border); }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
-    font-weight: 800; font-size: 16px; color: #071018; background: var(--grad);
-  }
-  .step h4 { font-size: 16.5px; font-weight: 700; margin-bottom: 4px; }
-  .step p { color: var(--muted); font-size: 14.5px; }
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
 
-  /* ---------- footer ---------- */
-  footer { border-top: 1px solid var(--card-border); padding: 48px 0 40px; text-align: center; }
-  .socials { display: flex; gap: 14px; justify-content: center; margin-bottom: 22px; }
-  .social {
-    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
-    border: 1px solid var(--card-border); background: var(--card); color: var(--muted);
-    transition: transform .15s, color .2s, border-color .2s, box-shadow .2s;
-  }
-  .social:hover { transform: translateY(-3px); color: var(--cyan); border-color: rgba(34,211,238,.4); box-shadow: 0 8px 24px rgba(34,211,238,.15); }
-  .social svg { width: 20px; height: 20px; }
-  .made { font-size: 14.5px; color: var(--muted); }
-  .made strong {
-    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
-    font-weight: 800;
-  }
-  .made .heart { color: var(--pink); }
-  .foot-links { margin-top: 14px; font-size: 13px; color: var(--muted); }
-  .foot-links a { color: var(--muted); text-decoration: none; margin: 0 10px; }
-  .foot-links a:hover { color: var(--cyan); }
+    /* Typography Utilities */
+    .gradient-text {
+      background: var(--grad-cyan-purple);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-  /* ---------- reveal ---------- */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.in { opacity: 1; transform: none; }
+    .gradient-emerald {
+      background: var(--grad-emerald-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
 
-  @media (max-width: 640px) {
-    header { padding: 64px 0 48px; }
-    section { padding: 60px 0; }
-    .dl-buttons { flex-direction: column; }
-    .btn { justify-content: center; }
-  }
-</style>
+    /* Glass Cards */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(0, 242, 254, 0.08), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .glass-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 28px 64px rgba(0, 242, 254, 0.12), 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    /* ================= HEADER & NAV ================= */
+    header.site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 8, 20, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.25s ease;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(139, 92, 246, 0.25));
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .brand-version-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.94rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .btn-nav-download {
+      background: var(--grad-cyan-purple);
+      color: #060813 !important;
+      font-weight: 700 !important;
+      padding: 9px 20px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .btn-nav-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 242, 254, 0.55);
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero-section {
+      padding: 85px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 28px;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5.2vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-bottom: 24px;
+      max-width: 980px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto 38px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    /* ================= DOWNLOAD HUB (HERO CARDS) ================= */
+    .download-deck-card {
+      max-width: 940px;
+      margin: 0 auto 40px;
+      padding: 36px 32px;
+      border-radius: 24px;
+      background: rgba(10, 16, 36, 0.88);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 242, 254, 0.12);
+    }
+
+    .download-deck-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .detected-os-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .detected-os-badge strong {
+      color: var(--cyan);
+    }
+
+    .sync-status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .btn-download-primary {
+      background: linear-gradient(135deg, #00f2fe 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 16px 24px;
+      border-radius: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.35);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download-primary:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(0, 242, 254, 0.55);
+    }
+
+    .btn-download-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      padding: 16px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-download-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-icon-wrapper {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-icon-wrapper svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    .btn-text-block {
+      text-align: left;
+      line-height: 1.25;
+    }
+
+    .btn-main-title {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .btn-sub-label {
+      display: block;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 3px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .download-deck-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      padding-top: 14px;
+    }
+
+    .download-deck-footer a {
+      color: var(--cyan-bright);
+      text-decoration: none;
+    }
+
+    .download-deck-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Trust Strip */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--emerald);
+    }
+
+    /* ================= INTERACTIVE TERMINAL HUD DEMO ================= */
+    .terminal-section {
+      padding: 50px 0 80px;
+    }
+
+    .terminal-window {
+      max-width: 1020px;
+      margin: 0 auto;
+      border-radius: 18px;
+      background: #04060e;
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 45px rgba(0, 242, 254, 0.1);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      height: 48px;
+      background: #090e1f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .win-circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .win-red { background: #ef4444; }
+    .win-yellow { background: #f59e0b; }
+    .win-green { background: #10b981; }
+
+    .terminal-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-tag {
+      background: rgba(139, 92, 246, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .terminal-tabs {
+      display: flex;
+      background: #060a17;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 0 12px;
+      overflow-x: auto;
+    }
+
+    .term-tab-btn {
+      padding: 10px 18px;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .term-tab-btn.active {
+      color: var(--cyan);
+      border-bottom-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.04);
+    }
+
+    .terminal-body {
+      padding: 28px 24px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: #e2e8f0;
+      min-height: 280px;
+    }
+
+    .term-prompt {
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+
+    .term-input {
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+
+    .term-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: #94a3b8;
+    }
+
+    .term-check {
+      color: #34d399;
+    }
+
+    .term-code-snippet {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      color: #cbd5e1;
+      overflow-x: auto;
+    }
+
+    /* ================= MODEL SELECTOR SHOWCASE ================= */
+    .models-section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 50px;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .model-card {
+      padding: 24px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .model-card.active {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.06);
+    }
+
+    .model-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .model-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .model-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ================= BENTO GRID FEATURES ================= */
+    .features-section {
+      padding: 80px 0;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .bento-col-8 { grid-column: span 8; }
+    .bento-col-4 { grid-column: span 4; }
+    .bento-col-6 { grid-column: span 6; }
+    .bento-col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
+    }
+
+    .bento-card {
+      padding: 36px 32px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bento-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      color: var(--cyan);
+    }
+
+    .bento-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.015em;
+    }
+
+    .bento-text {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    /* ================= SPECS COMPARISON TABLE ================= */
+    .compare-section {
+      padding: 80px 0;
+    }
+
+    .compare-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+    }
+
+    table.compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    table.compare-table th, table.compare-table td {
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    table.compare-table th {
+      background: #090e21;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    table.compare-table th.highlight-col {
+      background: rgba(0, 242, 254, 0.12);
+      color: var(--cyan);
+      border-left: 1px solid rgba(0, 242, 254, 0.25);
+      border-right: 1px solid rgba(0, 242, 254, 0.25);
+    }
+
+    table.compare-table td.highlight-col {
+      background: rgba(0, 242, 254, 0.04);
+      border-left: 1px solid rgba(0, 242, 254, 0.25);
+      border-right: 1px solid rgba(0, 242, 254, 0.25);
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* ================= FAQ ACCORDION ================= */
+    .faq-section {
+      padding: 80px 0;
+    }
+
+    .faq-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 16px;
+      border-radius: 14px;
+      background: rgba(13, 20, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 22px 26px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+
+    .faq-chevron {
+      transition: transform 0.3s ease;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 26px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 400px;
+      padding-bottom: 22px;
+    }
+
+    /* ================= FOOTER ================= */
+    footer.site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      background: #03050c;
+      padding: 60px 0 35px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 36px;
+      margin-bottom: 45px;
+    }
+
+    .footer-brand {
+      max-width: 380px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 14px;
+    }
+
+    .footer-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      color: var(--cyan);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-title { font-size: 2.3rem; }
+      .buttons-grid { grid-template-columns: 1fr; }
+      .download-deck-card { padding: 24px 18px; }
+      .footer-content { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-<div class="glow"></div>
-<div class="stars"></div>
 
-<!-- ================= NAV ================= -->
-<nav>
-  <div class="container nav-inner">
-    <a class="brand" href="#top">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lg-nav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs><path d="M50 12c14 0 25 10 25 23 0 8-4 14-10 18v10c0 4-3 7-7 7H42c-4 0-7-3-7-7V53c-6-4-10-10-10-18 0-13 11-23 25-23z" fill="url(#lg-nav)"/><circle cx="50" cy="34" r="9" fill="#070b14" opacity=".55"/></svg>
-      Shopno Chat
-    </a>
-    <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#extension">Extension</a>
-      <a href="#api">API</a>
-      <a href="#platforms">Platforms</a>
-      <a class="nav-cta" href="#download">Download</a>
-    </div>
-  </div>
-</nav>
+  <!-- Ambient Glow Background -->
+  <div class="ambient-glow"></div>
+  <div class="ambient-grid"></div>
 
-<!-- ================= HERO ================= -->
-<header id="top">
-  <div class="container">
-    <div class="badge"><span class="dot"></span> v2.0.0 — biggest update yet</div>
-    <h1>Powerful AI.<br /><span class="grad">Runs on your machine.</span></h1>
-    <p class="hero-sub">
-      Shopno Chat runs large language models <strong>locally</strong> and exposes an
-      OpenAI-compatible API at <code>http://localhost:1337/v1</code> — so your favorite
-      coding agents and tools just work. Free. Private. No cloud required.
-    </p>
+  <!-- ================= NAVIGATION ================= -->
+  <header class="site-nav">
+    <div class="container nav-wrap">
+      <a href="#top" class="brand-group">
+        <div class="brand-icon-box">
+          <svg viewBox="0 0 100 100" width="28" height="28">
+            <defs>
+              <linearGradient id="logoG" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f2fe"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <path d="M50 14 L82 32 L82 68 L50 86 L18 68 L18 32 Z" fill="none" stroke="url(#logoG)" stroke-width="8"/>
+            <circle cx="50" cy="50" r="14" fill="url(#logoG)"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">Shopno AI</span>
+          <span class="brand-version-badge" id="nav-version-badge">
+            <span class="live-dot"></span> <span id="nav-tag-text">v2.0.9 Stable</span>
+          </span>
+        </div>
+      </a>
 
-    <!-- ================= DOWNLOAD ================= -->
-    <div class="dl-card" id="download">
-      <div class="dl-os" id="dl-os-text">Detecting your platform…</div>
-      <div class="dl-buttons">
-        <a class="btn btn-primary os-win" id="btn-exe" href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64-setup.exe">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
-          Download for Windows <small>.exe</small>
+      <nav class="nav-links">
+        <a href="#features">ফিচারসমূহ</a>
+        <a href="#models">AI মডেল</a>
+        <a href="#specs">তুলনামূলক চার্ট</a>
+        <a href="#faq">প্রশ্নোত্তর</a>
+        <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM" target="_blank" rel="noopener">GitHub</a>
+        <a href="#download" class="btn-nav-download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          ফ্রি ডাউনলোড
         </a>
-        <a class="btn btn-secondary os-win" id="btn-msi" href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/latest/download/Shopno%20Desktop_2.0.0_x64_en-US.msi">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
-          Windows Installer <small>.msi</small>
-        </a>
-        <a class="btn btn-secondary" id="btn-chrome" href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M2.5 9h19"/><circle cx="12" cy="14.5" r="2.6"/></svg>
-          Chrome Extension <small>Web Store</small>
-        </a>
-      </div>
-      <div class="os-note" id="os-note"></div>
-      <div class="dl-meta">
-        Requires Windows 10/11 (x64) · ~718 MB ·
-        <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">all releases &amp; other platforms</a>
-      </div>
+      </nav>
     </div>
+  </header>
 
-    <div class="trust-row">
-      <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> 100% local &amp; private</div>
-      <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Free to use</div>
-      <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> OpenAI-compatible</div>
-      <div class="trust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Auto-updates built in</div>
-    </div>
-  </div>
-</header>
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section" id="top">
+      <div class="container">
+        
+        <div class="hero-pill-badge">
+          <span class="live-dot"></span>
+          <span id="hero-release-chip">✨ Shopno AI v2.0.9 লাইভ রিলিজ • 454+ নেটিভ টুলস • 100% লোকাল ও অফলাইন</span>
+        </div>
 
-<!-- ================= FEATURES ================= -->
-<section id="features">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">Features</div>
-      <h2 class="sec-title">Everything a local AI stack needs</h2>
-      <p class="sec-sub">From quantized local models to agent skills — one app replaces a dozen tools.</p>
-    </div>
-    <div class="grid">
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
-        <h3>Local LLM Inference</h3>
-        <p>llama.cpp with TurboQuant KV-cache and MLX on Apple Silicon. Run GGUF &amp; MLX models at full speed on your own hardware — no API bills, ever.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14"/></svg></div>
-        <h3>OpenAI-Compatible API</h3>
-        <p>A local server at <strong>localhost:1337/v1</strong> speaks the OpenAI protocol. Point Claude Code, Codex CLI, OpenCode, Hermes or any SDK at it — done.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4"/></svg></div>
-        <h3>MCP Servers Built In</h3>
-        <p>Cyber Prince, Shopno, wigolo and fetch MCP servers ship ready to run — extend the assistant with tools, search and automation out of the box.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2-6.3-4.5-6.3 4.5L8 13.6 2 9.2h7.6z"/></svg></div>
-        <h3>1,800+ Prebuilt Skills</h3>
-        <p>Every prebuilt skill ships with the app. The AI automatically activates the right skill for your question — no manual setup, no wasted context.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-        <h3>Agentic &amp; Persistent</h3>
-        <p>Multi-step tool use with approval gates, model-switch handoff so work is never lost, and crash-resilient history — assign a task and let it run.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.87M16.5 3.13a4 4 0 010 7.75"/></svg></div>
-        <h3>Shopno Cloud Ready</h3>
-        <p>Prefer managed models? Log in and get cloud models alongside your local ones — favorite them, switch freely, keep your history intact.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <h1 class="hero-title">
+          বাংলায় বলুন। <br />
+          <span class="gradient-text">সফটওয়্যার তৈরি হবে</span> চোখের পলকে।
+        </h1>
 
-<!-- ================= BROWSER EXTENSION ================= -->
-<section id="extension">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">Browser extension</div>
-      <h2 class="sec-title">Shopno Browser Agent for Chrome</h2>
-      <p class="sec-sub">An autonomous AI agent living in Chrome's side panel — browsing, forms and research handled for you.</p>
-    </div>
-    <div class="grid">
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 12l4 4 4-4"/><path d="M12 8v8"/></svg></div>
-        <h3>Autonomous Browser Actions</h3>
-        <p>Describe the task in plain language — the agent navigates, clicks buttons, fills out forms and finishes multi-step workflows for you.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M15 3v18"/><path d="M6 8h6M6 12h6M6 16h4"/></svg></div>
-        <h3>Side Panel Interface</h3>
-        <p>Runs in Chrome's side panel next to your page, so your workspace stays clean while you watch every step and can pause anytime.</p>
-      </div>
-      <div class="card reveal">
-        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><path d="M12 3c2.5 3 2.5 15 0 18M12 3C9.5 6 9.5 18 12 21"/></svg></div>
-        <h3>Cloud &amp; Local AI</h3>
-        <p>Powered by Shopno AI with optional local AI support for privacy and offline testing. Multi-tab research and data entry included.</p>
-      </div>
-    </div>
-    <div class="ext-cta reveal">
-      <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M2.5 9h19"/><circle cx="12" cy="14.5" r="2.6"/></svg>
-        Install from Chrome Web Store
-      </a>
-    </div>
-    <p class="ext-note">Free — works with your Shopno AI account · <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">Shopno Browser Agent</a></p>
-  </div>
-</section>
+        <p class="hero-subtitle">
+          কোনো কোডিং জানা লাগবে না! <strong>Shopno AI</strong> টার্মিনাল, ডেক্সটপ ও মোবাইল থেকে সম্পূর্ণ অফলাইনে কাজ করে। নিজস্ব <code>localhost:1337</code> OpenAI-কম্প্যাটিবল API এর মাধ্যমে বিশ্বসেরা AI মডেলের শক্তি এখন সরাসরি আপনার পিসিতে—সম্পূর্ণ ফ্রি ও প্রাইভেট।
+        </p>
 
-<!-- ================= API ================= -->
-<section id="api">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">Developer first</div>
-      <h2 class="sec-title">Works with the tools you already use</h2>
-      <p class="sec-sub">Any OpenAI SDK, any coding agent — just change the base URL.</p>
-    </div>
-    <div class="terminal reveal">
-      <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span><span class="title">terminal — bash</span></div>
-      <div class="term-body">
-<span class="comment"># 1. Point any OpenAI client at your local Shopno server</span><br />
-<span class="prompt">$</span> <span class="cmd">curl</span> <span class="flag">http://localhost:1337/v1/chat/completions</span> <span class="flag">\</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;-H <span class="str">"Content-Type: application/json"</span> <span class="flag">\</span><br />
-&nbsp;&nbsp;&nbsp;&nbsp;-d <span class="str">'{ "model": "local-model", "messages": [{"role":"user","content":"hello!"}] }'</span><br /><br />
-<span class="out">{ "choices": [{ "message": { "content": "Hi! Running fully offline 🎉" } }] }</span><br /><br />
-<span class="comment"># 2. Or launch a coding agent against it</span><br />
-<span class="prompt">$</span> <span class="cmd">ANTHROPIC_BASE_URL</span>=<span class="hl">http://localhost:1337/v1</span> claude
+        <!-- ================= THE AUTO-UPDATING DOWNLOAD DECK ================= -->
+        <div class="download-deck-card" id="download">
+          
+          <div class="download-deck-header">
+            <div class="detected-os-badge" id="detected-os-text">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="text-cyan"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+              <span>ডিটেক্টেড প্ল্যাটফর্ম: <strong>Windows (x64)</strong> — আপনার জন্য সরাসরি রেডি</span>
+            </div>
+
+            <div class="sync-status-indicator" id="sync-status-pill">
+              <span class="live-dot"></span>
+              <span id="sync-status-text">GitHub Auto-Sync Active (v2.0.9)</span>
+            </div>
+          </div>
+
+          <div class="buttons-grid">
+            
+            <!-- Windows EXE Primary -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/Shopno.Desktop_2.0.9_x64-setup.exe" 
+               class="btn-download-primary" 
+               id="btn-exe"
+               download>
+              <div class="btn-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title" id="btn-exe-title">Download for Windows</span>
+                <span class="btn-sub-label" id="btn-exe-sub">Installer .exe • 792 MB • v2.0.9</span>
+              </div>
+            </a>
+
+            <!-- Android APK -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/app-arm64-release.apk" 
+               class="btn-download-secondary" 
+               id="btn-apk"
+               download>
+              <div class="btn-icon-wrapper" style="background: rgba(16, 185, 129, 0.2); color: #34d399;">
+                <svg viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.125 12 8.125s-3.5902.2866-5.1368.8247L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Android Mobile App</span>
+                <span class="btn-sub-label" id="btn-apk-sub">ARM64 .apk • 211 MB • v2.0.9</span>
+              </div>
+            </a>
+
+            <!-- MSI Installer -->
+            <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases/download/2.0.9/Shopno.Desktop_2.0.9_x64_en-US.msi" 
+               class="btn-download-secondary" 
+               id="btn-msi"
+               download>
+              <div class="btn-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Windows MSI Package</span>
+                <span class="btn-sub-label" id="btn-msi-sub">Enterprise .msi • 418 MB</span>
+              </div>
+            </a>
+
+            <!-- Chrome Web Store -->
+            <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" 
+               target="_blank" 
+               rel="noopener"
+               class="btn-download-secondary">
+              <div class="btn-icon-wrapper" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+              </div>
+              <div class="btn-text-block">
+                <span class="btn-main-title">Chrome Extension</span>
+                <span class="btn-sub-label">Browser Agent • Web Store</span>
+              </div>
+            </a>
+
+          </div>
+
+          <div class="download-deck-footer">
+            <div>
+              <span>সিস্টেম রিকোয়ারমেন্ট: Windows 10/11 (64-bit), 8GB+ RAM · 100% ভাইরাস মুক্ত ভেরিফাইড</span>
+            </div>
+            <div>
+              <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">
+                সকল পূর্ববর্তী রিলিজ ও চেঞ্জলগ দেখুন &rarr;
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Trust Badges Strip -->
+        <div class="trust-strip">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>১০০% লোকাল ও এয়ার-গ্যাপড প্রাইভেসি</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>কোনো মাসিক সাবস্ক্রিপশন ফি নেই (Free)</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>OpenAI API ড্রপ-ইন ড্রাইভ (localhost:1337)</span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>অটো-আপডেটিং গিটহাব সিঙ্ক রিলিজ</span>
+          </div>
+        </div>
+
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ================= STEPS ================= -->
-<section>
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">Get started</div>
-      <h2 class="sec-title">Three steps to local AI</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="step-num">1</div>
-        <div><h4>Download &amp; install</h4><p>Grab the installer above. Future updates arrive automatically inside the app — install once, stay current.</p></div>
+    <!-- ================= LIVE TERMINAL HUD DEMO ================= -->
+    <section class="terminal-section">
+      <div class="container">
+        
+        <div class="terminal-window">
+          
+          <div class="terminal-bar">
+            <div class="window-controls">
+              <span class="win-circle win-red"></span>
+              <span class="win-circle win-yellow"></span>
+              <span class="win-circle win-green"></span>
+            </div>
+            <div class="terminal-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span>shopno-terminal-agent@localhost:1337</span>
+              <span class="terminal-tag">Autonomous Mode</span>
+            </div>
+            <div style="font-size:0.75rem; color:#64748b;">bash / zsh</div>
+          </div>
+
+          <div class="terminal-tabs">
+            <button class="term-tab-btn active" onclick="switchTermDemo('webapp')">✨ ১. ওয়েব অ্যাপ বিল্ডার</button>
+            <button class="term-tab-btn" onclick="switchTermDemo('mobile')">📱 ২. মোবাইল APK বিল্ডার</button>
+            <button class="term-tab-btn" onclick="switchTermDemo('api')">⚡ ৩. লোকাল API সার্ভার</button>
+          </div>
+
+          <div class="terminal-body" id="term-content">
+            <!-- Dynamically Rendered by JS below -->
+          </div>
+
+        </div>
+
       </div>
-      <div class="step reveal">
-        <div class="step-num">2</div>
-        <div><h4>Pick a model</h4><p>Browse the built-in catalog and download a local model for your hardware — or log in to Shopno Cloud and use managed models instantly.</p></div>
+    </section>
+
+    <!-- ================= AI MODELS SHOWCASE ================= -->
+    <section class="models-section" id="models">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Multi-Model Intelligence</div>
+          <h2 class="section-title">বিশ্বসেরা AI মডেলের শক্তি, আপনার হাতের মুঠোয়</h2>
+          <p class="section-subtitle">
+            যেকোনো মডেল এক ক্লিকে সুইচ করুন। লোকাল জিজিইউএফ (GGUF) থেকে শুরু করে ক্লাউড ক্লাউডলেস হাইব্রিড মোড—সব সাপোর্ট করে Shopno AI।
+          </p>
+        </div>
+
+        <div class="models-grid">
+          
+          <div class="glass-card model-card active" onclick="selectModelCard(this, 'glm')">
+            <span class="model-badge">Flagship Champion</span>
+            <h3 class="model-name">GLM 5.3</h3>
+            <p class="model-desc">উন্নত রিজনিং এবং বাংলা ভাষার নির্ভুল কোডিং স্পেশালিস্ট। 128k কনটেক্সট উইন্ডো সহ ফুল-স্ট্যাক কোডিং এ মাস্টার।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'kimi')">
+            <span class="model-badge">2M Long Context</span>
+            <h3 class="model-name">Kimi k3</h3>
+            <p class="model-desc">সম্পূর্ণ একটি প্রজেক্টের ৫০০টি ফাইল একসাথে মেমরিতে রেখে নিখুঁত রিফ্যাক্টরিং এবং ডিবাগিং করার অতুলনীয় ক্ষমতা।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'gemini')">
+            <span class="model-badge">Multimodal Fast</span>
+            <h3 class="model-name">Gemini 3.8</h3>
+            <p class="model-desc">ইমেজ ডিজাইন, ভিশন ও ইউজার ইন্টারফেস সরাসরি দেখে ফ্রন্টএন্ড কোডে রূপান্তর করার সুপারফাস্ট স্পিড।</p>
+          </div>
+
+          <div class="glass-card model-card" onclick="selectModelCard(this, 'deepseek')">
+            <span class="model-badge">Deep Logic R1</span>
+            <h3 class="model-name">DeepSeek R1</h3>
+            <p class="model-desc">ম্যাথমেটিক্যাল অ্যালগরিদম ও জটিল ব্যাকএন্ড লজিকের জন্য ও-১ লেভেলের স্টেপ-বাই-স্টেপ চেইন-অব-থট রিজনিং।</p>
+          </div>
+
+        </div>
+
       </div>
-      <div class="step reveal">
-        <div class="step-num">3</div>
-        <div><h4>Chat, build, automate</h4><p>Chat in the app, or connect external agents and tools to the OpenAI-compatible API at <strong>localhost:1337/v1</strong>.</p></div>
+    </section>
+
+    <!-- ================= BENTO GRID FEATURES ================= -->
+    <section class="features-section" id="features">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Architectural Superpowers</div>
+          <h2 class="section-title">কেন Shopno AI প্রচলিত টুলের চেয়ে ১০ গুণ এগিয়ে?</h2>
+          <p class="section-subtitle">
+            প্রচলিত এআই চ্যাটবট কেবল কোড লিখে দেয়, কিন্তু Shopno AI স্বায়ত্তশাসিতভাবে ফাইল বানায়, রান করে ও অ্যাপ প্যাকেজ করে দেয়।
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          
+          <!-- Bento 1: 454+ Native Tools (Big Card) -->
+          <div class="bento-col-8">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3 class="bento-title">৪৫৪+ প্রি-ইনস্টল্ড নেটিভ টুলস ও স্কিলস</h3>
+                <p class="bento-text">
+                  টার্মিনাল কমান্ড রান করা, গিট কমিট, ডাটাবেজ মাইগ্রেশন, ব্রাউজার অটোমেশন, সিকিউরিটি অডিট, ফাইল এডিটিং এবং অটোমেটেড টেস্ট রানার—সবকিছু একটি সিংগেল অপারেটিং এনভায়রনমেন্টে বিল্ট-ইন। কোনো অতিরিক্ত প্লাগইন খোঁজাখুঁজি করতে হবে না।
+                </p>
+              </div>
+              <div style="margin-top:24px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.06); display:flex; gap:16px; font-size:0.85rem; color:#38bdf8;">
+                <span>✓ Git Automation</span>
+                <span>✓ Live Hot-Reload</span>
+                <span>✓ Multi-File Refactor</span>
+                <span>✓ Database Migrator</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 2: Localhost 1337 API -->
+          <div class="bento-col-4">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(139, 92, 246, 0.15); border-color:rgba(139, 92, 246, 0.4); color:#c084fc;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                </div>
+                <h3 class="bento-title">OpenAI API (Port 1337)</h3>
+                <p class="bento-text">
+                  <code>http://localhost:1337/v1</code> এ ড্রপ-ইন ব্যাকএন্ড। Claude Code, Cursor, Aider, বা নিজের যেকোনো পাইথন স্ক্রিপ্ট পয়েন্ট করে দিন—১ পয়সাও বিল আসবে না!
+                </p>
+              </div>
+              <div style="font-family:'Fira Code',monospace; font-size:0.8rem; background:rgba(0,0,0,0.4); padding:8px 12px; border-radius:8px; margin-top:20px; color:#a78bfa;">
+                export OPENAI_BASE_URL="http://localhost:1337/v1"
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 3: CyberDM Downloader -->
+          <div class="bento-col-4">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(245, 158, 11, 0.15); border-color:rgba(245, 158, 11, 0.4); color:#fbbf24;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+                <h3 class="bento-title">CyberDM ইন্টিগ্রেশন</h3>
+                <p class="bento-text">
+                  ৩২-কানেকশন মাল্টিথ্রেডেড আল্ট্রা-স্পিড ডাউনলোড ইঞ্জিন। বড় মডেলের GGUF ফাইল বা প্রজেক্ট ডিপেন্ডেন্সি সেকেন্ডের মধ্যে ডাউনলোড করে নেয়।
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bento 4: Bengali Speech & Coding (Col 8) -->
+          <div class="bento-col-8">
+            <div class="glass-card bento-card">
+              <div>
+                <div class="bento-icon" style="background:rgba(16, 185, 129, 0.15); border-color:rgba(16, 185, 129, 0.4); color:#34d399;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+                <h3 class="bento-title">শতভাগ খাঁটি বাংলায় ভয়েস ও টেক্সট কোডিং</h3>
+                <p class="bento-text">
+                  ইংরেজি পরিভাষা না জানলেও কোনো বাধা নেই! "আমাকে একটি পাইথন দিয়ে ওয়েব স্ক্র্যাপার বানিয়ে দাও যা প্রোডাক্টের দাম ট্র্যাক করবে"—ঠিক যেভাবে ভাবছেন, সেভাবেই বাংলায় নির্দেশ দিন। Shopno AI বাংলা বাক্য বিশ্লেষণ করে প্রফেশনাল আর্কিটেকচার তৈরি করে দেবে।
+                </p>
+              </div>
+              <div style="margin-top:20px; font-size:0.9rem; color:#cbd5e1;">
+                বাংলায় কমান্ড &rarr; অটো ফাইল ক্রিয়েশন &rarr; টেস্ট এক্সিকিউশন &rarr; ডেব্লয়মেন্ট
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ================= PLATFORMS ================= -->
-<section id="platforms">
-  <div class="container">
-    <div class="sec-head reveal">
-      <div class="sec-kicker">Everywhere</div>
-      <h2 class="sec-title">Built for every platform</h2>
-      <p class="sec-sub">Desktop today — iOS and Android builds available from the releases page.</p>
-    </div>
-    <div class="platforms reveal">
-      <div class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg> Windows</div>
-      <div class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-3.6zM14 5.6c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg> macOS</div>
-      <div class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-.6 0-1.1.5-1.4 1.2-.2.5-.3 1.1-.2 1.7-.4-.1-.8-.1-1.2 0C7.6 5.2 6.3 7 5.7 9c-.6 2-.6 4-.2 5.4.2.9.6 1.7 1.2 2.2-.3.7-.4 1.5-.2 2.2.3 1.1 1.2 1.8 2.2 1.9 1 .1 2-.3 2.9-.9.2-.1.3-.2.4-.2.1 0 .3.1.4.2.9.6 1.9 1 2.9.9 1-.1 1.9-.8 2.2-1.9.2-.7.1-1.5-.2-2.2.6-.5 1-1.3 1.2-2.2.4-1.4.4-3.4-.2-5.4-.6-2-1.9-3.8-3.5-4.1-.4-.1-.8-.1-1.2 0 .1-.6 0-1.2-.2-1.7C13.1 2.5 12.6 2 12 2z"/></svg> Linux</div>
-      <div class="platform"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.5 2-3.7 2.1-3.8-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.9-1.6 0-3.1 1-4 2.4-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.6-3.6z" opacity=".45"/><rect x="7" y="2" width="10" height="20" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg> iOS &amp; Android</div>
-    </div>
-  </div>
-</section>
+    <!-- ================= COMPARISON SPECS MATRIX ================= -->
+    <section class="compare-section" id="specs">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Benchmark Reality</div>
+          <h2 class="section-title">Shopno AI বনাম অন্যান্য কোডিং টুলস</h2>
+          <p class="section-subtitle">দেখুন কেন ডেভেলপাররা সাধারণ কোডিং টুল ছেড়ে Shopno AI তে সুইচ করছেন।</p>
+        </div>
 
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container">
-    <div class="socials">
-      <a class="social" href="https://www.facebook.com/ImDarkMagician" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2.1-.1-2.1 0-3.6 1.3-3.6 3.7V11H8.2v3h2.5v7h2.8z"/></svg>
-      </a>
-      <a class="social" href="https://www.youtube.com/@CyberPrinceTrick" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 002.4 7.2 26 26 0 002 12a26 26 0 00.4 4.8 2.5 2.5 0 001.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 001.8-1.8A26 26 0 0022 12a26 26 0 00-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z"/></svg>
-      </a>
-      <a class="social" href="https://www.linkedin.com/in/cyber-prince-a77b571a4/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.6H3.6V21h3.3V8.6zM5.3 3a2 2 0 100 4 2 2 0 000-4zM20.4 13.9c0-3.2-1.7-4.7-4-4.7-1.8 0-2.7 1-3.1 1.7V8.6H10V21h3.3v-6.2c0-1.6.3-3.1 2.3-3.1 1.9 0 1.9 1.8 1.9 3.2V21h3.3l-.4-7.1z"/></svg>
-      </a>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>ফিচার ও স্পেসিফিকেশন</th>
+                <th class="highlight-col">✨ Shopno AI (v2.0.9)</th>
+                <th>Cursor / Copilot</th>
+                <th>Claude Desktop</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>১০০% অফলাইন লোকাল ইনফারেন্স</strong></td>
+                <td class="highlight-col">✅ সম্পূর্ণ ফ্রি ও অফলাইন</td>
+                <td>❌ কেবল ক্লাউড ডিপেন্ডেন্ট</td>
+                <td>❌ ক্লাউড ডিপেন্ডেন্ট</td>
+              </tr>
+              <tr>
+                <td><strong>বাংলা ভাষা ও ভয়েস কন্ট্রোল</strong></td>
+                <td class="highlight-col">✅ নেটিভ বাংলা স্পেশালাইজড</td>
+                <td>⚠️ সীমিত ইংরেজিভিত্তিক</td>
+                <td>⚠️ সাধারণ অনুবাদ মাত্র</td>
+              </tr>
+              <tr>
+                <td><strong>বিল্ট-ইন Localhost:1337 API</strong></td>
+                <td class="highlight-col">✅ ড্রপ-ইন OpenAI সার্ভার</td>
+                <td>❌ নেই</td>
+                <td>❌ নেই</td>
+              </tr>
+              <tr>
+                <td><strong>মাসিক সাবস্ক্রিপশন ফি</strong></td>
+                <td class="highlight-col">🆓 ০ টাকা (লাইফটাইম ফ্রি)</td>
+                <td>💲 $২০/মাস ($২৪০/বছর)</td>
+                <td>💲 $২০/মাস ($২৪০/বছর)</td>
+              </tr>
+              <tr>
+                <td><strong>বিল্ট-ইন ডাউনলোড ম্যানেজার</strong></td>
+                <td class="highlight-col">✅ CyberDM ইন্টিগ্রেটেড</td>
+                <td>❌ নেই</td>
+                <td>❌ নেই</td>
+              </tr>
+              <tr>
+                <td><strong>মোবাইল অ্যান্ড্রয়েড APK সাপোর্ট</strong></td>
+                <td class="highlight-col">✅ অফিশিয়াল ARM64 APK</td>
+                <td>❌ কোনো মোবাইল অ্যাপ নেই</td>
+                <td>⚠️ শুধু ব্রাউজার প্রিভিউ</td>
+              </tr>
+              <tr>
+                <td><strong>টার্মিনাল ৪৫৪+ টুলস ও স্কিলস</strong></td>
+                <td class="highlight-col">✅ প্রি-ইনস্টল্ড ও অটোমেটেড</td>
+                <td>❌ ম্যানুয়াল কনফিগারেশন</td>
+                <td>❌ লিমিটেড MCP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FAQ ACCORDION ================= -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-kicker">Got Questions?</div>
+          <h2 class="section-title">সাধারণ কিছু জিজ্ঞাসা ও উত্তর</h2>
+          <p class="section-subtitle">আপনার প্রয়োজনীয় প্রশ্নের সমাধান নিচে দেওয়া হলো।</p>
+        </div>
+
+        <div class="faq-wrap">
+          
+          <div class="faq-item active">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>১. Shopno AI কি সম্পূর্ণ বিনামূল্যে ব্যবহার করা যাবে?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              হ্যাঁ, Shopno AI একটি ওপেন-সোর্স এবং সম্পূর্ণ বিনামূল্যে ব্যবহারের উপযোগী সার্বভৌম এআই প্ল্যাটফর্ম। আপনি কোনো প্রকার ক্রেডিট কার্ড বা মাসিক সাবস্ক্রিপশন ফি ছাড়াই উইন্ডোজ এবং অ্যান্ড্রয়েডের জন্য ডাউনলোড করে আজীবন ব্যবহার করতে পারবেন।
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>২. নতুন রিলিজ পাবলিশ হলে ডাউনলোড লিঙ্ক কীভাবে আপডেট হয়?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              এই ল্যান্ডিং পেজে একটি লাইভ GitHub Releases API অটো-সিঙ্ক ইঞ্জিন রয়েছে। যখনই ডেভেলপার GitHub এ নতুন কোনো রিলিজ (.exe, .apk, .msi) ট্যাগ সহ পাবলিশ করেন, ব্রাউজার স্বয়ংক্রিয়ভাবে লেটেস্ট ভার্সন, ফাইলের সাইজ এবং ডিরেক্ট ডাউনলোড লিঙ্ক আপডেট করে দেয়। আপনাকে ম্যানুয়ালি লিংক বদলাতে হয় না!
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>৩. আমার পিসিতে কি GPU / গ্রাফিক্স কার্ড থাকা বাধ্যতামূলক?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              না, কোনো ডেডিকেটেড জিপিইউ থাকা বাধ্যতামূলক নয়! Shopno AI এর অপটিমাইজড কোয়ান্টাইজড ইঞ্জিন (CPU TurboQuant) সাধারণ ইন্টেল বা এএমডি প্রসেসরেও অতি দ্রুত চলে। আর ক্লাউড মোডে চালালে আপনার সাধারণ ল্যাপটপেই সুপারকম্পিউটারের স্পিড পাবেন।
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              <span>৪. লোকালহোস্ট API (port 1337) অন্য সফটওয়্যারে কীভাবে ব্যবহার করব?</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Shopno AI চালু করার সাথে সাথে ব্যাকগ্রাউন্ডে একটি লাইটওয়েট সার্ভার চালু হয় যা হুবহু OpenAI API স্ট্যান্ডার্ড মেনে চলে। আপনি Claude Code, Cursor, Aider কিংবা আপনার নিজস্ব পাইথন/জাভাস্ক্রিপ্ট কোডে Base URL হিসেবে <code>http://localhost:1337/v1</code> এবং যেকোনো ডামি API Key দিলেই কাজ করবে!
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA STRIP ================= -->
+    <section style="padding: 60px 0 80px; text-align: center;">
+      <div class="container">
+        <div class="glass-card" style="padding: 50px 30px; border-color: rgba(0, 242, 254, 0.4); background: radial-gradient(circle at center, rgba(0, 242, 254, 0.1), transparent 70%), var(--bg-card);">
+          <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px;">
+            আজই শুরু করুন <span class="gradient-text">আপনার ভবিষ্যৎ কোডিং যাত্রা</span>
+          </h2>
+          <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 32px; font-size: 1.1rem;">
+            কোডিং শেখার দীর্ঘ পথ আর নয়। আপনার বুদ্ধি আর Shopno AI এর শক্তি মিলে গড়ে তুলুন আগামী দিনের ডিজিটাল সৃষ্টি।
+          </p>
+          <a href="#download" class="btn-download-primary" style="display: inline-flex; width: auto; padding: 18px 36px; font-size: 1.15rem; margin: 0 auto;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+            এখনই ফ্রি ডাউনলোড করুন (v2.0.9)
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      
+      <div class="footer-content">
+        
+        <div class="footer-brand">
+          <div class="brand-group" style="margin-bottom: 12px;">
+            <div class="brand-icon-box" style="width:36px; height:36px;">
+              <svg viewBox="0 0 100 100" width="22" height="22">
+                <circle cx="50" cy="50" r="30" fill="url(#logoG)"/>
+              </svg>
+            </div>
+            <span class="brand-title" style="font-size: 1.25rem;">Shopno AI</span>
+          </div>
+          <p>
+            সার্বভৌম এআই কোডিং ও মাল্টি-এজেন্ট সোয়ার্ম অপারেটিং সিস্টেম। কোডিং সবার জন্য উন্মুক্ত ও বাধাহীন করাই আমাদের মূল লক্ষ্য।
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          
+          <div class="footer-col">
+            <h4>প্রোডাক্ট &amp; ডাউনলোড</h4>
+            <ul>
+              <li><a href="#download">উইন্ডোজ ইন্সটলার (.exe)</a></li>
+              <li><a href="#download">অ্যান্ড্রয়েড অ্যাপ (.apk)</a></li>
+              <li><a href="#download">এন্টারপ্রাইজ প্যাকেজ (.msi)</a></li>
+              <li><a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">ক্রোম এক্সটেনশন</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>ইকোসিস্টেম</h4>
+            <ul>
+              <li><a href="https://github.com/CyberPrince-glitch/CyberDM" target="_blank" rel="noopener">CyberDM ডাউনলোডার</a></li>
+              <li><a href="https://surveymentor.org" target="_blank" rel="noopener">surveymentor.org</a></li>
+              <li><a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">সকল রিলিজ নোটস</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>ডেভেলপার কমিউনিটি</h4>
+            <ul>
+              <li><a href="https://github.com/CyberPrince-glitch" target="_blank" rel="noopener">GitHub Profile</a></li>
+              <li><a href="https://www.youtube.com/@CyberPrinceTrick" target="_blank" rel="noopener">YouTube @CyberPrinceTrick</a></li>
+              <li><a href="https://www.linkedin.com/in/cyber-prince-a77b571a4/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 <strong>Shopno AI</strong>. Developed with ❤️ by <strong>Cyber Prince</strong>. All rights reserved.
+        </div>
+
+        <div class="social-row">
+          <a href="https://github.com/CyberPrince-glitch" target="_blank" rel="noopener" class="social-btn" title="GitHub" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@CyberPrinceTrick" target="_blank" rel="noopener" class="social-btn" title="YouTube" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/cyber-prince-a77b571a4/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.62a1.64 1.64 0 1 0 0 3.28 1.64 1.64 0 0 0 0-3.28z"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
-    <p class="made">Developed with <span class="heart">♥</span> by <strong>Cyber Prince</strong></p>
-    <div class="foot-links">
-      <a href="https://surveymentor.org" target="_blank" rel="noopener">surveymentor.org</a> ·
-      <a href="https://chromewebstore.google.com/detail/shopno-browser-agent/fcaobmifkhmhdphiolacoejcgjgcieid" target="_blank" rel="noopener">Chrome Extension</a> ·
-      <a href="https://github.com/CyberPrince-glitch/Shopno-Portable-LLM/releases" target="_blank" rel="noopener">Releases</a> ·
-      <a href="#features">Features</a> ·
-      <a href="#download">Download</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // ---- OS-aware download emphasis ----
-  (function () {
-    var os = 'unknown';
-    var ua = navigator.userAgent;
-    if (/Windows NT 10|Windows NT 11/i.test(ua)) os = 'windows';
-    else if (/Mac OS X|Macintosh/i.test(ua)) os = 'macos';
-    else if (/Linux/i.test(ua) && !/Android/i.test(ua)) os = 'linux';
-    else if (/Android/i.test(ua)) os = 'android';
+  <!-- ================= JAVASCRIPT: DYNAMIC GITHUB RELEASES AUTO-SYNC ENGINE ================= -->
+  <script>
+    // Configuration
+    const REPO_OWNER = 'CyberPrince-glitch';
+    const REPO_NAME = 'Shopno-Portable-LLM';
+    const CACHE_KEY = 'shopno_gh_release_v2';
+    const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
 
-    var text = document.getElementById('dl-os-text');
-    var note = document.getElementById('os-note');
-    var exe = document.getElementById('btn-exe');
-    var msi = document.getElementById('btn-msi');
+    // 1. Terminal Demo Dictionaries
+    const termDemos = {
+      webapp: `
+<div class="term-prompt">user@shopno:~$ shopno build "বাংলায় একটি রেস্টুরেন্ট ডেলিভারি ড্যাশবোর্ড বানাও"</div>
+<div class="term-step"><span class="term-check">✔</span> [GLM 5.3 Reasoning] রিকোয়েস্ট বিশ্লেষণ সম্পন্ন (Next.js + Tailwind + SQLite)</div>
+<div class="term-step"><span class="term-check">✔</span> স্ক্যাফোল্ডিং প্রজেক্ট ডিরেক্টরি ও আর্কিটেকচার সেটআপ...</div>
+<div class="term-step"><span class="term-check">✔</span> ক্রিয়েটিং কম্পোনেন্টস: OrderList.tsx, LiveTracker.tsx, CartModal.tsx</div>
+<div class="term-code-snippet">
+// app/api/orders/route.ts
+export async function POST(req: Request) {
+  const { customer, items, total } = await req.json();
+  const order = await db.order.create({ data: { customer, items, total, status: 'PREPARING' } });
+  return NextResponse.json({ success: true, orderId: order.id });
+}
+</div>
+<div class="term-step"><span class="term-check">✔</span> কম্পাইলিং বিল্ড আর্টফ্যাক্টস... Done in 3.4s</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">🚀 লাইভ প্রিভিউ রেডি: <a href="http://localhost:3000" style="color:#00f2fe; text-decoration:underline;">http://localhost:3000</a></div>
+`,
+      mobile: `
+<div class="term-prompt">user@shopno:~$ shopno mobile package --platform android --arch arm64</div>
+<div class="term-step"><span class="term-check">✔</span> চেকিং অ্যান্ড্রয়েড SDK এবং NDK এনভায়রনমেন্ট... OK</div>
+<div class="term-step"><span class="term-check">✔</span> বান্ডলিং অফলাইন লোকাল এলএলএম রানটাইম (TurboQuant Engine)...</div>
+<div class="term-step"><span class="term-check">✔</span> সাইনিং APK উইথ রিলিজ কি-স্টোর...</div>
+<div class="term-code-snippet">
+BUILD SUCCESSFUL in 18s
+APK Output: dist/app-arm64-release.apk (211.3 MB)
+Ready for Google Play Store or Direct Sideloading.
+</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">📱 APK জেনারেট সম্পন্ন! কিউআর কোড বা ইউএসবি দিয়ে মোবাইলে ইন্সটল করুন।</div>
+`,
+      api: `
+<div class="term-prompt">user@shopno:~$ shopno serve --port 1337 --openai-compat</div>
+<div class="term-step"><span class="term-check">✔</span> ইনিশিয়ালাইজিং লোকাল মডেল ওয়েটস: GGUF 8-bit quantized</div>
+<div class="term-step"><span class="term-check">✔</span> বাইন্ডিং HTTP লিসেনার on 127.0.0.1:1337</div>
+<div class="term-step"><span class="term-check">✔</span> মাউন্টিং OpenAI এন্ডিং রাউট: /v1/chat/completions, /v1/models</div>
+<div class="term-code-snippet">
+curl http://localhost:1337/v1/chat/completions \\
+  -H "Content-Type: application/json" \\
+  -d '{"model": "shopno-v2", "messages": [{"role": "user", "content": "Hello!"}]}'
+</div>
+<div style="color:#34d399; font-weight:700; margin-top:10px;">⚡ পোর্ট 1337 এ সার্ভার রেডি! Claude Code বা Cursor এ সংযুক্ত করুন।</div>
+`
+    };
 
-    if (os === 'windows') {
-      text.innerHTML = 'You are on <strong>Windows</strong> — grab the installer below.';
-      exe.classList.add('os-suggested');
-    } else if (os === 'macos') {
-      text.innerHTML = 'You are on <strong>macOS</strong> — desktop builds are on the releases page.';
-      note.textContent = 'macOS builds: see “all releases” below the buttons.';
-    } else if (os === 'linux') {
-      text.innerHTML = 'You are on <strong>Linux</strong> — AppImage builds are on the releases page.';
-      note.textContent = 'Linux AppImage: see “all releases” below the buttons.';
-    } else if (os === 'android') {
-      text.innerHTML = 'You are on <strong>Android</strong> — get the mobile build from the releases page.';
-      note.textContent = 'Android APK: see “all releases” below the buttons.';
-    } else {
-      text.innerHTML = 'Download Shopno Chat for <strong>Windows</strong> — other platforms on the releases page.';
+    function switchTermDemo(key) {
+      document.querySelectorAll('.term-tab-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById('term-content').innerHTML = termDemos[key];
     }
-  })();
 
-  // ---- reveal on scroll ----
-  (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(function (e) { e.classList.add('in'); });
-      return;
+    // Default terminal tab
+    document.getElementById('term-content').innerHTML = termDemos.webapp;
+
+    // 2. Model Cards Interactive Toggle
+    function selectModelCard(el, modelKey) {
+      document.querySelectorAll('.model-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
     }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+
+    // 3. FAQ Accordion Toggle
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+
+    // 4. OS Detection
+    function detectUserOS() {
+      const ua = navigator.userAgent || '';
+      let os = 'Windows (x64)';
+      let isWin = false;
+      let isAndroid = false;
+
+      if (/Android/i.test(ua)) {
+        os = 'Android Mobile';
+        isAndroid = true;
+      } else if (/Win/i.test(ua)) {
+        os = 'Windows (64-bit)';
+        isWin = true;
+      } else if (/Mac/i.test(ua)) {
+        os = 'macOS';
+      } else if (/Linux/i.test(ua)) {
+        os = 'Linux (x86_64)';
+      }
+
+      const osTextEl = document.getElementById('detected-os-text');
+      if (osTextEl) {
+        osTextEl.innerHTML = `
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#00f2fe"><path d="M3 5.5l7.5-1v7H3v-6zm0 13v-6h7.5v7L3 18.5zm8.5 1.2v-7.2H21v8.5l-9.5-1.3zm0-15.4L21 3v8.5h-9.5V4.3z"/></svg>
+          <span>ডিটেক্টেড প্ল্যাটফর্ম: <strong>${os}</strong> — আপনার ডিভাইসের উপযোগী</span>
+        `;
+      }
+
+      // Highlight preferred button
+      if (isAndroid) {
+        const apkBtn = document.getElementById('btn-apk');
+        if (apkBtn) {
+          apkBtn.classList.remove('btn-download-secondary');
+          apkBtn.classList.add('btn-download-primary');
+        }
+      }
+    }
+
+    // 5. THE GITHUB RELEASES AUTO-SYNC CORE ENGINE
+    async function autoSyncGitHubReleases() {
+      try {
+        let releaseData = null;
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.timestamp < CACHE_DURATION) {
+              releaseData = parsed.data;
+            }
+          } catch (e) {
+            console.warn('Cache parse error:', e);
+          }
+        }
+
+        if (!releaseData) {
+          const resp = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`, {
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+          });
+          if (resp.ok) {
+            releaseData = await resp.json();
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+              timestamp: Date.now(),
+              data: releaseData
+            }));
+          }
+        }
+
+        if (releaseData && releaseData.tag_name) {
+          applyReleaseData(releaseData);
+        }
+      } catch (err) {
+        console.warn('GitHub Releases API Offline / Rate-limited. Fallback active.', err);
+      }
+    }
+
+    function applyReleaseData(rel) {
+      const tag = rel.tag_name.replace(/^v/i, '');
+      const tagNameWithV = 'v' + tag;
+
+      // Update Nav & Badges
+      const navTag = document.getElementById('nav-tag-text');
+      if (navTag) navTag.textContent = `${tagNameWithV} Stable`;
+
+      const heroChip = document.getElementById('hero-release-chip');
+      if (heroChip) {
+        heroChip.textContent = `✨ Shopno AI ${tagNameWithV} লাইভ রিলিজ • 454+ নেটিভ টুলস • 100% লোকাল ও অফলাইন`;
+      }
+
+      const syncText = document.getElementById('sync-status-text');
+      if (syncText) {
+        syncText.textContent = `GitHub Auto-Sync Active (${tagNameWithV})`;
+      }
+
+      // Parse assets
+      const assets = rel.assets || [];
+      let exeAsset = null;
+      let msiAsset = null;
+      let apkAsset = null;
+
+      for (const a of assets) {
+        const name = (a.name || '').toLowerCase();
+        if (name.endsWith('.exe')) exeAsset = a;
+        else if (name.endsWith('.msi')) msiAsset = a;
+        else if (name.endsWith('.apk')) apkAsset = a;
+      }
+
+      // Format size helper
+      const formatMB = (bytes) => (bytes / (1024 * 1024)).toFixed(0) + ' MB';
+
+      // 1. Windows EXE
+      if (exeAsset) {
+        const btnExe = document.getElementById('btn-exe');
+        const subExe = document.getElementById('btn-exe-sub');
+        if (btnExe) btnExe.href = exeAsset.browser_download_url;
+        if (subExe) subExe.textContent = `Installer .exe • ${formatMB(exeAsset.size)} • ${tagNameWithV}`;
+      }
+
+      // 2. Windows MSI
+      if (msiAsset) {
+        const btnMsi = document.getElementById('btn-msi');
+        const subMsi = document.getElementById('btn-msi-sub');
+        if (btnMsi) btnMsi.href = msiAsset.browser_download_url;
+        if (subMsi) subMsi.textContent = `Enterprise .msi • ${formatMB(msiAsset.size)}`;
+      }
+
+      // 3. Android APK
+      if (apkAsset) {
+        const btnApk = document.getElementById('btn-apk');
+        const subApk = document.getElementById('btn-apk-sub');
+        if (btnApk) btnApk.href = apkAsset.browser_download_url;
+        if (subApk) subApk.textContent = `ARM64 .apk • ${formatMB(apkAsset.size)} • ${tagNameWithV}`;
+      }
+    }
+
+    // 6. Interactive Card Mouse Glow Effect
+    document.addEventListener('mousemove', (e) => {
+      document.querySelectorAll('.glass-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
       });
-    }, { threshold: 0.12 });
-    els.forEach(function (e) { io.observe(e); });
-  })();
-</script>
+    });
+
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', () => {
+      detectUserOS();
+      autoSyncGitHubReleases();
+    });
+  </script>
+
 </body>
 </html>
